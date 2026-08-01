@@ -135,6 +135,13 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none;}
   .klar-grid{grid-template-columns:repeat(2,1fr);}
   .ref-wrap{flex-direction:column;align-items:center;text-align:center;}
 }
+
+/* VORSCHAU-GALERIE */
+.vorschau-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;max-width:900px;margin:0 auto;}
+.vorschau-karte{background:#fff;border-radius:12px;border:1.5px solid #DDD8CE;overflow:hidden;}
+.vorschau-karte img{width:100%;display:block;}
+.vorschau-label{padding:.5rem .75rem;font-size:.72rem;color:#6A6878;text-align:center;letter-spacing:.04em;}
+.vorschau-hinweis{max-width:700px;margin:1.5rem auto 0;text-align:center;font-size:.78rem;color:#6A6878;line-height:1.7;}
 </style>
 </head>
 <body>
@@ -161,6 +168,31 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none;}
   </div>
 </section>
 
+
+<!-- VORSCHAU -->
+<section class="sek grau">
+  <h2 class="sek-titel">So sehen die Karten aus</h2>
+  <p class="sek-sub">Ein echter Blick ins Deck — Vorder- und Rückseite, bevor du dich entscheidest.</p>
+  <div class="vorschau-grid">
+    <div class="vorschau-karte">
+      <img src="vorschau/adhs/ADHS-03_hinten_muster.jpg" alt="Beispielkarte ADHS · Impulskarten für Kinder mit ADHS" loading="lazy">
+      <div class="vorschau-label">Rückseite (Muster)</div>
+    </div>
+    <div class="vorschau-karte">
+      <img src="vorschau/adhs/ADHS-03_vorne_muster.jpg" alt="Beispielkarte ADHS · Impulskarten für Kinder mit ADHS" loading="lazy">
+      <div class="vorschau-label">Vorderseite (Muster)</div>
+    </div>
+    <div class="vorschau-karte">
+      <img src="vorschau/adhs/ADHS-10_hinten_muster.jpg" alt="Beispielkarte ADHS · Impulskarten für Kinder mit ADHS" loading="lazy">
+      <div class="vorschau-label">Rückseite (Muster)</div>
+    </div>
+    <div class="vorschau-karte">
+      <img src="vorschau/adhs/ADHS-10_vorne_muster.jpg" alt="Beispielkarte ADHS · Impulskarten für Kinder mit ADHS" loading="lazy">
+      <div class="vorschau-label">Vorderseite (Muster)</div>
+    </div>
+  </div>
+  <p class="vorschau-hinweis">Die Originalkarten sind ohne Wasserzeichen und in voller Druckqualität enthalten.</p>
+</section>
 <!-- FÜR WEN -->
 <section class="sek grau">
   <h2 class="sek-titel">Für wen ist das ADHS-Deck?</h2>
