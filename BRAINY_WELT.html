@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Brainy-Welt · Materialien für Kinder von KLARTEXT-Mentoring</title>
+<meta name="description" content="Brainy-Welt: Kostenlose Einblicke, Kartendeck und wachsende Materialsammlung für Kinder von 6–10 Jahren, die ihre Gefühle in Worte fassen lernen. Für Eltern, Lehrkräfte und Schulbegleitung.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"DM Sans",sans-serif;background:#fff;color:#1A1A2E;}
+
+/* NAV */
+.nav{background:#1B3A4B;padding:.75rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;}
+.nav-logo span{color:#6EC6A0;}
+.nav-cta{background:#6EC6A0;color:#1B3A4B;border:none;padding:.45rem 1.1rem;border-radius:20px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1B3A4B 0%,#2A4A5B 60%,#1B3A4B 100%);padding:4rem clamp(1rem,5vw,4rem) 3.5rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(110,198,160,.08) 0%,transparent 60%);pointer-events:none;}
+.hero-brainy{width:110px;height:110px;border-radius:50%;object-fit:cover;border:4px solid #6EC6A0;margin:0 auto 1.25rem;display:block;position:relative;}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(110,198,160,.15);border:1px solid rgba(110,198,160,.4);border-radius:20px;padding:.3rem .85rem;font-size:.72rem;font-weight:700;color:#6EC6A0;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem;}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.3rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1rem;max-width:780px;margin-left:auto;margin-right:auto;}
+.hero h1 span{color:#6EC6A0;}
+.hero-sub{font-size:clamp(.95rem,2vw,1.1rem);color:rgba(255,255,255,.7);line-height:1.8;max-width:620px;margin:0 auto 2rem;}
+.hero-cta-wrap{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-primary{background:#6EC6A0;color:#1B3A4B;padding:.75rem 2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-primary:hover{background:#5AB490;transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);padding:.75rem 2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:600;text-decoration:none;display:inline-block;}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;}
+.hero-stat{text-align:center;}
+.hero-stat .n{font-family:"Playfair Display",serif;font-size:1.8rem;font-weight:700;color:#6EC6A0;display:block;}
+.hero-stat .l{font-size:.72rem;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase;}
+
+/* SEKTION */
+.sek{padding:3.5rem clamp(1rem,5vw,4rem);}
+.sek-titel{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1B3A4B;text-align:center;margin-bottom:.5rem;}
+.sek-sub{font-size:.95rem;color:#6A6878;text-align:center;margin-bottom:2.5rem;line-height:1.75;max-width:640px;margin-left:auto;margin-right:auto;}
+.sek.grau{background:#F5F0E8;}
+.sek.dunkel{background:#1B3A4B;}
+
+/* WER IST BRAINY */
+.brainy-wrap{display:flex;gap:2.5rem;align-items:center;max-width:820px;margin:0 auto;flex-wrap:wrap;}
+.brainy-bild{width:180px;height:180px;border-radius:50%;object-fit:cover;border:5px solid #6EC6A0;flex-shrink:0;margin:0 auto;}
+.brainy-text{flex:1;min-width:280px;}
+.brainy-text p{font-size:.92rem;color:#3A3A4A;line-height:1.9;margin-bottom:.9rem;}
+.brainy-text p:last-child{margin-bottom:0;}
+
+/* MATERIAL-GRID */
+.mat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem;max-width:1000px;margin:0 auto;}
+.mat-karte{background:#fff;border-radius:12px;border:1.5px solid #DDD8CE;padding:1.35rem 1.5rem;position:relative;}
+.mat-icon{font-size:1.7rem;margin-bottom:.6rem;display:block;}
+.mat-titel{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.mat-desc{font-size:.82rem;color:#3A3A4A;line-height:1.7;margin-bottom:.9rem;}
+.mat-status{display:inline-flex;align-items:center;gap:.3rem;font-size:.68rem;font-weight:700;padding:.2rem .6rem;border-radius:20px;letter-spacing:.03em;}
+.mat-status.live{background:#E8F5EE;color:#2E7D47;}
+.mat-status.bald{background:#FBF4E8;color:#C47A00;}
+.mat-link{display:block;margin-top:.7rem;font-size:.8rem;font-weight:700;color:#1B3A4B;text-decoration:none;}
+.mat-link:hover{text-decoration:underline;}
+
+/* FÜR WEN */
+.fuer-wen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;max-width:900px;margin:0 auto;}
+.fw-karte{background:#fff;border-radius:12px;border:1.5px solid #DDD8CE;padding:1.25rem 1.5rem;}
+.fw-emoji{font-size:2rem;margin-bottom:.65rem;display:block;}
+.fw-titel{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.fw-desc{font-size:.83rem;color:#3A3A4A;line-height:1.75;}
+
+/* VORSCHAU-GALERIE */
+.vorschau-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;max-width:900px;margin:0 auto;}
+.vorschau-karte{background:#fff;border-radius:12px;border:1.5px solid #DDD8CE;overflow:hidden;}
+.vorschau-karte img{width:100%;display:block;aspect-ratio:3/2;object-fit:cover;}
+.vorschau-label{padding:.5rem .75rem;font-size:.72rem;color:#6A6878;text-align:center;letter-spacing:.04em;}
+
+/* WÄCHST */
+.waechst-wrap{max-width:680px;margin:0 auto;text-align:center;}
+.waechst-wrap p{font-size:.92rem;color:#3A3A4A;line-height:1.9;margin-bottom:1rem;}
+
+/* ZITAT */
+.zitat-wrap{max-width:700px;margin:0 auto;text-align:center;}
+.zitat-text{font-family:"Playfair Display",serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:#fff;line-height:1.6;margin-bottom:1rem;}
+.zitat-autor{font-size:.82rem;color:rgba(255,255,255,.5);}
+
+/* FAQ */
+.faq-liste{max-width:700px;margin:0 auto;}
+.faq-item{border-bottom:1px solid #DDD8CE;padding:1rem 0;}
+.faq-frage{font-size:.9rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.faq-antwort{font-size:.83rem;color:#3A3A4A;line-height:1.8;}
+
+/* CTA FINAL */
+.cta-final{text-align:center;padding:3.5rem clamp(1rem,5vw,4rem);background:linear-gradient(135deg,#1B3A4B,#2A4A5B);}
+.cta-final h2{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;margin-bottom:.75rem;}
+.cta-final p{color:rgba(255,255,255,.6);margin-bottom:2rem;font-size:.95rem;max-width:520px;margin-left:auto;margin-right:auto;}
+
+/* FOOTER */
+footer{background:#0F2535;padding:2rem clamp(1rem,4vw,3rem);text-align:center;font-size:.75rem;color:rgba(255,255,255,.35);}
+footer a{color:rgba(255,255,255,.4);text-decoration:none;}
+
+@media(max-width:600px){
+  .brainy-wrap{flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html">KLAR<span>TEXT</span></a>
+  <a class="nav-cta" href="#waechst">Benachrichtigt werden</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-brainy" src="vorschau/brainy/brainy.png" alt="Brainy — das Maskottchen von KLARTEXT">
+  <div class="hero-badge">🧠 Brainy-Welt · Materialien für Kinder</div>
+  <h1>Brainy hilft Kindern,<br><span>Gefühle in Worte zu fassen.</span></h1>
+  <p class="hero-sub">Brainy ist das Maskottchen aller KLARTEXT-Materialien für Kinder — vom Kartendeck über Signalkärtchen bis zu Druckvorlagen fürs Klassenzimmer. Eine wachsende Sammlung für Eltern, Lehrkräfte und Schulbegleitung, für Kinder von etwa 6–10 Jahren.</p>
+  <div class="hero-cta-wrap">
+    <a href="#material" class="btn-primary">Materialien entdecken</a>
+    <a href="#wer-ist-brainy" class="btn-secondary">Wer ist Brainy?</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="n">10+</span><span class="l">Materialien</span></div>
+    <div class="hero-stat"><span class="n">6–10</span><span class="l">Jahre</span></div>
+    <div class="hero-stat"><span class="n">laufend</span><span class="l">wachsende Sammlung</span></div>
+  </div>
+</section>
+
+<!-- WER IST BRAINY -->
+<section class="sek" id="wer-ist-brainy">
+  <h2 class="sek-titel">Wer ist Brainy?</h2>
+  <p class="sek-sub">Ein freundliches Gesicht für ein ernstes Thema.</p>
+  <div class="brainy-wrap">
+    <img class="brainy-bild" src="vorschau/brainy/brainy.png" alt="Brainy, das wolkenförmige Gehirn-Maskottchen von KLARTEXT">
+    <div class="brainy-text">
+      <p>Brainy ist eine freundliche, wolkenförmige Gehirn-Figur mit runder Brille und warmem Lächeln — das Maskottchen, das durch alle KLARTEXT-Materialien für Kinder führt. Brainy fragt nicht "Warum bist du wütend?", sondern zeigt: Gefühle und Bedürfnisse sind normal, man darf sie zeigen, und es gibt einen Weg damit umzugehen.</p>
+      <p>Ob auf Gesprächskarten, Signalkärtchen zum Hochhalten oder Druckvorlagen für den Alltag: Brainy macht abstrakte Konzepte wie das KLARTEXT-Barometer oder das kLAR-Modell für Kinder greifbar — ohne Fachjargon, mit Bildern statt langen Erklärungen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIAL -->
+<section class="sek grau" id="material">
+  <h2 class="sek-titel">Was gibt's schon in der Brainy-Welt?</h2>
+  <p class="sek-sub">Eine wachsende Sammlung — vom eigenständigen Kartendeck bis zu kleinen Druckvorlagen für den Schulalltag.</p>
+  <div class="mat-grid">
+    <div class="mat-karte">
+      <span class="mat-icon">🃏</span>
+      <div class="mat-titel">KD · Coaching-Impulskarten</div>
+      <div class="mat-desc">35 Gesprächskarten für die Grundschule, mit Brainy direkt im Bild. Das Herzstück der Brainy-Welt — als PDF oder gedrucktes Kartendeck.</div>
+      <span class="mat-status live">✓ Verfügbar zur Vorbestellung</span>
+      <a class="mat-link" href="KD_Verkaufsseite.html">Zum Kartendeck →</a>
+    </div>
+    <div class="mat-karte">
+      <span class="mat-icon">🙋</span>
+      <div class="mat-titel">Brainy muss mal kurz…</div>
+      <div class="mat-desc">6 Signalkarten: Das Kind zeigt Brainy, was es gerade braucht — Toilette, Trinkpause, Bewegung, die eigene Insel, frische Luft oder kurz für sich.</div>
+      <span class="mat-status bald">Teil der KLARTEXT-App</span>
+    </div>
+    <div class="mat-karte">
+      <span class="mat-icon">🪭</span>
+      <div class="mat-titel">Zauberfächer</div>
+      <div class="mat-desc">Ein digitales Gesprächsinstrument: aufklappen und die passende Karte fürs Gefühl finden — sofort einsetzbar, ganz ohne Vorbereitung.</div>
+      <span class="mat-status bald">Teil der KLARTEXT-App</span>
+    </div>
+    <div class="mat-karte">
+      <span class="mat-icon">🖨️</span>
+      <div class="mat-titel">Druckvorlagen-Sammlung</div>
+      <div class="mat-desc">Geheimschüler-Ausweis, Joker-Gutscheine, Sterntaler, Lob-Armband, Mini-Fitness, Mutmach-Kärtchen und mehr — kleine Helfer für den Alltag mit Kindern.</div>
+      <span class="mat-status bald">Teil der KLARTEXT-App</span>
+    </div>
+    <div class="mat-karte">
+      <span class="mat-icon">🌡️</span>
+      <div class="mat-titel">Kinder-Barometer</div>
+      <div class="mat-desc">Interaktiv: Das Kind wählt selbst, wie es sich fühlt — mit Wochenbilanz und der Möglichkeit, alles auszudrucken.</div>
+      <span class="mat-status bald">Teil der KLARTEXT-App</span>
+    </div>
+  </div>
+</section>
+
+<!-- FÜR WEN -->
+<section class="sek">
+  <h2 class="sek-titel">Für wen ist die Brainy-Welt?</h2>
+  <p class="sek-sub">Alle Materialien sind so gestaltet, dass sie auch ohne pädagogischen Hintergrund sofort einsetzbar sind.</p>
+  <div class="fuer-wen-grid">
+    <div class="fw-karte">
+      <span class="fw-emoji">👪</span>
+      <div class="fw-titel">Eltern</div>
+      <div class="fw-desc">Für zuhause — konkrete Gesprächseinstiege statt "Wie war's in der Schule?".</div>
+    </div>
+    <div class="fw-karte">
+      <span class="fw-emoji">🧑‍🏫</span>
+      <div class="fw-titel">INGRA / Schulbegleitung</div>
+      <div class="fw-desc">Als Werkzeug im Schulalltag — bei Streit, Angst, Trauer oder einfach zum Ankommen.</div>
+    </div>
+    <div class="fw-karte">
+      <span class="fw-emoji">📚</span>
+      <div class="fw-titel">Lehrkräfte</div>
+      <div class="fw-desc">Einsetzbar im Klassenrat, in der Sozialen-Lernen-Stunde oder für ruhige Momente zwischendurch.</div>
+    </div>
+    <div class="fw-karte">
+      <span class="fw-emoji">🧒</span>
+      <div class="fw-titel">Kinder selbst</div>
+      <div class="fw-desc">Brainy spricht direkt zum Kind — bunt, verständlich, ohne erhobenen Zeigefinger.</div>
+    </div>
+  </div>
+</section>
+
+<!-- VORSCHAU -->
+<section class="sek grau">
+  <h2 class="sek-titel">Ein Blick in die Brainy-Welt</h2>
+  <p class="sek-sub">Echte Ausschnitte aus dem KD-Kartendeck und der Signalkarten-Serie.</p>
+  <div class="vorschau-grid">
+    <div class="vorschau-karte">
+      <img src="vorschau/kd/KD-11_vorne_muster.jpg" alt="Beispielkarte aus dem KD-Kartendeck mit Brainy" loading="lazy">
+      <div class="vorschau-label">KD-Kartendeck (Muster)</div>
+    </div>
+    <div class="vorschau-karte">
+      <img src="vorschau/brainy/SIGNAL-TOILETTE.jpg" alt="Brainy muss mal kurz — Signalkarte Toilette" loading="lazy">
+      <div class="vorschau-label">Signalkarte · Toilette</div>
+    </div>
+    <div class="vorschau-karte">
+      <img src="vorschau/brainy/SIGNAL-BEWEGUNG.jpg" alt="Brainy muss mal kurz — Signalkarte Bewegung am Platz" loading="lazy">
+      <div class="vorschau-label">Signalkarte · Bewegung</div>
+    </div>
+    <div class="vorschau-karte">
+      <img src="vorschau/brainy/SIGNAL-LUFT.jpg" alt="Brainy muss mal kurz — Signalkarte frische Luft" loading="lazy">
+      <div class="vorschau-label">Signalkarte · Frische Luft</div>
+    </div>
+  </div>
+</section>
+
+<!-- WÄCHST -->
+<section class="sek" id="waechst">
+  <h2 class="sek-titel">Die Brainy-Welt wächst</h2>
+  <div class="waechst-wrap">
+    <p>Die Brainy-Welt ist kein fertiges Produkt, sondern eine Sammlung, die laufend größer wird. Nach dem KD-Kartendeck und den Signalkarten entstehen nach und nach weitere eigenständige Materialien — einzeln nutzbar, ohne dass die ganze KLARTEXT-App nötig ist.</p>
+    <p>Wenn du möchtest, dass wir dich informieren, sobald neue Brainy-Materialien einzeln erhältlich sind — als Kita, Schule, Praxis oder für den Verweis auf deinem Portal — trag dich unverbindlich ein.</p>
+  </div>
+  <div class="hero-cta-wrap" style="margin-top:1.5rem;">
+    <a href="mailto:info@klartext-mentoring.de?subject=Brainy-Welt – Benachrichtigung bei neuen Materialien" class="btn-primary" style="color:#1B3A4B;">📧 Benachrichtigt werden</a>
+    <a href="KD_Verkaufsseite.html" class="btn-secondary" style="color:#1B3A4B;border-color:#1B3A4B;">Zum KD-Kartendeck</a>
+  </div>
+</section>
+
+<!-- ZITAT -->
+<section class="sek dunkel">
+  <div class="zitat-wrap">
+    <div class="zitat-text">"Kinder wissen oft genau, wie es ihnen geht — ihnen fehlen nur die Worte dafür. Brainy gibt genau die Frage oder das Bild, das ein Gefühl greifbar macht."</div>
+    <div class="zitat-autor">— Anja Jolk, Entwicklerin KLARTEXT</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sek grau">
+  <h2 class="sek-titel">Häufige Fragen</h2>
+  <div class="faq-liste">
+    <div class="faq-item">
+      <div class="faq-frage">Ist Brainy ein eigenes Produkt, das ich kaufen kann?</div>
+      <div class="faq-antwort">Brainy ist das Maskottchen, das durch alle KLARTEXT-Kindermaterialien führt. Aktuell eigenständig erhältlich ist das KD-Kartendeck. Weitere Materialien (Signalkarten, Zauberfächer, Druckvorlagen) sind bisher Teil der KLARTEXT-App und sollen nach und nach auch einzeln verfügbar werden.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Kann ich diese Seite auf meinem Portal oder in meiner Linksammlung verlinken?</div>
+      <div class="faq-antwort">Ja, gerne. Diese Seite ist frei zugänglich, ohne Login, und richtet sich genau an Eltern, Lehrkräfte und Fachkräfte, die nach Materialien für Kinder suchen.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Für welches Alter sind die Brainy-Materialien gedacht?</div>
+      <div class="faq-antwort">Der Schwerpunkt liegt auf der Grundschule, etwa 6–10 Jahre. Sprache und Bilder sind bewusst konkret und einfach gehalten.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Brauche ich pädagogisches Vorwissen?</div>
+      <div class="faq-antwort">Nein. Alle Brainy-Materialien sind so geschrieben, dass Eltern und fachfremde Begleitpersonen sie direkt mit dem Kind nutzen können.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <h2>Lerne Brainy kennen</h2>
+  <p>Starte mit dem KD-Kartendeck oder lass dich benachrichtigen, sobald neue Materialien aus der Brainy-Welt erscheinen.</p>
+  <div class="hero-cta-wrap">
+    <a href="KD_Verkaufsseite.html" class="btn-primary">Zum KD-Kartendeck</a>
+    <a href="mailto:info@klartext-mentoring.de?subject=Brainy-Welt – Benachrichtigung bei neuen Materialien" class="btn-secondary">Benachrichtigt werden</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Brainy-Welt · ein KLARTEXT-Angebot · © 2026 Anja Jolk · Schwerte</p>
+  <p style="margin-top:.4rem;">
+    <a href="SHOP_KLARTEXT_Impressum.html">Impressum</a> ·
+    <a href="SHOP_KLARTEXT_Datenschutz.html">Datenschutz</a> ·
+    <a href="KLARTEXT_Shop_Uebersicht.html">Alle Kartendecks</a> ·
+    info@klartext-mentoring.de
+  </p>
+</footer>
+
+</body>
+</html>
