@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KLARTEXT · Alltagsstruktur &amp; administrativer Support – für Pflegedienste</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"DM Sans",sans-serif;background:#fff;color:#1A1A2E;}
+
+.nav{background:#1B3A4B;padding:.75rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;}
+.nav-logo span{color:#6EC6A0;}
+.nav-cta{background:#6EC6A0;color:#1B3A4B;border:none;padding:.45rem 1.1rem;border-radius:20px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;}
+
+.hero{background:linear-gradient(135deg,#1B3A4B 0%,#2A4A5B 60%,#1B3A4B 100%);padding:5rem clamp(1rem,5vw,4rem) 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(110,198,160,.08) 0%,transparent 60%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(110,198,160,.15);border:1px solid rgba(110,198,160,.4);border-radius:20px;padding:.3rem .85rem;font-size:.72rem;font-weight:700;color:#6EC6A0;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem;}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.3rem);font-weight:900;color:#fff;line-height:1.18;margin-bottom:1rem;max-width:820px;margin-left:auto;margin-right:auto;}
+.hero h1 span{color:#6EC6A0;}
+.hero-sub{font-size:clamp(.95rem,2vw,1.1rem);color:rgba(255,255,255,.7);line-height:1.8;max-width:660px;margin:0 auto 2rem;}
+.hero-cta-wrap{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-primary{background:#6EC6A0;color:#1B3A4B;padding:.75rem 2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-primary:hover{background:#5AB490;transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);padding:.75rem 2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:600;text-decoration:none;display:inline-block;}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;}
+.hero-stat{text-align:center;}
+.hero-stat .n{font-family:"Playfair Display",serif;font-size:1.6rem;font-weight:700;color:#6EC6A0;display:block;}
+.hero-stat .l{font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase;}
+
+.sek{padding:4rem clamp(1rem,5vw,4rem);}
+.sek-titel{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1B3A4B;text-align:center;margin-bottom:.5rem;}
+.sek-sub{font-size:.95rem;color:#6A6878;text-align:center;margin-bottom:2.5rem;line-height:1.75;max-width:700px;margin-left:auto;margin-right:auto;}
+.sek.grau{background:#F5F0E8;}
+.sek.dunkel{background:#1B3A4B;}
+
+.leistungen{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;max-width:1000px;margin:0 auto;}
+.l-karte{background:#fff;border-radius:12px;padding:1.5rem 1.5rem;border-left:4px solid;}
+.l-icon{font-size:1.6rem;margin-bottom:.5rem;display:block;}
+.l-titel{font-size:.95rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.l-desc{font-size:.83rem;color:#3A3A4A;line-height:1.75;}
+.l-desc ul{margin:.5rem 0 0 1.1rem;padding:0;}
+.l-desc li{margin-bottom:.2rem;}
+
+.check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;max-width:1000px;margin:0 auto;}
+.check-item{background:#fff;border-radius:12px;padding:1.1rem 1.25rem;border:1.5px solid #DDD8CE;}
+.check-item .t{font-size:.85rem;font-weight:700;color:#1B3A4B;margin-bottom:.3rem;}
+.check-item .t::before{content:"✓ ";color:#6EC6A0;}
+.check-item .d{font-size:.8rem;color:#6A6878;line-height:1.6;}
+
+.preis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;max-width:1000px;margin:0 auto;}
+.preis-karte{background:#fff;border-radius:14px;padding:1.75rem 1.5rem;border:1.5px solid #DDD8CE;text-align:center;}
+.preis-name{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:#1B3A4B;margin-bottom:.5rem;}
+.preis-betrag{font-family:"Playfair Display",serif;font-size:2.3rem;font-weight:900;color:#1B3A4B;display:block;margin:.5rem 0;}
+.preis-betrag span{font-size:.95rem;font-weight:400;color:#6A6878;}
+.preis-was{font-size:.78rem;color:#6A6878;margin-bottom:1.1rem;line-height:1.7;}
+.preis-liste{list-style:none;text-align:left;font-size:.8rem;color:#3A3A4A;margin-bottom:1.5rem;}
+.preis-liste li{padding:.25rem 0;padding-left:1.25rem;position:relative;line-height:1.6;}
+.preis-liste li::before{content:"✓";position:absolute;left:0;color:#6EC6A0;font-weight:700;}
+.preis-btn{display:block;background:#1B3A4B;color:#fff;padding:.65rem 1.5rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;transition:background .2s;}
+.preis-btn:hover{background:#2A4A5B;}
+.preis-hinweis{text-align:center;margin-top:1.5rem;font-size:.8rem;color:#6A6878;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+.ref-wrap{display:flex;gap:2rem;align-items:flex-start;max-width:780px;margin:0 auto;flex-wrap:wrap;}
+.ref-bild{width:120px;height:120px;border-radius:50%;background:#DDD8CE;flex-shrink:0;overflow:hidden;border:4px solid #6EC6A0;}
+.ref-bild img{width:100%;height:100%;object-fit:cover;}
+.ref-text h3{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#1B3A4B;margin-bottom:.25rem;}
+.ref-text .titel{font-size:.82rem;color:#6EC6A0;font-weight:700;margin-bottom:.75rem;display:block;}
+.ref-text p{font-size:.85rem;color:#3A3A4A;line-height:1.85;}
+.badge-liste{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;}
+.badge{background:#F5F0E8;border:1px solid #DDD8CE;border-radius:20px;padding:.2rem .65rem;font-size:.72rem;color:#1B3A4B;font-weight:600;}
+
+.faq-liste{max-width:700px;margin:0 auto;}
+.faq-item{border-bottom:1px solid #DDD8CE;padding:1rem 0;}
+.faq-frage{font-size:.9rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.faq-antwort{font-size:.83rem;color:#3A3A4A;line-height:1.8;}
+
+.disclaimer{max-width:700px;margin:2rem auto 0;background:#FBF4E8;border:1px solid #E8D9B8;border-radius:10px;padding:1rem 1.25rem;font-size:.78rem;color:#6A5B2E;line-height:1.7;text-align:center;}
+
+.cta-final{text-align:center;padding:4rem clamp(1rem,5vw,4rem);background:linear-gradient(135deg,#1B3A4B,#2A4A5B);}
+.cta-final h2{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;margin-bottom:.75rem;}
+.cta-final p{color:rgba(255,255,255,.6);margin-bottom:2rem;font-size:.95rem;}
+.cta-links{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+
+footer{background:#0F2535;padding:2rem clamp(1rem,4vw,3rem);text-align:center;font-size:.75rem;color:rgba(255,255,255,.35);}
+footer a{color:rgba(255,255,255,.4);text-decoration:none;}
+
+@media(max-width:600px){
+  .ref-wrap{flex-direction:column;align-items:center;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="KLARTEXT_Shop_Uebersicht.html">KLAR<span>TEXT</span></a>
+  <a class="nav-cta" href="#preise">Kontakt aufnehmen</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🩺 Honorartätigkeit für Pflegedienste</div>
+  <h1>Alltagsstruktur &amp; administrativer Support —<br><span>Entlastung für Ihr Team.</span></h1>
+  <p class="hero-sub">Ich unterstütze Familien sowie Seniorinnen und Senioren durch niedrigschwellige Alltagsstrukturierung, administrative Entlastung und Begleitung zu Terminen. Meine Leistungen ergänzen die pflegerischen Angebote Ihres Dienstes sinnvoll, da sie Bereiche abdecken, die nicht in den Pflegeauftrag fallen, aber für viele Ihrer Kundinnen und Kunden wichtig sind.</p>
+  <div class="hero-cta-wrap">
+    <a href="#preise" class="btn-primary">Honorar &amp; Kontakt</a>
+    <a href="#leistungen" class="btn-secondary">Was biete ich an?</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="n">Privat</span><span class="l">buchbar, alle Leistungen</span></div>
+    <div class="hero-stat"><span class="n">Nicht</span><span class="l">pflegerisch, nicht therapeutisch</span></div>
+    <div class="hero-stat"><span class="n">3</span><span class="l">Leistungsbereiche</span></div>
+    <div class="hero-stat"><span class="n">Schwerte</span><span class="l">Dortmund · Hagen</span></div>
+  </div>
+</section>
+
+<section class="sek" id="leistungen">
+  <h2 class="sek-titel">Leistungsbereiche</h2>
+  <p class="sek-sub">Ich arbeite nicht pflegerisch, nicht therapeutisch und nicht im Rahmen von AVGS. Alle Leistungen sind privat buchbar.</p>
+  <div class="leistungen">
+    <div class="l-karte" style="border-color:#2E5E8A;">
+      <span class="l-icon">📋</span>
+      <div class="l-titel">1 · Administrativer Support ("Papierkram-Hilfe")</div>
+      <div class="l-desc">
+        <ul>
+          <li>Sortieren von Schriftverkehr &amp; Ablagestruktur</li>
+          <li>Terminorganisation (Arzt, Therapie, Schule, Amt)</li>
+          <li>Begleitung bei Telefonaten mit Kassen/Ämtern</li>
+          <li>Digitalisierung &amp; Strukturierung von Dokumenten</li>
+          <li>Vorbereitung auf Begutachtungstermine des Medizinischen Dienstes (MD)</li>
+          <li>Ausfüllhilfe bei BuT-, SGB-IX- und Pflegekassen-Anträgen — in Abstimmung mit Ihrem Pflegedienst</li>
+        </ul>
+      </div>
+    </div>
+    <div class="l-karte" style="border-color:#6EC6A0;">
+      <span class="l-icon">🚶</span>
+      <div class="l-titel">2 · Alltagsbegleitung &amp; Entlastung</div>
+      <div class="l-desc">
+        <ul>
+          <li>Begleitung zu Arzt, Apotheke, Einkauf</li>
+          <li>Gespräche, Orientierung, Struktur</li>
+          <li>Digitale Assistenz (Smartphone, Apps, E-Mails)</li>
+          <li>Alltagsaktivierung (Spaziergänge, Routinen)</li>
+          <li>Stressreduktion (Body'n'Brain-Methoden)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="l-karte" style="border-color:#C47A00;">
+      <span class="l-icon">👨‍👩‍👧</span>
+      <div class="l-titel">3 · Familienentlastung bei Pflegekindern &amp; pflegenden Eltern</div>
+      <div class="l-desc">
+        <ul>
+          <li>Struktur im Familienalltag</li>
+          <li>Entlastung bei Terminen, Papierkramhilfe</li>
+          <li>Kinderzeit (spielen, Beschäftigung — keine Betreuung)</li>
+          <li>Deeskalation &amp; Strukturaufbau bei Neurodivergenz (Insel-Set, Joker-Signale, Barometer)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sek grau">
+  <h2 class="sek-titel">Warum diese Leistungen für Pflegedienste wertvoll sind</h2>
+  <div class="check-grid">
+    <div class="check-item"><div class="t">Entlastung für Angehörige</div><div class="d">Sie entlasten pflegende Angehörige spürbar.</div></div>
+    <div class="check-item"><div class="t">Abdeckung außerhalb des Pflegeauftrags</div><div class="d">Sie decken Aufgaben ab, die Pflegedienste nicht übernehmen dürfen.</div></div>
+    <div class="check-item"><div class="t">Stabiler Alltag</div><div class="d">Sie stabilisieren den Alltag Ihrer Kundinnen und Kunden, reduzieren Überforderung &amp; Krisen.</div></div>
+    <div class="check-item"><div class="t">Bessere Zusammenarbeit</div><div class="d">Sie verbessern die Abstimmung mit Kassen, Ämtern &amp; Schulen und schaffen Struktur, die Pflege erleichtert.</div></div>
+  </div>
+</section>
+
+<section class="sek" id="preise">
+  <h2 class="sek-titel">Honorar</h2>
+  <p class="sek-sub">Alle Leistungen sind privat buchbar — Rechnung an die Kundin/den Kunden, nicht an den Pflegedienst.</p>
+  <div class="preis-grid">
+    <div class="preis-karte">
+      <div class="preis-name">📋 Administrativer Support</div>
+      <span class="preis-betrag">40 €<span> / Stunde</span></span>
+      <div class="preis-was">Papierkram-Hilfe, Terminorganisation, Ausfüllhilfe.</div>
+      <ul class="preis-liste">
+        <li>5-Stunden-Paket: 185 €</li>
+        <li>10-Stunden-Paket: 360 €</li>
+      </ul>
+      <a href="mailto:info@klartext-mentoring.de?subject=Pflegedienst – Anfrage Administrativer Support" class="preis-btn">Anfragen</a>
+    </div>
+    <div class="preis-karte">
+      <div class="preis-name">🚶 Alltagsbegleitung &amp; Entlastung</div>
+      <span class="preis-betrag">45 €<span> / Stunde</span></span>
+      <div class="preis-was">Begleitung, digitale Assistenz, Alltagsaktivierung.</div>
+      <a href="mailto:info@klartext-mentoring.de?subject=Pflegedienst – Anfrage Alltagsbegleitung" class="preis-btn">Anfragen</a>
+    </div>
+    <div class="preis-karte">
+      <div class="preis-name">👨‍👩‍👧 Familienentlastung</div>
+      <span class="preis-betrag">55 €<span> / Stunde</span></span>
+      <div class="preis-was">Bei Pflegekindern &amp; pflegenden Eltern, inkl. Neurodivergenz-Werkzeuge.</div>
+      <a href="mailto:info@klartext-mentoring.de?subject=Pflegedienst – Anfrage Familienentlastung" class="preis-btn">Anfragen</a>
+    </div>
+  </div>
+  <p class="preis-hinweis">Fahrtkosten: Schwerte + 10 km inklusive, ab 10 km 0,40 €/km. Alle Preise sind Endpreise – gemäß § 19 UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer erhoben. Kleingewerbe angemeldet, Honorartätigkeit.</p>
+</section>
+
+<section class="sek grau">
+  <h2 class="sek-titel">Die Anbieterin</h2>
+  <p class="sek-sub">KLARTEXT kommt nicht aus der Theorie — sondern aus der Praxis.</p>
+  <div class="ref-wrap">
+    <div class="ref-bild"><img src="anja.jpg" alt="Anja Jolk"></div>
+    <div class="ref-text">
+      <h3>Anja Jolk</h3>
+      <span class="titel">Systemische Beraterin (IHK) · KLARTEXT-Mentoring</span>
+      <p>Über 15 Jahre Praxis in Pädagogik, Lerntherapie und systemischer Beratung, dazu 11 Jahre Studienkreis-Leitung mit Abrechnung von Bildung und Teilhabe (BuT). Diese Erfahrung fließt in die administrative Entlastung und Ausfüllhilfe ein, die ich Ihren Kundinnen und Kunden anbiete.</p>
+      <p style="margin-top:.5rem;">Bei Neurodivergenz kommen die erprobten KLARTEXT-Werkzeuge Insel-Set, Barometer und Joker-Signale zum Einsatz — von Anja Jolk selbst entwickelt.</p>
+      <div class="badge-liste">
+        <span class="badge">Systemische Beraterin (IHK)</span>
+        <span class="badge">15+ Jahre Pädagogik &amp; Lerntherapie</span>
+        <span class="badge">11 Jahre Studienkreis-Leitung (BuT)</span>
+        <span class="badge">KLARTEXT-Entwicklerin</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sek">
+  <h2 class="sek-titel">Häufige Fragen</h2>
+  <div class="faq-liste">
+    <div class="faq-item">
+      <div class="faq-frage">Ersetzt das pflegerische oder therapeutische Leistungen?</div>
+      <div class="faq-antwort">Nein. Ich arbeite nicht pflegerisch, nicht therapeutisch und nicht im Rahmen von AVGS. Alle Leistungen sind privat buchbar und ergänzen den Pflegeauftrag.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Ist die Ausfüllhilfe Rechtsberatung?</div>
+      <div class="faq-antwort">Nein. Ich unterstütze beim Sichten, Sortieren und Ausfüllen von Anträgen sowie beim Einhalten von Fristen. Eine rechtliche Prüfung oder Beratung ersetzt das nicht — dafür verweise ich an Fachstellen, Sozialverbände oder eine Rechtsanwältin/einen Rechtsanwalt.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Wer zahlt die Rechnung — der Pflegedienst oder die Kundin/der Kunde?</div>
+      <div class="faq-antwort">Alle Leistungen sind privat buchbar. Die Rechnung geht an die Kundin/den Kunden bzw. deren Angehörige, nicht an Ihren Pflegedienst.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Wie läuft die Zusammenarbeit ab?</div>
+      <div class="faq-antwort">Ihr Pflegedienst vermittelt den Kontakt zu Kundinnen und Kunden, die Bedarf haben. Ausfüllhilfe bei Pflegekassen-Anträgen erfolgt in Abstimmung mit Ihrem Pflegedienst.</div>
+    </div>
+  </div>
+  <div class="disclaimer">Dieses Angebot ist eine private Honorartätigkeit (Kleingewerbe), keine pflegerische, therapeutische oder rechtliche Leistung und kein AVGS-Angebot.</div>
+</section>
+
+<section class="cta-final">
+  <h2>Interesse an einer Kooperation?</h2>
+  <p>Honorar auf Basis der oben genannten Sätze – Kontakt unverbindlich.</p>
+  <div class="cta-links">
+    <a href="mailto:info@klartext-mentoring.de?subject=Pflegedienst – Kooperationsanfrage" class="btn-primary">Jetzt Kontakt aufnehmen</a>
+    <a href="Anja_Jolk_Leistungsuebersicht_Pflegedienste.pdf" class="btn-secondary" target="_blank" rel="noopener">Leistungsübersicht als PDF</a>
+  </div>
+</section>
+
+<footer>
+  <p>KLARTEXT-Mentoring · Anja Jolk · © 2026 · Schwerte, NRW</p>
+  <p style="margin-top:.4rem;">
+    <a href="SHOP_KLARTEXT_Impressum.html">Impressum</a> ·
+    <a href="SHOP_KLARTEXT_Datenschutz.html">Datenschutz</a> ·
+    info@klartext-mentoring.de
+  </p>
+</footer>
+
+</body>
+</html>

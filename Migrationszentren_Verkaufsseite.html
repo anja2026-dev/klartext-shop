@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KLARTEXT · Alltagsbegleitung für Familien mit Migrationsgeschichte – für Migrationszentren</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"DM Sans",sans-serif;background:#fff;color:#1A1A2E;}
+
+.nav{background:#1B3A4B;padding:.75rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;}
+.nav-logo span{color:#6EC6A0;}
+.nav-cta{background:#6EC6A0;color:#1B3A4B;border:none;padding:.45rem 1.1rem;border-radius:20px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;}
+
+.hero{background:linear-gradient(135deg,#1B3A4B 0%,#2A4A5B 60%,#1B3A4B 100%);padding:5rem clamp(1rem,5vw,4rem) 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(110,198,160,.08) 0%,transparent 60%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(110,198,160,.15);border:1px solid rgba(110,198,160,.4);border-radius:20px;padding:.3rem .85rem;font-size:.72rem;font-weight:700;color:#6EC6A0;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem;}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.3rem);font-weight:900;color:#fff;line-height:1.18;margin-bottom:1rem;max-width:820px;margin-left:auto;margin-right:auto;}
+.hero h1 span{color:#6EC6A0;}
+.hero-sub{font-size:clamp(.95rem,2vw,1.1rem);color:rgba(255,255,255,.7);line-height:1.8;max-width:660px;margin:0 auto 2rem;}
+.hero-cta-wrap{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-primary{background:#6EC6A0;color:#1B3A4B;padding:.75rem 2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-primary:hover{background:#5AB490;transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.4);padding:.75rem 2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:600;text-decoration:none;display:inline-block;}
+.hero-stats{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;}
+.hero-stat{text-align:center;}
+.hero-stat .n{font-family:"Playfair Display",serif;font-size:1.6rem;font-weight:700;color:#6EC6A0;display:block;}
+.hero-stat .l{font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase;}
+
+.sek{padding:4rem clamp(1rem,5vw,4rem);}
+.sek-titel{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1B3A4B;text-align:center;margin-bottom:.5rem;}
+.sek-sub{font-size:.95rem;color:#6A6878;text-align:center;margin-bottom:2.5rem;line-height:1.75;max-width:700px;margin-left:auto;margin-right:auto;}
+.sek.grau{background:#F5F0E8;}
+.sek.dunkel{background:#1B3A4B;}
+
+.leistungen{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;max-width:1000px;margin:0 auto;}
+.l-karte{background:#fff;border-radius:12px;padding:1.5rem 1.5rem;border-left:4px solid;}
+.l-icon{font-size:1.6rem;margin-bottom:.5rem;display:block;}
+.l-titel{font-size:.95rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.l-desc{font-size:.83rem;color:#3A3A4A;line-height:1.75;}
+
+.check-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;max-width:1000px;margin:0 auto;}
+.check-item{background:#fff;border-radius:12px;padding:1.1rem 1.25rem;border:1.5px solid #DDD8CE;}
+.check-item .t{font-size:.85rem;font-weight:700;color:#1B3A4B;margin-bottom:.3rem;}
+.check-item .t::before{content:"✓ ";color:#6EC6A0;}
+.check-item .d{font-size:.8rem;color:#6A6878;line-height:1.6;}
+
+.baro-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.5rem;max-width:800px;margin:0 auto;}
+.baro-item{text-align:center;padding:.75rem .5rem;border-radius:10px;}
+.baro-dot{width:36px;height:36px;border-radius:50%;margin:0 auto .4rem;}
+.baro-name{font-size:.72rem;font-weight:700;color:#1B3A4B;}
+.baro-desc{font-size:.65rem;color:#6A6878;margin-top:.2rem;line-height:1.4;}
+
+.preis-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;max-width:520px;margin:0 auto;}
+.preis-karte{background:#fff;border-radius:14px;padding:1.75rem 1.5rem;border:1.5px solid #DDD8CE;text-align:center;}
+.preis-name{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:#1B3A4B;margin-bottom:.5rem;}
+.preis-betrag{font-family:"Playfair Display",serif;font-size:2.3rem;font-weight:900;color:#1B3A4B;display:block;margin:.5rem 0;}
+.preis-betrag span{font-size:.95rem;font-weight:400;color:#6A6878;}
+.preis-was{font-size:.78rem;color:#6A6878;margin-bottom:1.1rem;line-height:1.7;}
+.preis-liste{list-style:none;text-align:left;font-size:.8rem;color:#3A3A4A;margin-bottom:1.5rem;}
+.preis-liste li{padding:.25rem 0;padding-left:1.25rem;position:relative;line-height:1.6;}
+.preis-liste li::before{content:"✓";position:absolute;left:0;color:#6EC6A0;font-weight:700;}
+.preis-btn{display:block;background:#1B3A4B;color:#fff;padding:.65rem 1.5rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:.85rem;font-weight:700;text-decoration:none;transition:background .2s;}
+.preis-btn:hover{background:#2A4A5B;}
+.preis-hinweis{text-align:center;margin-top:1.5rem;font-size:.8rem;color:#6A6878;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.7;}
+
+.ref-wrap{display:flex;gap:2rem;align-items:flex-start;max-width:780px;margin:0 auto;flex-wrap:wrap;}
+.ref-bild{width:120px;height:120px;border-radius:50%;background:#DDD8CE;flex-shrink:0;overflow:hidden;border:4px solid #6EC6A0;}
+.ref-bild img{width:100%;height:100%;object-fit:cover;}
+.ref-text h3{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#1B3A4B;margin-bottom:.25rem;}
+.ref-text .titel{font-size:.82rem;color:#6EC6A0;font-weight:700;margin-bottom:.75rem;display:block;}
+.ref-text p{font-size:.85rem;color:#3A3A4A;line-height:1.85;}
+.badge-liste{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;}
+.badge{background:#F5F0E8;border:1px solid #DDD8CE;border-radius:20px;padding:.2rem .65rem;font-size:.72rem;color:#1B3A4B;font-weight:600;}
+
+.faq-liste{max-width:700px;margin:0 auto;}
+.faq-item{border-bottom:1px solid #DDD8CE;padding:1rem 0;}
+.faq-frage{font-size:.9rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.faq-antwort{font-size:.83rem;color:#3A3A4A;line-height:1.8;}
+
+.disclaimer{max-width:700px;margin:2rem auto 0;background:#FBF4E8;border:1px solid #E8D9B8;border-radius:10px;padding:1rem 1.25rem;font-size:.78rem;color:#6A5B2E;line-height:1.7;text-align:center;}
+
+.cta-final{text-align:center;padding:4rem clamp(1rem,5vw,4rem);background:linear-gradient(135deg,#1B3A4B,#2A4A5B);}
+.cta-final h2{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;margin-bottom:.75rem;}
+.cta-final p{color:rgba(255,255,255,.6);margin-bottom:2rem;font-size:.95rem;}
+.cta-links{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;}
+
+footer{background:#0F2535;padding:2rem clamp(1rem,4vw,3rem);text-align:center;font-size:.75rem;color:rgba(255,255,255,.35);}
+footer a{color:rgba(255,255,255,.4);text-decoration:none;}
+
+@media(max-width:600px){
+  .baro-grid{grid-template-columns:repeat(3,1fr);}
+  .ref-wrap{flex-direction:column;align-items:center;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="KLARTEXT_Shop_Uebersicht.html">KLAR<span>TEXT</span></a>
+  <a class="nav-cta" href="#preise">Kontakt aufnehmen</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🌍 Honorartätigkeit für Migrationszentren</div>
+  <h1>Familien mit Migrationsgeschichte —<br><span>Struktur gewinnen, Vertrauen aufbauen.</span></h1>
+  <p class="hero-sub">Ich begleite Familien niedrigschwellig, vor Ort und in einfacher Sprache – mit Verständnis für die besonderen Belastungen nach Flucht oder Migration. Fortgebildet zu Trauma im Kontext Flucht &amp; Asyl (Uni-Klinikum) und qualifiziert in DAZ – Deutsch als Zweitsprache (Goethe-Institut) ergänze ich die Arbeit Ihres Migrationszentrums um ein praxisnahes, alltagsnahes Angebot – kein Ersatz für Jugendamt oder Frühe Hilfen.</p>
+  <div class="hero-cta-wrap">
+    <a href="#preise" class="btn-primary">Honorar &amp; Kontakt</a>
+    <a href="#leistungen" class="btn-secondary">Was biete ich an?</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="n">Trauma</span><span class="l">fortgebildet (Uni-Klinikum)</span></div>
+    <div class="hero-stat"><span class="n">DaZ</span><span class="l">qualifiziert (Goethe-Institut)</span></div>
+    <div class="hero-stat"><span class="n">Schwerte</span><span class="l">NRW · überregional auf Anfrage</span></div>
+    <div class="hero-stat"><span class="n">Direkt</span><span class="l">buchbar auf Honorarbasis</span></div>
+  </div>
+</section>
+
+<section class="sek" id="leistungen">
+  <h2 class="sek-titel">Nutzen für Ihr Migrationszentrum</h2>
+  <p class="sek-sub">Drei Säulen, sprachsensibel und traumasensibel aufbereitet – erprobte Werkzeuge aus dem KLARTEXT-System.</p>
+  <div class="leistungen">
+    <div class="l-karte" style="border-color:#6EC6A0;">
+      <span class="l-icon">🏡</span>
+      <div class="l-titel">Säule 1 · Struktur-Coaching vor Ort</div>
+      <div class="l-desc">Gemeinsam mit der Familie feste, wiedererkennbare Orte im Zuhause schaffen: Mit dem Insel-Set · Zuhause (Ruhe-Insel, Emotions-Insel, Arbeits-Insel) entstehen klare Rückzugs- und Handlungsräume, die Eskalationen im Alltag vorbeugen – unabhängig von Sprachkenntnissen einsetzbar.</div>
+    </div>
+    <div class="l-karte" style="border-color:#C47A00;">
+      <span class="l-icon">🌡️</span>
+      <div class="l-titel">Säule 2 · Emotionale Stabilisierung</div>
+      <div class="l-desc">Das Barometer macht den Zustand von Kind und Familie über Farben und Symbole sichtbar (Status-Check), die Joker-Signale geben Kindern eine Möglichkeit, sich ohne Worte verständlich zu machen – beides bildbasierte, weitgehend sprachunabhängige Werkzeuge zur Co-Regulation.</div>
+    </div>
+    <div class="l-karte" style="border-color:#2E5E8A;">
+      <span class="l-icon">🗣️</span>
+      <div class="l-titel">Säule 3 · Sprachliche, lernbezogene &amp; administrative Begleitung</div>
+      <div class="l-desc">Privat buchbare Nachhilfe: Deutsch-Nachhilfe nach Goethe-Institut-Qualifikation (kein BAMF-anerkannter Integrationskurs) sowie LRS-Nachhilfe aus der Weiterbildung Integrative Lerntherapie (IFLW) und der Fortbildung alphaPROF (LegaKids-Stiftung). Dazu aus 11 Jahren Studienkreis-Leitung mit BuT-Abrechnung: praktische Unterstützung im Umgang mit Behörden- und Kassenpost.<br><strong>Wichtig: keine Rechtsberatung, keine schulische LRS-Diagnostik.</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="sek grau">
+  <h2 class="sek-titel">Das Barometer — sichtbar machen statt raten</h2>
+  <p class="sek-sub">Zustand von Kind und Familie über Farben und Symbole erkennbar — bildbasiert, weitgehend sprachunabhängig.</p>
+  <div class="baro-grid">
+    <div class="baro-item" style="background:#E8F5EE;"><div class="baro-dot" style="background:#2E7D47;"></div><div class="baro-name" style="color:#2E7D47;">GRÜN</div><div class="baro-desc">Stabil</div></div>
+    <div class="baro-item" style="background:#FBF4E8;"><div class="baro-dot" style="background:#C47A00;"></div><div class="baro-name" style="color:#C47A00;">GELB</div><div class="baro-desc">Angespannt</div></div>
+    <div class="baro-item" style="background:#FEF0E8;"><div class="baro-dot" style="background:#D4500A;"></div><div class="baro-name" style="color:#D4500A;">ORANGE</div><div class="baro-desc">Dysreguliert</div></div>
+    <div class="baro-item" style="background:#FDEAEA;"><div class="baro-dot" style="background:#C62828;"></div><div class="baro-name" style="color:#C62828;">ROT</div><div class="baro-desc">Akute Krise</div></div>
+    <div class="baro-item" style="background:#F0F0F0;"><div class="baro-dot" style="background:#6A6878;"></div><div class="baro-name" style="color:#6A6878;">GRAU</div><div class="baro-desc">Unklar</div></div>
+  </div>
+</section>
+
+<section class="sek">
+  <div class="check-grid">
+    <div class="check-item"><div class="t">Sprachsensibel</div><div class="d">Werkzeuge sind bildbasiert und weitgehend sprachunabhängig einsetzbar.</div></div>
+    <div class="check-item"><div class="t">Traumasensibel</div><div class="d">Fortgebildet zu Trauma im Kontext Flucht &amp; Asyl (Uni-Klinikum).</div></div>
+    <div class="check-item"><div class="t">Niedrigschwellig</div><div class="d">Kein Amtsverfahren, keine Wartezeit, keine Rechtsberatung – direkt buchbar auf Honorarbasis.</div></div>
+    <div class="check-item"><div class="t">Ergänzende Nachhilfe</div><div class="d">Deutsch-Nachhilfe nach Goethe-Standard und LRS-Nachhilfe zusätzlich buchbar – kein Ersatz für einen BAMF-Integrationskurs oder eine schulische LRS-Diagnostik.</div></div>
+  </div>
+</section>
+
+<section class="sek grau" id="preise">
+  <h2 class="sek-titel">Honorar</h2>
+  <p class="sek-sub">Direktvermittlung: Die Familie bucht privat auf Honorarbasis. Ihr Migrationszentrum stellt den Kontakt her, es entstehen keine Kosten für die Einrichtung.</p>
+  <div class="preis-grid">
+    <div class="preis-karte">
+      <div class="preis-name">🌍 Alltagsbegleitung inkl. DaZ- &amp; LRS-Nachhilfe</div>
+      <span class="preis-betrag">50 €<span> / Termin</span></span>
+      <div class="preis-was">Struktur-Coaching, emotionale Stabilisierung, Ausfüllhilfe, Deutsch-Nachhilfe und LRS-Nachhilfe · 60 Minuten.</div>
+      <ul class="preis-liste">
+        <li>5 Termine: 235 €</li>
+        <li>10 Termine: 450 €</li>
+      </ul>
+      <a href="mailto:info@klartext-mentoring.de?subject=Migrationszentrum – Anfrage Alltagsbegleitung" class="preis-btn">Anfragen</a>
+    </div>
+  </div>
+  <p class="preis-hinweis">Fahrtkosten: Schwerte + 10 km inklusive, ab 10 km 0,40 €/km. Überregionale Einsätze auf Anfrage. Alle Preise sind Endpreise – gemäß § 19 UStG (Kleinunternehmerregelung) wird keine Umsatzsteuer erhoben. Kleingewerbe angemeldet.</p>
+</section>
+
+<section class="sek">
+  <h2 class="sek-titel">Die Anbieterin</h2>
+  <p class="sek-sub">KLARTEXT kommt nicht aus der Theorie — sondern aus der Praxis.</p>
+  <div class="ref-wrap">
+    <div class="ref-bild"><img src="anja.jpg" alt="Anja Jolk"></div>
+    <div class="ref-text">
+      <h3>Anja Jolk</h3>
+      <span class="titel">Systemische Beraterin (IHK) · KLARTEXT-Mentoring</span>
+      <p>Über 15 Jahre Praxis in Pädagogik, Lerntherapie und systemischer Beratung. Fortgebildet zu Trauma im Kontext Flucht &amp; Asyl (Uni-Klinikum) und qualifiziert in DAZ – Deutsch als Zweitsprache (Goethe-Institut). Aus 11 Jahren Studienkreis-Leitung mit BuT-Abrechnung: praktische Erfahrung im Umgang mit Behörden- und Kassenpost.</p>
+      <p style="margin-top:.5rem;">Alle Werkzeuge – Insel-Set, Barometer, Joker-Signale – stammen aus dem KLARTEXT-System, das Anja Jolk selbst entwickelt hat.</p>
+      <div class="badge-liste">
+        <span class="badge">Systemische Beraterin (IHK)</span>
+        <span class="badge">Trauma Flucht &amp; Asyl (Uni-Klinikum)</span>
+        <span class="badge">DAZ Goethe-Institut</span>
+        <span class="badge">Integrative Lerntherapie (IFLW)</span>
+        <span class="badge">LRS-Fortbildung alphaPROF (LegaKids)</span>
+        <span class="badge">11 Jahre Studienkreis-Leitung (BuT)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sek grau">
+  <h2 class="sek-titel">Häufige Fragen</h2>
+  <div class="faq-liste">
+    <div class="faq-item">
+      <div class="faq-frage">Ist das ein anerkannter Integrationskurs?</div>
+      <div class="faq-antwort">Nein. Die Deutsch-Nachhilfe ist eine privat buchbare, ergänzende Sprachförderung nach Goethe-Institut-Qualifikation – kein BAMF-anerkannter Integrationskurs und kein Ersatz dafür.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Ersetzt das die Arbeit von Jugendamt oder Frühen Hilfen?</div>
+      <div class="faq-antwort">Nein. Es ist ein ergänzendes, praxisnahes Angebot – kein Ersatz für Jugendamt, Frühe Hilfen oder Rechtsberatung.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Ist die Ausfüllhilfe Rechtsberatung?</div>
+      <div class="faq-antwort">Nein. Ich unterstütze beim Sichten, Sortieren und Ausfüllen von Anträgen sowie beim Einhalten von Fristen. Eine rechtliche Prüfung oder Beratung ersetzt das nicht.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Ist die LRS-Nachhilfe eine Diagnostik oder Therapie?</div>
+      <div class="faq-antwort">Nein. Es ist ergänzende Lern-Nachhilfe bei Lese-Rechtschreib-Schwierigkeiten, kein Ersatz für eine schulische LRS-Feststellung oder -Diagnostik.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-frage">Wie kann unser Migrationszentrum das vermitteln?</div>
+      <div class="faq-antwort">Sie stellen den Kontakt zwischen mir und der Familie her – die Buchung und Bezahlung erfolgt direkt und privat zwischen mir und der Familie, auf Honorarbasis.</div>
+    </div>
+  </div>
+  <div class="disclaimer">Dieses Angebot ist eine private Honorartätigkeit (Kleingewerbe) und kein Bestandteil der Jugendhilfe, kein BAMF-Integrationskurs, keine schulische LRS-Diagnostik, keine Rechtsberatung und kein Ersatz für Frühe Hilfen oder das Jugendamt.</div>
+</section>
+
+<section class="cta-final">
+  <h2>Interesse an einer Kooperation?</h2>
+  <p>Honorar auf Basis der oben genannten Sätze – Kontakt unverbindlich.</p>
+  <div class="cta-links">
+    <a href="mailto:info@klartext-mentoring.de?subject=Migrationszentrum – Kooperationsanfrage" class="btn-primary">Jetzt Kontakt aufnehmen</a>
+    <a href="Anja_Jolk_Flyer_Migrationszentren.pdf" class="btn-secondary" target="_blank" rel="noopener">Flyer als PDF</a>
+  </div>
+</section>
+
+<footer>
+  <p>KLARTEXT-Mentoring · Anja Jolk · © 2026 · Schwerte, NRW</p>
+  <p style="margin-top:.4rem;">
+    <a href="SHOP_KLARTEXT_Impressum.html">Impressum</a> ·
+    <a href="SHOP_KLARTEXT_Datenschutz.html">Datenschutz</a> ·
+    info@klartext-mentoring.de
+  </p>
+</footer>
+
+</body>
+</html>
