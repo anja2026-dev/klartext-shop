@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KLARTEXT-Schnupperpaket · 8 Gratis-Karten | KLARTEXT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"DM Sans",sans-serif;background:#fff;color:#1A1A2E;}
+
+.nav{background:#1B3A4B;padding:.75rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;}
+.nav-logo span{color:#6EC6A0;}
+
+.hero{background:linear-gradient(135deg,#1B3A4B 0%,#2A4A5B 60%,#1B3A4B 100%);padding:5rem clamp(1rem,5vw,4rem) 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(110,198,160,.08) 0%,transparent 60%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(110,198,160,.15);border:1px solid rgba(110,198,160,.4);border-radius:20px;padding:.3rem .85rem;font-size:.72rem;font-weight:700;color:#6EC6A0;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem;}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.3rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1rem;max-width:760px;margin-left:auto;margin-right:auto;}
+.hero h1 span{color:#6EC6A0;}
+.hero-sub{font-size:clamp(.95rem,2vw,1.15rem);color:rgba(255,255,255,.7);line-height:1.8;max-width:620px;margin:0 auto 2rem;}
+.btn-primary{background:#6EC6A0;color:#1B3A4B;padding:.85rem 2.2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1.05rem;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-primary:hover{background:#5AB490;transform:translateY(-1px);}
+.hero-note{margin-top:1rem;font-size:.78rem;color:rgba(255,255,255,.5);}
+
+.sek{padding:4rem clamp(1rem,5vw,4rem);}
+.sek-titel{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1B3A4B;text-align:center;margin-bottom:.5rem;}
+.sek-sub{font-size:.95rem;color:#6A6878;text-align:center;margin-bottom:2.5rem;line-height:1.75;max-width:680px;margin-left:auto;margin-right:auto;}
+.sek.grau{background:#F5F0E8;}
+
+.deck-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;max-width:1000px;margin:0 auto;}
+.deck-karte{background:#fff;border-radius:14px;border:1.5px solid #DDD8CE;padding:1.5rem 1.5rem;}
+.deck-titel{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:#1B3A4B;margin-bottom:.3rem;}
+.deck-sub{font-size:.78rem;color:#6EC6A0;font-weight:700;margin-bottom:.85rem;}
+.deck-liste{list-style:none;font-size:.85rem;color:#3A3A4A;}
+.deck-liste li{padding:.3rem 0;padding-left:1.1rem;position:relative;line-height:1.6;}
+.deck-liste li::before{content:"✓";position:absolute;left:0;color:#6EC6A0;font-weight:700;}
+
+.wie-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;max-width:900px;margin:0 auto;}
+.wie-karte{text-align:center;padding:1.25rem 1rem;}
+.wie-nr{font-family:"Playfair Display",serif;font-size:2rem;font-weight:900;color:#6EC6A0;display:block;margin-bottom:.5rem;}
+.wie-titel{font-size:.9rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.wie-desc{font-size:.8rem;color:#6A6878;line-height:1.6;}
+
+.cta-final{text-align:center;padding:4rem clamp(1rem,5vw,4rem);background:linear-gradient(135deg,#1B3A4B,#2A4A5B);}
+.cta-final h2{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;margin-bottom:.75rem;}
+.cta-final p{color:rgba(255,255,255,.6);margin-bottom:2rem;font-size:.95rem;max-width:520px;margin-left:auto;margin-right:auto;}
+
+footer{background:#0F2535;padding:2rem clamp(1rem,4vw,3rem);text-align:center;font-size:.75rem;color:rgba(255,255,255,.35);}
+footer a{color:rgba(255,255,255,.4);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">KLAR<span>TEXT</span></a>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🎁 Kostenlos</div>
+  <h1>8 Karten aus 3 Decks —<br><span>zum Ausprobieren, ohne Kosten.</span></h1>
+  <p class="hero-sub">Das KLARTEXT-Schnupperpaket zeigt dir an echten Beispielkarten, wie die Kartendecks
+    aufgebaut sind — aus dem Werkzeugkarten-Deck, den Coaching-Impulskarten für Grundschulkinder und
+    den Coaching-Impulskarten für Jugendliche. Als PDF sofort herunterladen, keine Zahlungsdaten nötig.</p>
+  <a href="https://www.checkout-ds24.com/product/723604" target="_blank" rel="noopener" class="btn-primary">🎁 Kostenlos herunterladen</a>
+  <p class="hero-note">Die Abbuchung (0 €) erfolgt durch Digistore24.com · sofortiger Download</p>
+</section>
+
+<section class="sek">
+  <h2 class="sek-titel">Diese 8 Karten sind dabei</h2>
+  <p class="sek-sub">Aus drei verschiedenen Decks, damit du die unterschiedlichen Formate direkt vergleichen kannst.</p>
+  <div class="deck-grid">
+    <div class="deck-karte">
+      <div class="deck-titel">🧰 Werkzeugkarten (M3)</div>
+      <div class="deck-sub">4 von 26 Karten</div>
+      <ul class="deck-liste">
+        <li>Kind kommt aufgewühlt an</li>
+        <li>Übergang zwischen Situationen</li>
+        <li>Mini-Pause</li>
+        <li>Lob-Sandwich</li>
+      </ul>
+    </div>
+    <div class="deck-karte">
+      <div class="deck-titel">🧒 KD · Kindercoaching</div>
+      <div class="deck-sub">2 von 35 Karten</div>
+      <ul class="deck-liste">
+        <li>Wie geht es mir heute?</li>
+        <li>Was ist ein guter Freund?</li>
+      </ul>
+    </div>
+    <div class="deck-karte">
+      <div class="deck-titel">🧑 JD · Jugendcoaching</div>
+      <div class="deck-sub">2 von 52 Karten</div>
+      <ul class="deck-liste">
+        <li>Meine Stärken sehen</li>
+        <li>Nein sagen können</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sek grau">
+  <h2 class="sek-titel">So funktioniert's</h2>
+  <div class="wie-grid">
+    <div class="wie-karte">
+      <span class="wie-nr">1</span>
+      <div class="wie-titel">Herunterladen</div>
+      <div class="wie-desc">Auf „Kostenlos herunterladen" klicken, kurz das Bestellformular ausfüllen (0 €).</div>
+    </div>
+    <div class="wie-karte">
+      <span class="wie-nr">2</span>
+      <div class="wie-titel">PDF erhalten</div>
+      <div class="wie-desc">Digistore24 schickt dir den Download-Link direkt per E-Mail.</div>
+    </div>
+    <div class="wie-karte">
+      <span class="wie-nr">3</span>
+      <div class="wie-titel">Ausprobieren</div>
+      <div class="wie-desc">Karten ansehen oder ausdrucken — ganz ohne weitere Verpflichtung.</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <h2>Neugierig auf mehr?</h2>
+  <p>20 Kartendecks für Grundschule, weiterführende Schule, ADHS, Mobbing, LRS, Hochbegabung, akute
+    Krisensituationen und viele weitere Themen — jedes einzeln als PDF erhältlich.</p>
+  <a href="KLARTEXT_Shop_Uebersicht.html" class="btn-primary">Alle Kartendecks ansehen</a>
+</section>
+
+<footer>
+  © 2026 KLARTEXT-Mentoring · Anja Jolk · <a href="mailto:info@klartext-mentoring.de">info@klartext-mentoring.de</a>
+</footer>
+
+</body>
+</html>
