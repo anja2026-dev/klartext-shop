@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://klartext-mentoring.de/sitemap.xml
