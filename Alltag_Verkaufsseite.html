@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Alltag · Paket Alltags-Anker & Regulation | KLARTEXT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"DM Sans",sans-serif;background:#fff;color:#1A1A2E;}
+.nav{background:#1B3A4B;padding:.75rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;}
+.nav-logo span{color:#6EC6A0;}
+.nav-cta{background:#6EC6A0;color:#1B3A4B;border:none;padding:.45rem 1.1rem;border-radius:20px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-back{color:rgba(255,255,255,.75);font-size:.8rem;text-decoration:none;font-weight:500;}
+.nav-back:hover{color:#fff;text-decoration:underline;}
+.hero{background:linear-gradient(135deg,#1B3A4B 0%,#2A4A5B 60%,#1B3A4B 100%);padding:5rem clamp(1rem,5vw,4rem) 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(110,198,160,.08) 0%,transparent 60%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(110,198,160,.15);border:1px solid rgba(110,198,160,.4);border-radius:20px;padding:.3rem .85rem;font-size:.72rem;font-weight:700;color:#6EC6A0;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem;}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:1rem;max-width:800px;margin-left:auto;margin-right:auto;}
+.hero h1 span{color:#6EC6A0;}
+.hero-sub{font-size:clamp(.95rem,2vw,1.15rem);color:rgba(255,255,255,.7);line-height:1.8;max-width:640px;margin:0 auto 2rem;}
+.hero-cta-wrap{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;}
+.btn-primary{background:#6EC6A0;color:#1B3A4B;padding:.75rem 2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-primary:hover{background:#5AB490;transform:translateY(-1px);}
+.sek{padding:4rem clamp(1rem,5vw,4rem);}
+.sek-titel{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1B3A4B;text-align:center;margin-bottom:.5rem;}
+.sek-sub{font-size:.95rem;color:#6A6878;text-align:center;margin-bottom:2.5rem;line-height:1.75;max-width:680px;margin-left:auto;margin-right:auto;}
+.sek.grau{background:#F5F0E8;}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:1000px;margin:0 auto;}
+.tool-karte{background:#fff;border-radius:12px;padding:1.25rem 1.5rem;border-left:4px solid #6EC6A0;}
+.tool-nr{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:900;color:#6EC6A0;}
+.tool-titel{font-size:.95rem;font-weight:700;color:#1B3A4B;margin:.3rem 0;}
+.tool-desc{font-size:.82rem;color:#3A3A4A;line-height:1.7;}
+.fuer-wen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:900px;margin:0 auto;}
+.fw-karte{background:#fff;border-radius:12px;border:1.5px solid #DDD8CE;padding:1.25rem 1.5rem;}
+.fw-emoji{font-size:2rem;margin-bottom:.65rem;display:block;}
+.fw-titel{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.fw-desc{font-size:.83rem;color:#3A3A4A;line-height:1.75;}
+.preis-wrap{max-width:420px;margin:0 auto;}
+.preis-karte{background:#fff;border-radius:14px;padding:2rem 1.75rem;border:2px solid #6EC6A0;text-align:center;}
+.preis-name{font-family:"Playfair Display",serif;font-size:1.15rem;font-weight:700;color:#1B3A4B;margin-bottom:.5rem;}
+.preis-betrag{font-family:"Playfair Display",serif;font-size:2.6rem;font-weight:900;color:#1B3A4B;display:block;margin:.5rem 0;}
+.preis-betrag span{font-size:1rem;font-weight:400;color:#6A6878;}
+.preis-liste{list-style:none;text-align:left;font-size:.85rem;color:#3A3A4A;margin:1.25rem 0;}
+.preis-liste li{padding:.3rem 0;padding-left:1.3rem;position:relative;line-height:1.6;}
+.preis-liste li::before{content:"✓";position:absolute;left:0;color:#6EC6A0;font-weight:700;}
+.preis-btn{display:block;background:#6EC6A0;color:#1B3A4B;padding:.8rem 1.5rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:.9rem;font-weight:700;text-decoration:none;transition:background .2s;}
+.preis-btn:hover{background:#5AB490;}
+.hinweisbox{max-width:680px;margin:1.5rem auto 0;background:#EAF0F0;border-radius:10px;padding:1rem 1.25rem;font-size:.82rem;color:#20323A;line-height:1.7;text-align:center;}
+footer{background:#0F2535;padding:2rem clamp(1rem,4vw,3rem);text-align:center;font-size:.75rem;color:rgba(255,255,255,.35);}
+footer a{color:rgba(255,255,255,.4);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">KLAR<span>TEXT</span></a>
+  <div class="nav-right">
+    <a class="nav-back" href="KLARTEXT_Shop_Uebersicht.html">← Alle Kartendecks</a>
+    <a class="nav-cta" href="#preise">Jetzt kaufen</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🎈 Paket Alltags-Anker &amp; Regulation</div>
+  <h1>Stimmung erfassen, <span>Körper spüren</span>, wieder zur Ruhe kommen</h1>
+  <p class="hero-sub">7 digitale Tools für den täglichen Einsatz — von der Stimmungserfassung bis zur
+    Atemübung — plus Druckvorlage für ein vereinbartes Notfallsignal.</p>
+  <div class="hero-cta-wrap">
+    <a class="btn-primary" href="#preise">Jetzt kaufen</a>
+  </div>
+</section>
+
+<section class="sek">
+  <h2 class="sek-titel">7 Tools für Selbstwahrnehmung und Regulation</h2>
+  <p class="sek-sub">Jedes Tool funktioniert für sich allein — gemeinsam ergeben sie eine Toolbox für den Alltag,
+    die von der Stimmungserfassung bis zur konkreten Beruhigung reicht.</p>
+  <div class="tools-grid">
+    <div class="tool-karte">
+      <div class="tool-nr">1</div>
+      <div class="tool-titel">Wie geht es mir? — Stimmungsbarometer</div>
+      <div class="tool-desc">Status auf einer Skala von 0–10 erfassen, mit Farb- und Emoji-Logik. Ideal für den
+        täglichen Check-in.</div>
+    </div>
+    <div class="tool-karte">
+      <div class="tool-nr">2</div>
+      <div class="tool-titel">Tagesjournal</div>
+      <div class="tool-desc">Tagesbarometer, Notizfeld und Besonderheiten-Auswahl — mit 14-Tage-Verlauf für
+        sichtbare Muster.</div>
+    </div>
+    <div class="tool-karte">
+      <div class="tool-nr">3</div>
+      <div class="tool-titel">Reizfilter-Regler</div>
+      <div class="tool-desc">Zeigt mit einem Regler, wie viel gerade los ist — mit konkreten Vorschlägen ab einer
+        gewissen Stufe.</div>
+    </div>
+    <div class="tool-karte">
+      <div class="tool-nr">4</div>
+      <div class="tool-titel">Körper-Kompass</div>
+      <div class="tool-desc">Antippbarer Körperumriss, um zu markieren, wo im Körper sich gerade etwas bemerkbar
+        macht.</div>
+    </div>
+    <div class="tool-karte">
+      <div class="tool-nr">5</div>
+      <div class="tool-titel">Fokus-Trainer</div>
+      <div class="tool-desc">25 Minuten konzentriert arbeiten, 5 Minuten Pause — mit Ringanzeige und gesammelten
+        Sternen.</div>
+    </div>
+    <div class="tool-karte">
+      <div class="tool-nr">6</div>
+      <div class="tool-titel">Ruhe-Ballon</div>
+      <div class="tool-desc">Eine kleine Atemübung zum Entspannen — der animierte Ballon gibt den Rhythmus vor.</div>
+    </div>
+    <div class="tool-karte">
+      <div class="tool-nr">＋</div>
+      <div class="tool-titel">Joker-Signale (Druckvorlage)</div>
+      <div class="tool-desc">Zum Ausdrucken: ein vorher vereinbartes Notfallsignal zwischen einer Person und ihrer
+        Bezugsperson.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sek grau">
+  <h2 class="sek-titel">Für wen</h2>
+  <div class="fuer-wen-grid">
+    <div class="fw-karte">
+      <span class="fw-emoji">🧩</span>
+      <div class="fw-titel">Kinder &amp; Jugendliche mit ADHS/Autismus</div>
+      <div class="fw-desc">Konkrete Werkzeuge für Reizüberflutung, Fokus und Beruhigung — ohne Bewertung, ohne
+        Richtig oder Falsch.</div>
+    </div>
+    <div class="fw-karte">
+      <span class="fw-emoji">🎓</span>
+      <div class="fw-titel">Pädagog:innen &amp; Begleitung</div>
+      <div class="fw-desc">Für den täglichen Einsatz in Schule, Nachmittagsbetreuung oder Einzelbegleitung — sofort
+        einsatzbereit.</div>
+    </div>
+    <div class="fw-karte">
+      <span class="fw-emoji">👪</span>
+      <div class="fw-titel">Eltern</div>
+      <div class="fw-desc">Für zuhause: Stimmung sichtbar machen, gemeinsam ein Joker-Signal vereinbaren, den Alltag
+        entspannter gestalten.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sek" id="preise">
+  <h2 class="sek-titel">Preis</h2>
+  <p class="sek-sub">Einmalzahlung, sofortiger Zugang.</p>
+  <div class="preis-wrap">
+    <div class="preis-karte">
+      <div class="preis-name">🎈 Paket Alltags-Anker &amp; Regulation</div>
+      <span class="preis-betrag">34,00 €<span> einmalig</span></span>
+      <ul class="preis-liste">
+        <li>7 digitale Tools, persönlicher Zugangscode</li>
+        <li>Druckvorlage Joker-Signale</li>
+        <li>Gemeinsame Teilnehmerliste, wo sinnvoll</li>
+        <li>Uneingeschränkter Zugriff, keine Zeitbegrenzung</li>
+      </ul>
+      <a href="https://www.checkout-ds24.com/product/724031" target="_blank" rel="noopener" class="preis-btn kaufen-btn">🛒 Jetzt kaufen</a>
+    </div>
+  </div>
+  <div class="hinweisbox">
+    Nach dem Kauf erhältst du per E-Mail deinen persönlichen Zugangscode. Die Tools laufen direkt im Browser,
+    keine Installation nötig.
+  </div>
+</section>
+
+<footer>© 2026 KLARTEXT-Mentoring · <a href="SHOP_KLARTEXT_Impressum.html">Impressum</a> · <a href="SHOP_KLARTEXT_Datenschutz.html">Datenschutz</a> · <a href="SHOP_KLARTEXT_AGB.html">AGB</a> · <a href="SHOP_KLARTEXT_Widerrufsbelehrung.html">Widerruf</a></footer>
+
+</body>
+</html>
