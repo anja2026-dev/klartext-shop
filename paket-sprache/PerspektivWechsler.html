@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KLARTEXT · Perspektiv-Wechsler</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --jd:#2F6B6E; --jd-dark:#193B3D; --jd-light:#EAF3F3;
+  --el:#BF5B3E; --el-dark:#6E3120; --el-light:#FAEBE3;
+  --ink:#2D2D2D;
+}
+body{font-family:"DM Sans",sans-serif;min-height:100vh;background:#111;color:#fff;}
+
+.topbar{position:sticky;top:0;z-index:50;background:#0D0D0D;display:flex;align-items:center;justify-content:space-between;padding:.75rem clamp(1rem,3vw,2rem);border-bottom:1px solid rgba(255,255,255,.1);}
+.topbar-titel{font-family:"Playfair Display",serif;font-size:.95rem;font-weight:700;letter-spacing:.02em;}
+.reset-btn{background:none;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.75);border-radius:20px;padding:.4rem 1rem;font-size:.72rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.reset-btn:hover{border-color:#fff;color:#fff;}
+.back-link{color:rgba(255,255,255,.6);font-size:.72rem;text-decoration:none;font-weight:700;}
+.back-link:hover{color:#fff;}
+
+.stepper{text-align:center;padding:1.1rem 1rem .3rem;font-size:.78rem;color:rgba(255,255,255,.55);letter-spacing:.03em;}
+.stepper b{color:#fff;}
+
+.board{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 110px);}
+@media (max-width:760px){.board{grid-template-columns:1fr;}}
+
+.spalte{padding:2rem clamp(1.2rem,4vw,2.5rem);display:flex;flex-direction:column;}
+.spalte-jd{background:linear-gradient(160deg,var(--jd-dark),var(--jd));}
+.spalte-el{background:linear-gradient(160deg,var(--el-dark),var(--el));}
+.spalte.gesperrt{opacity:.45;}
+
+.spalte-kopf{margin-bottom:1.4rem;}
+.spalte-label{font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.75;}
+.spalte-frage{font-family:"Playfair Display",serif;font-size:1.35rem;font-weight:700;margin-top:.25rem;}
+
+.tile-grid{display:grid;gap:.65rem;}
+.tile{background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.22);border-radius:12px;padding:1rem 1.1rem;text-align:left;color:#fff;font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;line-height:1.4;}
+.tile:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);}
+.tile:disabled{cursor:default;}
+
+.warte-hinweis{font-size:.82rem;color:rgba(255,255,255,.7);border:1.5px dashed rgba(255,255,255,.3);border-radius:12px;padding:1.4rem;text-align:center;}
+
+.karte-gewaehlt{background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.55);border-radius:14px;padding:1.3rem 1.4rem;}
+.karte-gewaehlt .haken{font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.8;margin-bottom:.5rem;}
+.karte-gewaehlt .text{font-family:"Playfair Display",serif;font-size:1.15rem;font-weight:700;line-height:1.35;}
+
+.bruecke{grid-column:1/-1;background:#F5F0E8;color:var(--ink);padding:2.2rem clamp(1.2rem,5vw,3.5rem);}
+.bruecke-label{font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7A7060;text-align:center;margin-bottom:.6rem;}
+.bruecke-titel{font-family:"Playfair Display",serif;font-size:1.4rem;font-weight:700;text-align:center;margin-bottom:1.4rem;color:#1B3A4B;}
+.bruecke-text{max-width:640px;margin:0 auto;font-size:1.02rem;line-height:1.75;text-align:center;}
+
+.match-badge{max-width:640px;margin:0 auto 1rem;background:linear-gradient(90deg,var(--jd),var(--el));color:#fff;border-radius:30px;padding:.6rem 1.2rem;text-align:center;font-size:.82rem;font-weight:800;letter-spacing:.02em;}
+
+.pakt-box{max-width:640px;margin:1.6rem auto 0;background:#fff;border:1.5px solid #E0D9C8;border-radius:14px;padding:1.2rem 1.4rem;}
+.pakt-label{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#7A7060;margin-bottom:.4rem;}
+.pakt-text{font-size:.92rem;line-height:1.6;color:var(--ink);}
+
+/* Barometer-Check-in */
+.baro-leiste{max-width:900px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem) 1.1rem;}
+.baro-label{font-size:.72rem;color:rgba(255,255,255,.5);text-align:center;margin-bottom:.5rem;letter-spacing:.03em;}
+.baro-chips{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;}
+.baro-chip{border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);border-radius:20px;padding:.45rem 1rem;font-family:inherit;font-size:.78rem;font-weight:700;color:rgba(255,255,255,.75);cursor:pointer;display:flex;align-items:center;gap:.4rem;}
+.baro-chip .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+.baro-chip.aktiv{border-color:#fff;background:rgba(255,255,255,.16);color:#fff;}
+.baro-hinweis{text-align:center;font-size:.72rem;color:rgba(255,255,255,.4);margin-top:.5rem;font-style:italic;}
+
+.tile.empfohlen{border-color:#fff;box-shadow:0 0 0 1.5px rgba(255,255,255,.5) inset;}
+.tile.empfohlen::after{content:"empfohlen";display:block;font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.75;margin-top:.3rem;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="back-link" href="index.html">← Tools</a>
+  <div class="topbar-titel">KLARTEXT · Perspektiv-Wechsler</div>
+  <button class="reset-btn" onclick="zuruecksetzen()">🔄 Neu starten</button>
+</div>
+
+<div class="baro-leiste">
+  <div class="baro-label">Bevor's losgeht (optional): Wie steht ihr gerade zueinander?</div>
+  <div class="baro-chips" id="baroChips"></div>
+  <div class="baro-hinweis" id="baroHinweis"></div>
+</div>
+
+<div class="stepper" id="stepper"></div>
+
+<div class="board" id="board"></div>
+
+<script>
+var THEMEN = [
+  { id:'beziehung', jdLabel:'Beziehung zu Erwachsenen', elLabel:'Beziehung zum Kind',
+    paktSchritt:'Ein 10-Minuten-Gespräch ohne Handy und ohne Vorwürfe – nur zuhören, was der/die andere zu sagen hat.' },
+  { id:'druck', jdLabel:'Erwartungen & Druck', elLabel:'Erwartungen & Sorge',
+    paktSchritt:'Eine Erwartung diese Woche laut aussprechen und gemeinsam prüfen: Ist das wirklich nötig?' },
+  { id:'vertrauen', jdLabel:'Vertrauen & Kontrolle', elLabel:'Loslassen & Vertrauen',
+    paktSchritt:'Eine kleine Entscheidung diese Woche komplett dem Jugendlichen überlassen, ohne nachzufragen.' },
+  { id:'grenzen', jdLabel:'Grenzen setzen', elLabel:'Grenzen erkennen',
+    paktSchritt:'Ein gemeinsames Stopp-Wort vereinbaren, das beide Seiten respektieren, sobald es fällt.' },
+  { id:'stress', jdLabel:'Stress & Kopf voll', elLabel:'Stress erkennen & begleiten',
+    paktSchritt:'5 Minuten echte Pause ohne Tipps oder Fragen – nur da sein.' },
+  { id:'digital', jdLabel:'Digitale Balance', elLabel:'Digitale Sorge',
+    paktSchritt:'Eine gemeinsame handyfreie Zeit diese Woche festlegen – für beide Seiten gleich.' },
+  { id:'zukunft', jdLabel:'Zukunft & Motivation', elLabel:'Zukunft & Sorge ums Kind',
+    paktSchritt:'Diese Woche einmal laut aussprechen, worauf man beim anderen stolz ist – ganz ohne Anlass.' },
+  { id:'naehe', jdLabel:'Nähe & Rückzug', elLabel:'Nähe & Rückzug',
+    paktSchritt:'Eine gemeinsame kleine Aktivität diese Woche einplanen – ganz ohne Thema oder Ziel.' }
+];
+
+function themaById(id){ return THEMEN.filter(function(t){ return t.id === id; })[0]; }
+
+var JD_TILES = [
+  { id:'j_beziehung1', thema:'beziehung', text:'Niemand hört mir wirklich zu' },
+  { id:'j_beziehung2', thema:'beziehung', text:'Ich werde nicht ernst genommen' },
+  { id:'j_druck1', thema:'druck', text:'Druck von zu Hause' },
+  { id:'j_druck2', thema:'druck', text:'Erwartungen, die gar nicht meine sind' },
+  { id:'j_vertrauen1', thema:'vertrauen', text:'Kein Vertrauen, ständige Kontrolle' },
+  { id:'j_vertrauen2', thema:'vertrauen', text:'Ich darf nichts allein entscheiden' },
+  { id:'j_grenzen1', thema:'grenzen', text:'Stopp-Moment — meine Grenze wird nicht gesehen' },
+  { id:'j_grenzen2', thema:'grenzen', text:'Ich kann schwer Nein sagen' },
+  { id:'j_stress1', thema:'stress', text:'Kopf voll — alles auf einmal' },
+  { id:'j_stress2', thema:'stress', text:'Ich brauche mehr echte Pausen' },
+  { id:'j_digital1', thema:'digital', text:'Handy-Sog — ich komm nicht los' },
+  { id:'j_digital2', thema:'digital', text:'Online anders sein als echt' },
+  { id:'j_zukunft1', thema:'zukunft', text:'Berufs-Dschungel — ich soll schon alles wissen' },
+  { id:'j_zukunft2', thema:'zukunft', text:'Meine Superpower wird nicht gesehen' },
+  { id:'j_naehe1', thema:'naehe', text:'Ich zieh mich zurück, wenn\'s zu viel wird' },
+  { id:'j_naehe2', thema:'naehe', text:'Ich vermisse, wie es früher war' }
+];
+
+var EL_TILES = [
+  { id:'e_beziehung1', thema:'beziehung', text:'Ich höre genau hin, aber es kommt nicht an' },
+  { id:'e_beziehung2', thema:'beziehung', text:'Ich nehme dich ernst, auch wenn\'s nicht so wirkt' },
+  { id:'e_druck1', thema:'druck', text:'Ich will nur das Beste für dich' },
+  { id:'e_druck2', thema:'druck', text:'Ich mach mir Sorgen um deine Zukunft' },
+  { id:'e_vertrauen1', thema:'vertrauen', text:'Loslassen fällt mir schwer' },
+  { id:'e_vertrauen2', thema:'vertrauen', text:'Ich will dich schützen, auch wenn\'s nervt' },
+  { id:'e_grenzen1', thema:'grenzen', text:'Ich merke nicht immer, wo deine Grenze ist' },
+  { id:'e_grenzen2', thema:'grenzen', text:'Manchmal dränge ich zu sehr' },
+  { id:'e_stress1', thema:'stress', text:'Ich seh, dass du gestresst bist, weiß aber nicht wie helfen' },
+  { id:'e_stress2', thema:'stress', text:'Ich will dir Druck nehmen, schaff\'s aber nicht immer' },
+  { id:'e_digital1', thema:'digital', text:'Dein Handy macht mir Sorgen' },
+  { id:'e_digital2', thema:'digital', text:'Ich versteh deine Online-Welt nicht' },
+  { id:'e_zukunft1', thema:'zukunft', text:'Ich weiß nicht, was aus dir werden soll' },
+  { id:'e_zukunft2', thema:'zukunft', text:'Ich sehe deine Stärken, sag\'s aber selten' },
+  { id:'e_naehe1', thema:'naehe', text:'Mein Kind zieht sich zurück' },
+  { id:'e_naehe2', thema:'naehe', text:'Ich vermisse die Nähe von früher' }
+];
+
+var BRUECKEN_MATCH = {
+  beziehung: 'Ihr seht die Situation hier erstaunlich ähnlich: Beide spüren, dass Zuhören und Ernst-genommen-Werden gerade nicht richtig ankommen. Das ist ein gutes Zeichen — ihr müsst euch nicht erst überzeugen, sondern könnt direkt üben, wie echtes Zuhören für euch beide aussehen kann.',
+  druck: 'Hier trefft ihr euch genau: Druck und Erwartung belasten euch beide, nur von verschiedenen Seiten. Wenn ihr das offen benennt, verliert der Druck oft schon einen Teil seiner Wucht.',
+  vertrauen: 'Vertrauen und Kontrolle beschäftigen euch beide gerade gleich stark. Das ist kein Widerspruch, sondern zwei Seiten derselben Entwicklungsaufgabe — Vertrauen wächst in kleinen, sicheren Schritten, nicht auf einmal.',
+  grenzen: 'Ihr spürt beide: Bei Grenzen hakt es gerade. Das ist eine gute Ausgangslage — ihr könnt gemeinsam festlegen, wie ein Stopp für euch beide klar erkennbar wird, statt es zu erraten.',
+  stress: 'Stress ist bei euch beiden gerade Thema — bei dir im Kopf, bei der Bezugsperson in der Sorge um dich. Eine gemeinsame Pause ohne Ratschläge kann für beide Seiten entlasten.',
+  digital: 'Die digitale Welt beschäftigt euch beide, nur aus unterschiedlicher Richtung. Statt übereinander zu reden, könnt ihr jetzt direkt miteinander klären, was für euch beide in Ordnung ist.',
+  zukunft: 'Zukunft und Motivation liegen euch beiden gerade am Herzen — dir, weil der Druck groß ist; der Bezugsperson, weil die Sorge um dich groß ist. Das ist dieselbe Energie, nur unterschiedlich verpackt.',
+  naehe: 'Ihr merkt beide: Die Nähe hat sich verändert. Das offen auszusprechen ist schon der erste Schritt zurück zueinander.'
+};
+
+var BRUECKEN_PAAR = {
+  druck_vertrauen: 'Der Druck, den du spürst, und die Schwierigkeit der Bezugsperson loszulassen, hängen oft zusammen: Weniger Kontrolle bedeutet nicht weniger Fürsorge — und weniger Druck von außen schafft oft mehr echte Nähe.',
+  grenzen_naehe: 'Wenn Grenzen nicht gesehen werden, zieht man sich oft zurück — und genau diesen Rückzug spürt die Bezugsperson gerade als fehlende Nähe. Eine klare, respektierte Grenze kann beides gleichzeitig verbessern.',
+  stress_druck: 'Dein Kopf ist voll, während die Bezugsperson sich Sorgen um deine Zukunft macht — beides verstärkt sich oft gegenseitig. Weniger Erwartungsdruck von außen schafft oft automatisch mehr Kopf-Freiraum.',
+  digital_vertrauen: 'Dass du online anders bist, macht der Bezugsperson Sorgen ums Vertrauen. Meistens hilft es mehr, offen über die Online-Welt zu sprechen, als sie zu kontrollieren.',
+  naehe_beziehung: 'Du ziehst dich zurück, wenn\'s zu viel wird — die Bezugsperson erlebt genau das als „kommt nicht an". Das ist derselbe Moment aus zwei Blickwinkeln.',
+  vertrauen_grenzen: 'Dass du nichts allein entscheiden darfst, und dass die Bezugsperson nicht immer merkt, wo deine Grenze ist, sind zwei Seiten derselben Lücke: mehr klar benannte kleine Freiräume helfen beiden.',
+  beziehung_druck: 'Nicht ernst genommen zu werden fühlt sich oft genauso an wie hohe Erwartungen, die im Raum stehen, ohne ausgesprochen zu werden. Klarheit über die eigentliche Sorge dahinter hilft oft mehr als noch mehr Nachfragen.',
+  grenzen_stress: 'Wenn deine Grenzen nicht gesehen werden, wird das schnell zu Stress — und die Bezugsperson merkt oft nur den Stress, nicht die eigentliche Ursache. Der Blick auf die Grenze dahinter lohnt sich.',
+  digital_druck: 'Deine Online-Welt und die Sorge der Bezugsperson um deine Zukunft wirken erstmal wie zwei getrennte Themen — hängen aber oft zusammen: Sorge äußert sich schnell als Kontrolle übers Handy.',
+  zukunft_stress: 'Der Druck, jetzt schon alles wissen zu müssen, erzeugt bei dir Stress im Kopf — und die Bezugsperson spürt diesen Stress, ohne die Ursache genau zu kennen. Ein offenes Gespräch über die Zukunftsangst kann beides entlasten.'
+};
+
+function brueckenText(jdTile, elTile){
+  if (jdTile.thema === elTile.thema) {
+    return { text: BRUECKEN_MATCH[jdTile.thema], match: true };
+  }
+  var key1 = jdTile.thema + '_' + elTile.thema;
+  var key2 = elTile.thema + '_' + jdTile.thema;
+  if (BRUECKEN_PAAR[key1]) return { text: BRUECKEN_PAAR[key1], match: false };
+  if (BRUECKEN_PAAR[key2]) return { text: BRUECKEN_PAAR[key2], match: false };
+  return {
+    text: 'Du erlebst gerade: „'+jdTile.text+'" — die Bezugsperson erlebt: „'+elTile.text+'". Zwei unterschiedliche Blickwinkel auf denselben Moment. Schon das offen nebeneinander stehen zu lassen, ohne zu werten, ist ein erster Schritt.',
+    match: false
+  };
+}
+
+var BAROMETER_ZUSTAND = [
+  { id:'gruen', farbe:'#2E7D47', label:'Stabil', desc:'heute läuft es gut' },
+  { id:'gelb', farbe:'#C49A00', label:'Aufmerksam', desc:'Anspannung spürbar, aber im Griff' },
+  { id:'orange', farbe:'#C45F1A', label:'Überfordert', desc:'anstrengend, Pause nötig' },
+  { id:'rot', farbe:'#9B2626', label:'Alarmiert', desc:'eine echte Belastung' },
+  { id:'grau', farbe:'#757575', label:'Erschöpft', desc:'Reserven leer' }
+];
+
+var barometerWert = null;
+var selectedJD = null;
+var selectedEL = null;
+
+function baroWaehlen(id){
+  barometerWert = (barometerWert === id) ? null : id;
+  baroRendern();
+  rendern();
+}
+
+function baroRendern(){
+  var wrap = document.getElementById('baroChips');
+  wrap.innerHTML = BAROMETER_ZUSTAND.map(function(b){
+    var aktiv = barometerWert === b.id ? ' aktiv' : '';
+    return '<button type="button" class="baro-chip'+aktiv+'" onclick="baroWaehlen(\''+b.id+'\')"><span class="dot" style="background:'+b.farbe+';"></span>'+b.label+'</button>';
+  }).join('');
+  var hinweis = document.getElementById('baroHinweis');
+  if (barometerWert === 'orange' || barometerWert === 'rot') {
+    hinweis.textContent = 'Alles klar — dann sind unten die Stress-Kacheln erstmal hervorgehoben. Du kannst aber jederzeit ein anderes Thema wählen.';
+  } else {
+    hinweis.textContent = '';
+  }
+}
+
+function istPriorisiert(tile){
+  return (barometerWert === 'orange' || barometerWert === 'rot') && tile.thema === 'stress';
+}
+
+function waehleJD(id){ selectedJD = id; rendern(); }
+function waehleEL(id){ selectedEL = id; rendern(); }
+
+function zuruecksetzen(){
+  barometerWert = null;
+  selectedJD = null;
+  selectedEL = null;
+  baroRendern();
+  rendern();
+}
+
+function tileGrid(tiles, onClickName){
+  var sortiert = tiles.slice().sort(function(a,b){
+    var pa = istPriorisiert(a) ? 0 : 1;
+    var pb = istPriorisiert(b) ? 0 : 1;
+    return pa - pb;
+  });
+  return '<div class="tile-grid">' + sortiert.map(function(k){
+    return '<button class="tile'+(istPriorisiert(k) ? ' empfohlen' : '')+'" onclick="'+onClickName+'(\''+k.id+'\')">'+k.text+'</button>';
+  }).join('') + '</div>';
+}
+
+function gewaehlteKarteHtml(tiles, id){
+  var k = tiles.filter(function(x){ return x.id === id; })[0];
+  return '<div class="karte-gewaehlt"><div class="haken">✓ Ausgewählt</div><div class="text">'+k.text+'</div></div>';
+}
+
+function rendern(){
+  var board = document.getElementById('board');
+  var stepper = document.getElementById('stepper');
+  var html = '';
+
+  html += '<div class="spalte spalte-jd">';
+  html += '<div class="spalte-kopf"><div class="spalte-label">Jugendliche</div><div class="spalte-frage">Was beschäftigt dich gerade?</div></div>';
+  if (selectedJD) {
+    html += gewaehlteKarteHtml(JD_TILES, selectedJD);
+  } else {
+    html += tileGrid(JD_TILES, 'waehleJD');
+  }
+  html += '</div>';
+
+  html += '<div class="spalte spalte-el' + (selectedJD ? '' : ' gesperrt') + '">';
+  html += '<div class="spalte-kopf"><div class="spalte-label">Eltern / Lehrkraft / Mentor:in</div><div class="spalte-frage">Was fällt dir gerade schwer?</div></div>';
+  if (!selectedJD) {
+    html += '<div class="warte-hinweis">🔒 Noch nicht dran — erst wählt die Jugendliche / der Jugendliche.</div>';
+  } else if (selectedEL) {
+    html += gewaehlteKarteHtml(EL_TILES, selectedEL);
+  } else {
+    html += tileGrid(EL_TILES, 'waehleEL');
+  }
+  html += '</div>';
+
+  if (selectedJD && selectedEL) {
+    var jdTile = JD_TILES.filter(function(t){ return t.id === selectedJD; })[0];
+    var elTile = EL_TILES.filter(function(t){ return t.id === selectedEL; })[0];
+    var ergebnis = brueckenText(jdTile, elTile);
+    var thema = themaById(jdTile.thema);
+
+    html += '<div class="bruecke">';
+    if (ergebnis.match) {
+      html += '<div class="match-badge">🖐️ High Five — hier seht ihr die Situation genau gleich!</div>';
+    }
+    html += '<div class="bruecke-label">Die Brücke</div><div class="bruecke-titel">Beide Seiten haben recht</div><div class="bruecke-text">'+ergebnis.text+'</div>';
+    html += '<div class="pakt-box"><div class="pakt-label">Der Pakt für diese Woche</div><div class="pakt-text">'+thema.paktSchritt+'</div></div>';
+    html += '</div>';
+  }
+
+  board.innerHTML = html;
+
+  if (!selectedJD) stepper.innerHTML = 'Schritt <b>1 / 3</b> — Sicht der Jugendlichen';
+  else if (!selectedEL) stepper.innerHTML = 'Schritt <b>2 / 3</b> — Sicht der Bezugsperson';
+  else stepper.innerHTML = 'Schritt <b>3 / 3</b> — Die Brücke';
+}
+
+baroRendern();
+rendern();
+</script>
+
+</body>
+</html>
