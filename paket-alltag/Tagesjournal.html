@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KLARTEXT · Tagesjournal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1B3A4B;--acc:#6EC6A0;--paper:#F5F0E8;--border:#DDD8CE;--muted:#6A6878;--ink:#2D2D2D;--surface:#fff;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:"DM Sans",Arial,sans-serif;background:var(--paper);color:var(--ink);}
+header.kt-header{display:flex;align-items:center;justify-content:space-between;background:var(--navy);color:#fff;padding:.75rem 1.25rem;box-shadow:0 2px 8px rgba(27,58,75,.1);}
+header.kt-header .kt-title{font-size:1rem;font-weight:700;margin:0;}
+header.kt-header .kt-claim{font-size:.68rem;color:var(--acc);margin-top:1px;}
+header.kt-header a.kt-back{color:var(--acc);text-decoration:none;font-size:.72rem;font-weight:700;border:1.5px solid var(--acc);border-radius:20px;padding:.3rem .7rem;}
+
+main{max-width:640px;margin:0 auto;padding:1.25rem 1rem 3rem;}
+.karte{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:1.1rem 1.25rem;margin-bottom:1.1rem;}
+.karte-header{display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;}
+.karte-header-icon{font-size:1.1rem;}
+.karte-header-titel{font-weight:700;color:var(--navy);font-size:.92rem;}
+
+.tn-row{display:flex;gap:.5rem;margin-bottom:.4rem;}
+.tn-select{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:.5rem .7rem;font-family:inherit;font-size:.85rem;background:#fff;color:var(--navy);}
+.tn-add-btn{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:0 .8rem;font-size:.82rem;font-weight:700;cursor:pointer;}
+
+.kt-field{margin-bottom:.75rem;}
+.kt-field label{display:block;font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.35rem;}
+.kt-field label .sub{text-transform:none;font-weight:400;letter-spacing:0;}
+.kt-field textarea,.kt-field input,.kt-field select{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:.55rem .7rem;font-family:inherit;font-size:.85rem;background:#fff;color:var(--ink);outline:none;resize:vertical;}
+.kt-field textarea:focus,.kt-field input:focus,.kt-field select:focus{border-color:var(--navy);}
+
+.status-row{display:flex;gap:.4rem;flex-wrap:wrap;}
+.status-btn{flex:1;min-width:52px;padding:.6rem .3rem;border-radius:10px;border:2px solid var(--border);background:#fff;font-weight:700;font-size:.85rem;cursor:pointer;color:var(--muted);}
+.status-btn.aktiv{border-color:var(--acc);background:#EAF7F1;color:#1B5E2E;}
+
+.kt-btn{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:.65rem 1.3rem;font-size:.85rem;font-weight:700;cursor:pointer;font-family:inherit;}
+.kt-btn:hover{background:#2A4A5B;}
+.kt-status{font-size:.78rem;color:var(--acc);margin-top:.5rem;min-height:1em;}
+
+.eintrag{background:#fff;border-left:4px solid var(--acc);border-radius:10px;padding:.7rem .9rem;margin-bottom:.5rem;}
+.eintrag-kopf{display:flex;justify-content:space-between;gap:.5rem;font-size:.72rem;color:var(--muted);margin-bottom:.3rem;}
+.eintrag-notiz{font-size:.85rem;line-height:1.6;}
+.eintrag-tag{display:inline-block;background:#F0EAD8;color:#7A5500;border-radius:12px;padding:.15rem .6rem;font-size:.68rem;font-weight:700;margin-top:.4rem;}
+.leer{font-size:.82rem;color:#B0A898;text-align:center;padding:1rem;}
+</style>
+</head>
+<body>
+
+<header class="kt-header">
+  <div>
+    <div class="kt-title">Tagesjournal</div>
+    <div class="kt-claim">Paket Alltags-Anker</div>
+  </div>
+  <a class="kt-back" href="index.html">← Tools</a>
+</header>
+
+<main>
+
+  <div class="karte">
+    <div class="tn-row">
+      <select class="tn-select" id="tn-select" onchange="teilnehmerWechseln()"></select>
+      <button class="tn-add-btn" type="button" onclick="teilnehmerHinzufuegen()">+ Neu</button>
+    </div>
+  </div>
+
+  <div class="karte">
+    <div class="karte-header"><span class="karte-header-icon">🌡️</span><span class="karte-header-titel">Tagesbarometer</span></div>
+    <div class="status-row" id="status-row"></div>
+  </div>
+
+  <div class="karte">
+    <div class="karte-header"><span class="karte-header-icon">📝</span><span class="karte-header-titel">Tagesnotiz</span></div>
+    <textarea id="tagesnotiz" rows="3" placeholder="Was war heute wichtig?"></textarea>
+  </div>
+
+  <div class="karte">
+    <div class="karte-header"><span class="karte-header-icon">🔎</span><span class="karte-header-titel">Besonderheiten heute</span></div>
+    <div class="kt-field">
+      <label for="besonderheitSelect">Auswahl</label>
+      <select id="besonderheitSelect">
+        <option value="keine">keine</option>
+        <option value="Konflikt">Konflikt</option>
+        <option value="Pause schwierig">Pause schwierig</option>
+        <option value="Gut gelaufen">Gut gelaufen</option>
+        <option value="Gespräch mit Eltern/Bezugsperson">Gespräch mit Eltern/Bezugsperson</option>
+        <option value="Therapie/Termin">Therapie/Termin</option>
+        <option value="Sonstiges">Sonstiges</option>
+      </select>
+    </div>
+    <div class="kt-field">
+      <label for="besonderheitDetails">Details <span class="sub">(optional)</span></label>
+      <input type="text" id="besonderheitDetails" placeholder="Kurzbeschreibung">
+    </div>
+    <button class="kt-btn" onclick="eintragSpeichern()">💾 Tag speichern</button>
+    <div class="kt-status" id="kt-status"></div>
+  </div>
+
+  <div class="karte">
+    <div class="karte-header"><span class="karte-header-icon">📋</span><span class="karte-header-titel">Verlauf (letzte 14 Tage)</span></div>
+    <div id="verlauf-liste"></div>
+  </div>
+
+</main>
+
+<script>
+var TEILNEHMER_KEY = 'klartext_paket_teilnehmer_v1'; // geteilt mit Barometer.html
+var DATEN_KEY = 'klartext_journal_daten_v1'; // { name: [{status,notiz,besonderheit,details,zeit}] }
+var STATUS_OPTIONEN = [
+  {id:'gut', label:'🙂 Gut', farbe:'#2E9E5A'},
+  {id:'mittel', label:'😐 Mittel', farbe:'#D4A800'},
+  {id:'schwierig', label:'😟 Schwierig', farbe:'#D4651A'},
+  {id:'sehr_schwierig', label:'😣 Sehr schwierig', farbe:'#C0392B'}
+];
+var aktuellerStatus = null;
+
+function ladeListe(){ try { var r = localStorage.getItem(TEILNEHMER_KEY); return r ? JSON.parse(r) : []; } catch(e) { return []; } }
+function schreibeListe(l){ try { localStorage.setItem(TEILNEHMER_KEY, JSON.stringify(l)); } catch(e) {} }
+function ladeDaten(){ try { var r = localStorage.getItem(DATEN_KEY); return r ? JSON.parse(r) : {}; } catch(e) { return {}; } }
+function schreibeDaten(d){ try { localStorage.setItem(DATEN_KEY, JSON.stringify(d)); } catch(e) {} }
+
+var liste = ladeListe();
+var daten = ladeDaten();
+var aktuellerName = '';
+
+function teilnehmerListeRendern(){
+  var sel = document.getElementById('tn-select');
+  sel.innerHTML = '';
+  if (liste.length === 0) {
+    var opt = document.createElement('option');
+    opt.value = ''; opt.textContent = '– noch niemand angelegt –';
+    sel.appendChild(opt);
+    aktuellerName = '';
+    return;
+  }
+  liste.forEach(function(name){
+    var opt = document.createElement('option');
+    opt.value = name; opt.textContent = name;
+    sel.appendChild(opt);
+  });
+  if (!liste.includes(aktuellerName)) { aktuellerName = liste[0]; }
+  sel.value = aktuellerName;
+}
+
+function teilnehmerHinzufuegen(){
+  var name = prompt('Name oder Kürzel für die neue Teilnehmer:in (bleibt nur auf diesem Gerät gespeichert):');
+  if (!name) return;
+  name = name.trim();
+  if (!name || liste.includes(name)) return;
+  liste.push(name);
+  daten[name] = daten[name] || [];
+  schreibeListe(liste);
+  schreibeDaten(daten);
+  aktuellerName = name;
+  teilnehmerListeRendern();
+  verlaufRendern();
+}
+window.teilnehmerHinzufuegen = teilnehmerHinzufuegen;
+
+function teilnehmerWechseln(){
+  aktuellerName = document.getElementById('tn-select').value;
+  verlaufRendern();
+}
+window.teilnehmerWechseln = teilnehmerWechseln;
+
+function statusRowRendern(){
+  var row = document.getElementById('status-row');
+  var html = '';
+  STATUS_OPTIONEN.forEach(function(s){
+    html += '<button type="button" class="status-btn" id="status-'+s.id+'" onclick="statusWaehlen(&quot;'+s.id+'&quot;)">'+s.label+'</button>';
+  });
+  row.innerHTML = html;
+}
+
+function statusWaehlen(id){
+  aktuellerStatus = id;
+  document.querySelectorAll('.status-btn').forEach(function(el){ el.classList.remove('aktiv'); });
+  document.getElementById('status-'+id).classList.add('aktiv');
+}
+window.statusWaehlen = statusWaehlen;
+
+function datumKurz(iso){
+  try {
+    var d = new Date(iso);
+    return d.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit', year:'numeric'});
+  } catch(e) { return ''; }
+}
+
+function eintragSpeichern(){
+  if (!aktuellerName) { document.getElementById('kt-status').textContent = 'Bitte zuerst eine Teilnehmer:in anlegen.'; return; }
+  var eintrag = {
+    status: aktuellerStatus,
+    notiz: document.getElementById('tagesnotiz').value.trim(),
+    besonderheit: document.getElementById('besonderheitSelect').value,
+    details: document.getElementById('besonderheitDetails').value.trim(),
+    zeit: new Date().toISOString()
+  };
+  if (!daten[aktuellerName]) daten[aktuellerName] = [];
+  daten[aktuellerName].unshift(eintrag);
+  daten[aktuellerName] = daten[aktuellerName].slice(0, 60);
+  schreibeDaten(daten);
+
+  document.getElementById('kt-status').textContent = '✓ Gespeichert.';
+  document.getElementById('tagesnotiz').value = '';
+  document.getElementById('besonderheitDetails').value = '';
+  setTimeout(function(){ document.getElementById('kt-status').textContent = ''; }, 2500);
+  verlaufRendern();
+}
+window.eintragSpeichern = eintragSpeichern;
+
+function verlaufRendern(){
+  var liste2 = document.getElementById('verlauf-liste');
+  var eintraege = (daten[aktuellerName] || []).slice(0, 14);
+  if (eintraege.length === 0) {
+    liste2.innerHTML = '<div class="leer">Noch keine Einträge.</div>';
+    return;
+  }
+  var html = '';
+  eintraege.forEach(function(e){
+    var statusObj = STATUS_OPTIONEN.find(function(s){ return s.id === e.status; });
+    html += '<div class="eintrag" style="border-left-color:'+(statusObj?statusObj.farbe:'#ccc')+'">' +
+      '<div class="eintrag-kopf"><span>' + datumKurz(e.zeit) + '</span><span>' + (statusObj?statusObj.label:'') + '</span></div>' +
+      (e.notiz ? '<div class="eintrag-notiz">' + e.notiz.replace(/</g,'&lt;') + '</div>' : '') +
+      (e.besonderheit && e.besonderheit !== 'keine' ? '<div class="eintrag-tag">' + e.besonderheit + (e.details ? ': ' + e.details : '') + '</div>' : '') +
+      '</div>';
+  });
+  liste2.innerHTML = html;
+}
+
+statusRowRendern();
+teilnehmerListeRendern();
+verlaufRendern();
+</script>
+</body>
+</html>

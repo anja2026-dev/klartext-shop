@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KLARTEXT · Wie geht es mir?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Nunito",sans-serif;background:#FFF8F0;min-height:100vh;color:#1A1A2E;}
+
+.header{background:#1B3A4B;padding:.75rem 1.25rem;display:flex;align-items:center;justify-content:space-between;border-bottom:4px solid #6EC6A0;}
+.h-titel{font-size:1rem;font-weight:800;color:#fff;}
+.h-sub{font-size:.6rem;color:#6EC6A0;display:block;}
+.h-back{display:inline-flex;align-items:center;gap:.3rem;padding:.3rem .7rem;border:1.5px solid #6EC6A0;border-radius:20px;color:#6EC6A0;font-size:.7rem;font-weight:700;text-decoration:none;}
+
+.wrap{max-width:520px;margin:0 auto;padding:1.5rem 1rem 4rem;}
+
+.tn-wrap{margin-bottom:1.25rem;}
+.tn-label{display:block;font-size:.72rem;font-weight:700;color:#6A6878;margin-bottom:.35rem;}
+.tn-row{display:flex;gap:.5rem;}
+.tn-select{flex:1;border:1.5px solid #DDD8CE;border-radius:10px;padding:.6rem .8rem;font-family:inherit;font-size:.85rem;background:#fff;color:#1B3A4B;}
+.tn-add-btn{background:#1B3A4B;color:#fff;border:none;border-radius:10px;padding:0 .9rem;font-size:.85rem;font-weight:700;cursor:pointer;}
+
+.begruess{text-align:center;padding:.5rem 0 1rem;}
+.begruess-frage{font-size:1.1rem;color:#5A5A6A;line-height:1.4;font-weight:700;}
+
+.status-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(38px,1fr));gap:.4rem;margin-bottom:.5rem;}
+.status-kachel{aspect-ratio:1;border-radius:10px;border:2px solid #E0D8CC;background:#fff;font-weight:800;font-size:.95rem;color:#8A8478;cursor:pointer;transition:all .15s;}
+.status-kachel:active{transform:scale(.93);}
+.status-kachel.aktiv{border-width:3px;}
+.status-legende{display:flex;justify-content:space-between;font-size:.65rem;color:#8A8478;margin-bottom:1.25rem;padding:0 .1rem;}
+
+.notiz-wrap{margin-bottom:1rem;}
+.notiz-label{font-size:.8rem;font-weight:700;color:#5A5A6A;margin-bottom:.4rem;display:block;}
+.notiz{width:100%;border:2px solid #E0D8CC;border-radius:12px;padding:.6rem .9rem;font-family:"Nunito",sans-serif;font-size:.88rem;background:#fff;outline:none;resize:none;height:55px;line-height:1.5;}
+.notiz:focus{border-color:#1B3A4B;}
+
+.sp-btn{width:100%;padding:.85rem;border-radius:14px;border:none;font-family:"Nunito",sans-serif;font-size:1rem;font-weight:800;cursor:pointer;transition:all .2s;color:#fff;background:#B0A898;opacity:.5;pointer-events:none;margin-bottom:1rem;}
+.sp-btn.aktiv{opacity:1;pointer-events:auto;}
+.sp-btn.aktiv:active{transform:scale(.97);}
+
+.coach-oeffnen{display:none;width:100%;background:none;border:1.5px dashed #999;border-radius:12px;padding:.7rem;font-size:.82rem;font-weight:700;color:#555;cursor:pointer;margin-bottom:1rem;font-family:inherit;}
+
+.coach-wrap{display:none;background:#F0F0F0;border:1.5px dashed #999;border-radius:14px;padding:1.1rem 1.25rem;margin-bottom:1.25rem;}
+.coach-titel{font-size:.88rem;font-weight:800;color:#333;margin-bottom:.25rem;}
+.coach-sub{font-size:.72rem;color:#777;margin-bottom:.85rem;line-height:1.5;}
+.coach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(30px,1fr));gap:.3rem;}
+.coach-kachel{aspect-ratio:1;border-radius:8px;border:2px solid #ddd;background:#fff;font-weight:700;font-size:.8rem;color:#8A8478;cursor:pointer;}
+.coach-kachel.aktiv{border-width:3px;}
+.vergleich-box{margin-top:1rem;border-radius:10px;padding:.85rem 1rem;font-size:.78rem;line-height:1.6;display:none;}
+.vergleich-box.match{background:#E8F7EE;border:1.5px solid #2E9E5A;color:#1B5E2E;display:block;}
+.vergleich-box.diff{background:#FFF3E0;border:1.5px solid #D4A017;color:#7A5500;display:block;}
+
+.verlauf-titel{font-size:.85rem;font-weight:800;color:#1B3A4B;margin-bottom:.6rem;}
+.verlauf-eintrag{display:flex;align-items:center;gap:.7rem;background:#fff;border-radius:10px;padding:.6rem .85rem;margin-bottom:.4rem;border-left:4px solid #ccc;}
+.v-punkt{width:14px;height:14px;border-radius:50%;flex-shrink:0;}
+.v-inhalt{flex:1;min-width:0;}
+.v-zeile1{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline;}
+.v-wert{font-size:.78rem;font-weight:700;color:#1B3A4B;}
+.v-zeit{font-size:.68rem;color:#8A8278;flex-shrink:0;}
+.v-text{font-size:.74rem;color:#5A5448;margin-top:.15rem;}
+.verlauf-leer{font-size:.8rem;color:#B0A898;text-align:center;padding:1rem;background:#fff;border-radius:12px;border:1.5px solid #E0D8CC;}
+
+.konfetti{position:fixed;inset:0;pointer-events:none;z-index:999;}
+.k-stueck{position:absolute;width:10px;height:10px;border-radius:2px;animation:fall 1s ease-in forwards;}
+@keyframes fall{0%{transform:translateY(-20px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="h-titel">Wie geht es mir?</div>
+    <span class="h-sub">Barometer · Paket Alltags-Anker</span>
+  </div>
+  <a class="h-back" href="index.html">← Tools</a>
+</div>
+
+<div class="wrap">
+
+  <div class="tn-wrap">
+    <span class="tn-label">Teilnehmer:in</span>
+    <div class="tn-row">
+      <select class="tn-select" id="tn-select" onchange="teilnehmerWechseln()"></select>
+      <button class="tn-add-btn" type="button" onclick="teilnehmerHinzufuegen()">+ Neu</button>
+    </div>
+  </div>
+
+  <div class="begruess">
+    <div class="begruess-frage">Wie fühlst du dich gerade — auf einer Skala von 0 bis 10?</div>
+  </div>
+
+  <div class="status-grid" id="status-grid"></div>
+  <div class="status-legende"><span>😊 entspannt</span><span>😶 sehr angespannt</span></div>
+
+  <div class="notiz-wrap">
+    <span class="notiz-label">Magst du kurz sagen, warum? (optional)</span>
+    <textarea class="notiz" id="notiz" placeholder="Ein Satz reicht …"></textarea>
+  </div>
+
+  <button class="sp-btn" id="sp-btn" onclick="eintragSpeichern()">✓ Speichern</button>
+
+  <button class="coach-oeffnen" id="coach-oeffnen-btn" onclick="coachEinschaetzungOeffnen()">+ Eigene Einschätzung dazu abgeben (Coach/Begleitung)</button>
+
+  <div class="coach-wrap" id="coach-wrap">
+    <div class="coach-titel">Deine Einschätzung als Begleitung</div>
+    <div class="coach-sub">Wie hättest du den Status von außen eingeschätzt? Ein guter Ausgangspunkt für ein kurzes Gespräch über die Differenz.</div>
+    <div class="coach-grid" id="coach-grid"></div>
+    <div class="vergleich-box" id="vergleich-box"></div>
+  </div>
+
+  <div class="verlauf-titel">Verlauf (letzte 10 Einträge)</div>
+  <div id="verlauf-liste"></div>
+
+</div>
+
+<script>
+var FARBEN = {gruen:'#2E9E5A',gelb:'#D4A800',orange:'#D4651A',rot:'#C0392B',grau:'#757575'};
+var EMOJI = {gruen:'😊',gelb:'😐',orange:'😟',rot:'😰',grau:'😶'};
+var KACHEL_FARBEN = {
+  gruen:  {bg:'#DCF3E4', rand:'#2E9E5A', text:'#1B5E2E'},
+  gelb:   {bg:'#FCF0C8', rand:'#D4A800', text:'#7A5500'},
+  orange: {bg:'#FBE1CB', rand:'#D4651A', text:'#7A3B0A'},
+  rot:    {bg:'#FADAD7', rand:'#C0392B', text:'#7A241C'},
+  grau:   {bg:'#E7E7E7', rand:'#757575', text:'#3D3D3D'}
+};
+
+function wertZuFarbe(wert){
+  wert = Number(wert);
+  if (wert <= 2) return 'gruen';
+  if (wert <= 4) return 'gelb';
+  if (wert <= 6) return 'orange';
+  if (wert <= 8) return 'rot';
+  return 'grau';
+}
+
+var TEILNEHMER_KEY = 'klartext_paket_teilnehmer_v1'; // [name, ...] -- geteilt mit Tagesjournal.html
+var DATEN_KEY = 'klartext_baro_daten_v1'; // { name: [{wert,notiz,coachWert,zeit}] }
+var aktiveWahl = null;
+var aktiveCoachWahl = null;
+
+function ladeListe(){
+  try { var roh = localStorage.getItem(TEILNEHMER_KEY); return roh ? JSON.parse(roh) : []; } catch(e) { return []; }
+}
+function schreibeListe(liste){ try { localStorage.setItem(TEILNEHMER_KEY, JSON.stringify(liste)); } catch(e) {} }
+function ladeDaten(){
+  try { var roh = localStorage.getItem(DATEN_KEY); return roh ? JSON.parse(roh) : {}; } catch(e) { return {}; }
+}
+function schreibeDaten(d){ try { localStorage.setItem(DATEN_KEY, JSON.stringify(d)); } catch(e) {} }
+
+var speicher = { liste: ladeListe(), daten: ladeDaten() };
+function schreibeSpeicher(s){ schreibeListe(s.liste); schreibeDaten(s.daten); }
+var aktuellerName = '';
+
+function teilnehmerListeRendern(){
+  var sel = document.getElementById('tn-select');
+  sel.innerHTML = '';
+  if (speicher.liste.length === 0) {
+    var opt = document.createElement('option');
+    opt.value = ''; opt.textContent = '– noch niemand angelegt –';
+    sel.appendChild(opt);
+    aktuellerName = '';
+    return;
+  }
+  speicher.liste.forEach(function(name){
+    var opt = document.createElement('option');
+    opt.value = name; opt.textContent = name;
+    sel.appendChild(opt);
+  });
+  if (!speicher.liste.includes(aktuellerName)) { aktuellerName = speicher.liste[0]; }
+  sel.value = aktuellerName;
+}
+
+function teilnehmerHinzufuegen(){
+  var name = prompt('Name oder Kürzel für die neue Teilnehmer:in (bleibt nur auf diesem Gerät gespeichert):');
+  if (!name) return;
+  name = name.trim();
+  if (!name || speicher.liste.includes(name)) return;
+  speicher.liste.push(name);
+  speicher.daten[name] = [];
+  schreibeSpeicher(speicher);
+  aktuellerName = name;
+  teilnehmerListeRendern();
+  verlaufRendern();
+}
+window.teilnehmerHinzufuegen = teilnehmerHinzufuegen;
+
+function teilnehmerWechseln(){
+  aktuellerName = document.getElementById('tn-select').value;
+  verlaufRendern();
+}
+window.teilnehmerWechseln = teilnehmerWechseln;
+
+function statusGridRendern(){
+  var grid = document.getElementById('status-grid');
+  var html = '';
+  for (var wert = 0; wert <= 10; wert++) {
+    html += '<button type="button" class="status-kachel" id="status-kachel-'+wert+'" onclick="statusWaehlen('+wert+')">'+wert+'</button>';
+  }
+  grid.innerHTML = html;
+  var cgrid = document.getElementById('coach-grid');
+  var chtml = '';
+  for (var w2 = 0; w2 <= 10; w2++) {
+    chtml += '<button type="button" class="coach-kachel" id="coach-kachel-'+w2+'" onclick="coachWaehlen('+w2+')">'+w2+'</button>';
+  }
+  cgrid.innerHTML = chtml;
+}
+
+function statusWaehlen(wert){
+  var farbe = wertZuFarbe(wert);
+  var farben = KACHEL_FARBEN[farbe];
+  aktiveWahl = { wert: wert, farbe: farbe };
+  document.querySelectorAll('.status-kachel').forEach(function(el){
+    el.classList.remove('aktiv');
+    el.style.background = ''; el.style.borderColor = ''; el.style.color = '';
+  });
+  var el = document.getElementById('status-kachel-'+wert);
+  el.classList.add('aktiv');
+  el.style.background = farben.bg; el.style.borderColor = farben.rand; el.style.color = farben.text;
+  var btn = document.getElementById('sp-btn');
+  btn.classList.add('aktiv');
+  btn.style.background = FARBEN[farbe];
+}
+window.statusWaehlen = statusWaehlen;
+
+function coachEinschaetzungOeffnen(){
+  document.getElementById('coach-wrap').style.display = 'block';
+  document.getElementById('coach-oeffnen-btn').style.display = 'none';
+}
+window.coachEinschaetzungOeffnen = coachEinschaetzungOeffnen;
+
+function coachWaehlen(wert){
+  var farbe = wertZuFarbe(wert);
+  var farben = KACHEL_FARBEN[farbe];
+  aktiveCoachWahl = { wert: wert, farbe: farbe };
+  document.querySelectorAll('.coach-kachel').forEach(function(el){
+    el.classList.remove('aktiv');
+    el.style.background = ''; el.style.borderColor = ''; el.style.color = '';
+  });
+  var el = document.getElementById('coach-kachel-'+wert);
+  el.classList.add('aktiv');
+  el.style.background = farben.bg; el.style.borderColor = farben.rand; el.style.color = farben.text;
+
+  if (aktiveWahl) {
+    var diff = Math.abs(aktiveWahl.wert - wert);
+    var box = document.getElementById('vergleich-box');
+    if (diff <= 1) {
+      box.className = 'vergleich-box match';
+      box.textContent = '👍 Eure Einschätzungen liegen nah beieinander (' + aktiveWahl.wert + ' vs. ' + wert + ').';
+    } else {
+      box.className = 'vergleich-box diff';
+      box.textContent = '💬 Unterschied von ' + diff + ' Punkten (' + aktiveWahl.wert + ' vs. ' + wert + ') — vielleicht ein guter Gesprächseinstieg.';
+    }
+  }
+}
+window.coachWaehlen = coachWaehlen;
+
+function konfettiAusloesen(){
+  var wrap = document.createElement('div');
+  wrap.className = 'konfetti';
+  var farben = ['#6EC6A0','#1B3A4B','#D4A800','#D4651A'];
+  for (var i = 0; i < 24; i++) {
+    var stk = document.createElement('div');
+    stk.className = 'k-stueck';
+    stk.style.left = (Math.random()*100)+'vw';
+    stk.style.background = farben[Math.floor(Math.random()*farben.length)];
+    stk.style.animationDelay = (Math.random()*0.3)+'s';
+    wrap.appendChild(stk);
+  }
+  document.body.appendChild(wrap);
+  setTimeout(function(){ wrap.remove(); }, 1400);
+}
+
+function eintragSpeichern(){
+  if (!aktiveWahl || !aktuellerName) return;
+  var notiz = document.getElementById('notiz').value.trim();
+  var eintrag = {
+    wert: aktiveWahl.wert,
+    farbe: aktiveWahl.farbe,
+    notiz: notiz,
+    coachWert: aktiveCoachWahl ? aktiveCoachWahl.wert : null,
+    zeit: new Date().toISOString()
+  };
+  if (!speicher.daten[aktuellerName]) speicher.daten[aktuellerName] = [];
+  speicher.daten[aktuellerName].unshift(eintrag);
+  speicher.daten[aktuellerName] = speicher.daten[aktuellerName].slice(0, 30);
+  schreibeSpeicher(speicher);
+
+  konfettiAusloesen();
+  document.getElementById('notiz').value = '';
+  document.getElementById('coach-oeffnen-btn').style.display = 'block';
+  verlaufRendern();
+}
+window.eintragSpeichern = eintragSpeichern;
+
+function datumKurz(iso){
+  try {
+    var d = new Date(iso);
+    return d.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'}) + ' · ' + d.toLocaleTimeString('de-DE', {hour:'2-digit', minute:'2-digit'});
+  } catch(e) { return ''; }
+}
+
+function verlaufRendern(){
+  var liste = document.getElementById('verlauf-liste');
+  var eintraege = (speicher.daten[aktuellerName] || []).slice(0, 10);
+  if (eintraege.length === 0) {
+    liste.innerHTML = '<div class="verlauf-leer">Noch keine Einträge.</div>';
+    return;
+  }
+  var html = '';
+  eintraege.forEach(function(e){
+    var vergleich = (e.coachWert != null) ? (' · Coach: ' + e.coachWert) : '';
+    html += '<div class="verlauf-eintrag" style="border-left-color:'+FARBEN[e.farbe]+'">' +
+      '<div class="v-punkt" style="background:'+FARBEN[e.farbe]+'"></div>' +
+      '<div class="v-inhalt">' +
+        '<div class="v-zeile1"><span class="v-wert">' + EMOJI[e.farbe] + ' ' + e.wert + '/10' + vergleich + '</span><span class="v-zeit">' + datumKurz(e.zeit) + '</span></div>' +
+        (e.notiz ? '<div class="v-text">' + e.notiz.replace(/</g,'&lt;') + '</div>' : '') +
+      '</div></div>';
+  });
+  liste.innerHTML = html;
+}
+
+statusGridRendern();
+teilnehmerListeRendern();
+verlaufRendern();
+</script>
+</body>
+</html>
