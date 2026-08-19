@@ -14,6 +14,9 @@ body{font-family:"DM Sans",sans-serif;background:#fff;color:#1A1A2E;}
 .nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;}
 .nav-logo span{color:#6EC6A0;}
 .nav-cta{background:#6EC6A0;color:#1B3A4B;border:none;padding:.45rem 1.1rem;border-radius:20px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-back{color:rgba(255,255,255,.75);font-size:.8rem;text-decoration:none;font-weight:500;}
+.nav-back:hover{color:#fff;text-decoration:underline;}
 .hero{background:linear-gradient(135deg,#1B3A4B 0%,#2A4A5B 60%,#1B3A4B 100%);padding:5rem clamp(1rem,5vw,4rem) 4rem;text-align:center;position:relative;overflow:hidden;}
 .hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(110,198,160,.08) 0%,transparent 60%);pointer-events:none;}
 .hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(110,198,160,.15);border:1px solid rgba(110,198,160,.4);border-radius:20px;padding:.3rem .85rem;font-size:.72rem;font-weight:700;color:#6EC6A0;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem;}
@@ -130,7 +133,10 @@ footer a{color:rgba(255,255,255,.4);text-decoration:none;}
 
 <nav class="nav">
   <a class="nav-logo" href="/">KLAR<span>TEXT</span></a>
-  <a class="nav-cta" href="#preise">Vormerken</a>
+  <div class="nav-right">
+    <a class="nav-back" href="KLARTEXT_Shop_Uebersicht.html">← Alle Kartendecks</a>
+    <a class="nav-cta" href="#preise">Jetzt kaufen</a>
+  </div>
 </nav>
 
 <section class="hero">
