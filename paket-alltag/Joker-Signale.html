@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Joker-Signale · Druckvorlage · KLARTEXT</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:Arial,Helvetica,sans-serif;background:#F0EDE8;padding:14px;color:#20323A;}
+@media print{
+  .no-print{display:none!important;}
+  body{background:white;padding:0;}
+  @page{margin:10mm;size:A4 portrait;}
+}
+
+.bar{max-width:700px;margin:0 auto 10px;display:flex;gap:8px;}
+.bar a,.bar button{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:7px 14px;border-radius:14px;text-decoration:none;font-family:Arial;cursor:pointer;}
+.bar a{background:white;border:1.5px solid #B07D2A;color:#B07D2A;}
+.bar button{background:#B07D2A;color:white;border:none;}
+
+.hinweis{max-width:700px;margin:0 auto 18px;background:#FBF4E8;border-radius:10px;padding:12px 18px;font-size:12px;color:#5A3A00;line-height:1.7;}
+.hinweis b{color:#B07D2A;}
+
+.seite{max-width:700px;margin:0 auto 22px;background:white;padding:1cm;border:.4mm solid #E0C88A;border-radius:6mm;}
+
+.kopf{text-align:center;margin-bottom:.8cm;}
+.kopf-icon{font-size:28pt;margin-bottom:.15cm;}
+.kopf-titel{font-family:Georgia,serif;font-size:20pt;font-weight:700;color:#B07D2A;}
+.kopf-sub{font-size:10.5pt;color:#7A6A50;margin-top:.2cm;}
+
+.abschnitt{margin-bottom:.7cm;}
+.abschnitt-titel{font-size:11pt;font-weight:800;color:#B07D2A;margin-bottom:.25cm;}
+.abschnitt p{font-size:10.5pt;line-height:1.65;color:#3A3A4A;margin-bottom:.25cm;}
+.abschnitt ul{padding-left:.55cm;font-size:10.5pt;line-height:1.65;color:#3A3A4A;}
+.abschnitt li{margin-bottom:.1cm;}
+
+.merksatz{background:#FBF4E8;border-left:.15cm solid #B07D2A;border-radius:0 3mm 3mm 0;padding:.4cm .6cm;font-size:10.5pt;color:#5A3A00;line-height:1.6;margin-bottom:.7cm;}
+
+.vereinbarung{border:.3mm solid #DDD8CE;border-radius:4mm;padding:.6cm .7cm;margin-bottom:.7cm;}
+.ver-titel{font-size:9pt;font-weight:700;color:#B07D2A;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4cm;}
+.ver-zeile{display:flex;gap:.35cm;align-items:flex-start;font-size:10pt;line-height:1.6;color:#3A3A4A;padding:.25cm 0;border-bottom:.2mm solid #F0EBE3;}
+.ver-zeile:last-child{border-bottom:none;}
+.ver-nr{width:.5cm;font-weight:700;color:#B07D2A;flex-shrink:0;}
+.ver-antwort{border-bottom:.2mm solid #ccc;flex:1;min-height:.55cm;}
+
+.unterschrift-zeile{display:flex;gap:1cm;margin-top:.5cm;}
+.unterschrift-feld{flex:1;}
+.unterschrift-linie{border-bottom:.3mm solid #999;height:.9cm;}
+.unterschrift-label{font-size:9pt;color:#8A8478;margin-top:.15cm;}
+
+.footer-note{max-width:700px;margin:6px auto 0;text-align:center;font-size:10px;color:#999;}
+</style>
+</head>
+<body>
+
+<div class="bar no-print">
+  <a href="index.html">← Zu den Tools</a>
+  <button onclick="window.print()">🖨 Drucken / PDF</button>
+</div>
+
+<div class="hinweis no-print">
+  <b>So geht's:</b> Ausdrucken, gemeinsam ausfüllen — am besten in einem ruhigen Moment, nicht mitten in einer schwierigen Situation. Das Blatt kann anschließend gut sichtbar aufbewahrt werden (z. B. im Hefter oder am Kühlschrank), damit die Vereinbarung nicht in Vergessenheit gerät.
+</div>
+
+<div class="seite">
+
+  <div class="kopf">
+    <div class="kopf-icon">🃏</div>
+    <div class="kopf-titel">Joker-Signale</div>
+    <div class="kopf-sub">Ein vorher vereinbartes Notfallsignal für den Moment, in dem Unterstützung gebraucht wird</div>
+  </div>
+
+  <div class="abschnitt">
+    <div class="abschnitt-titel">Was ist ein Joker-Signal?</div>
+    <p>Ein Joker ist ein <strong>vorher vereinbartes Zeichen</strong> zwischen einer Person und einer Bezugsperson (z. B. Lehrkraft, Betreuer:in, Elternteil). Wird das Signal gezeigt, weiß die Bezugsperson sofort: Jetzt wird Unterstützung gebraucht — ohne lange Erklärung, ohne Diskussion.</p>
+    <p>Er funktioniert nur, wenn er <strong>vorher besprochen</strong> wurde. Ihn erst im Moment der Überforderung zu erklären, ist zu spät.</p>
+  </div>
+
+  <div class="merksatz">
+    ⚠️ Den Joker nicht zu oft einsetzen — sonst verliert er seine Wirkung. Und nicht zu selten — dann trägt man zu viel allein.
+  </div>
+
+  <div class="abschnitt">
+    <div class="abschnitt-titel">Wann wird der Joker eingesetzt?</div>
+    <ul>
+      <li>Es wird gerade zu viel und alleine ist es schwer, wieder zur Ruhe zu kommen</li>
+      <li>Eine kurze Auszeit wird gebraucht, um sich zu regulieren</li>
+      <li>Die Situation hat sich so entwickelt, dass eine erwachsene Person mehr gebraucht wird</li>
+      <li>Bei akuter Gefahr gilt der Joker nicht — dann sofort laut Hilfe holen</li>
+    </ul>
+  </div>
+
+  <div class="abschnitt">
+    <div class="abschnitt-titel">Mögliche Signale</div>
+    <ul>
+      <li><strong>Hand heben</strong> — einfach, unauffällig, klar</li>
+      <li><strong>Ein bestimmtes Wort</strong> — z. B. „Ich brauche kurz Hilfe" — direkt und eindeutig</li>
+      <li><strong>Einen Zettel hinlegen</strong> — wenn Worte gerade nicht gehen</li>
+      <li><strong>Blickkontakt + eine bestimmte Geste</strong> — nur die beiden Beteiligten kennen die Bedeutung</li>
+    </ul>
+  </div>
+
+  <div class="vereinbarung">
+    <div class="ver-titel">Unsere Joker-Vereinbarung</div>
+    <div class="ver-zeile"><span class="ver-nr">1</span><span><strong>Unser Signal:</strong></span><span class="ver-antwort"></span></div>
+    <div class="ver-zeile"><span class="ver-nr">2</span><span><strong>Was die Bezugsperson dann tut:</strong></span><span class="ver-antwort"></span></div>
+    <div class="ver-zeile"><span class="ver-nr">3</span><span><strong>Was danach passiert:</strong></span><span class="ver-antwort"></span></div>
+    <div class="ver-zeile"><span class="ver-nr">4</span><span><strong>Wer wird informiert:</strong></span><span class="ver-antwort"></span></div>
+  </div>
+
+  <div class="unterschrift-zeile">
+    <div class="unterschrift-feld">
+      <div class="unterschrift-linie"></div>
+      <div class="unterschrift-label">Unterschrift</div>
+    </div>
+    <div class="unterschrift-feld">
+      <div class="unterschrift-linie"></div>
+      <div class="unterschrift-label">Unterschrift Bezugsperson</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer-note no-print">KLARTEXT-Mentoring · © 2026 Anja Jolk</div>
+
+</body>
+</html>
