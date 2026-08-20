@@ -11,7 +11,7 @@
 
 ## Reihenfolge der nächsten Stücke
 1. **Barometer-Erklär-Karussell** ✅ fertig, bereit zum Posten (`barometer-karussell/`)
-2. **"Was tue ich jetzt?"-Karussell** — kLAR-Modell (Gelb/Orange) + Feuerwehr-Protokoll (Rot), direkter Anschluss an Teil 1, als Nächstes zu bauen
+2. **"Was tue ich jetzt?"-Karussell** ✅ fertig, bereit zum Posten (`klar-feuerwehr-karussell/`) — kLAR-Modell (Gelb/Orange) + Feuerwehr-Protokoll (Rot), direkter Anschluss an Teil 1
 3. **Musterkarten-Post** — 1–2 echte Kartendeck-Seiten zeigen, sobald erste Reaktionen/Reichweite da sind
 4. **Schnupper-Paket / Lead-Magnet** — erst wenn ein kleines Publikum aufgebaut ist, nicht als Erstes
 
