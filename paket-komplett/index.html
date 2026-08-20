@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>KLARTEXT · Komplett-Bundle (Alle Tools)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"DM Sans",sans-serif;background:#F5F0E8;color:#1A1A2E;min-height:100vh;}
+.nav{background:#1B3A4B;padding:.75rem clamp(1rem,4vw,3rem);}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;}
+.nav-logo span{color:#D9A441;}
+
+/* GATE */
+.gate-wrap{max-width:420px;margin:0 auto;padding:clamp(2.5rem,8vw,5rem) 1.25rem 3rem;}
+.gate-card{background:#fff;border-radius:16px;border:1.5px solid #DDD8CE;padding:2rem 1.75rem;box-shadow:0 12px 40px rgba(27,58,75,.1);}
+.gate-titel{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#1B3A4B;text-align:center;margin-bottom:.4rem;}
+.gate-sub{font-size:.85rem;color:#6A6878;text-align:center;line-height:1.7;margin-bottom:1.5rem;}
+.gate-label{font-size:.7rem;font-weight:700;color:#1B3A4B;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;display:block;}
+.gate-input{width:100%;padding:.7rem .9rem;border:1.5px solid #DDD8CE;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;outline:none;color:#1B3A4B;text-align:center;letter-spacing:.05em;}
+.gate-input:focus{border-color:#1B3A4B;}
+.gate-btn{width:100%;margin-top:1rem;padding:.75rem;border-radius:10px;border:none;background:#1B3A4B;color:#fff;font-family:"DM Sans",sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;}
+.gate-btn:hover{opacity:.92;}
+.gate-err{display:none;font-size:.78rem;color:#C62828;text-align:center;margin-top:.75rem;padding:.5rem;background:#FDECEA;border-radius:6px;}
+.gate-err.show{display:block;}
+.gate-hint{text-align:center;margin-top:1.25rem;font-size:.75rem;color:#8A8478;}
+.gate-hint a{color:#6A6878;}
+
+/* HUB */
+#hub{display:none;}
+.hub-wrap{max-width:900px;margin:0 auto;padding:clamp(2rem,5vw,3.5rem) 1.25rem 4rem;}
+.hub-h1{font-family:"Playfair Display",serif;font-size:clamp(1.6rem,4vw,2.2rem);font-weight:900;color:#1B3A4B;text-align:center;margin-bottom:.5rem;}
+.hub-sub{text-align:center;color:#6A6878;font-size:.95rem;line-height:1.75;max-width:640px;margin:0 auto 2.5rem;}
+.paket{background:#fff;border:1.5px solid #DDD8CE;border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:1.25rem;}
+.paket-kopf{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem;}
+.paket-emoji{font-size:1.6rem;}
+.paket-titel{font-family:"Playfair Display",serif;font-size:1.15rem;font-weight:700;color:#1B3A4B;}
+.paket-desc{font-size:.85rem;color:#3A3A4A;line-height:1.7;margin-bottom:.9rem;}
+.paket-link{display:inline-flex;align-items:center;gap:.35rem;background:#1B3A4B;color:#fff;padding:.55rem 1.2rem;border-radius:20px;font-size:.82rem;font-weight:700;text-decoration:none;}
+.paket-link:hover{background:#2A4A5B;}
+.regie{font-size:.78rem;color:#8A8478;margin-top:.6rem;}
+.hinweis{max-width:640px;margin:2rem auto 0;background:#EAF0F0;border-radius:10px;padding:1rem 1.25rem;font-size:.82rem;color:#20323A;line-height:1.7;text-align:center;}
+footer{text-align:center;font-size:.72rem;color:#8A8478;padding:2rem 1rem;}
+footer a{color:#6A6878;}
+</style>
+</head>
+<body>
+<div class="nav"><a class="nav-logo" href="/">KLAR<span>TEXT</span></a></div>
+
+<div class="gate-wrap" id="gate">
+  <div class="gate-card">
+    <div class="gate-titel">KLARTEXT-Komplett-Bundle</div>
+    <div class="gate-sub">Bitte gib deinen Zugangscode aus der Dankes-E-Mail ein, um alle 3 Pakete
+      freizuschalten.</div>
+    <span class="gate-label">Zugangscode</span>
+    <input class="gate-input" id="code-input" type="text" placeholder="z. B. ab12cd" autocomplete="off"
+      onkeydown="if(event.key==='Enter')pruefeCode();">
+    <button class="gate-btn" onclick="pruefeCode()" type="button">Freischalten</button>
+    <div class="gate-err" id="gate-err">Code nicht erkannt — bitte prüfen und erneut versuchen.</div>
+    <div class="gate-hint"><a href="https://klartext-mentoring.de/Komplett_Verkaufsseite.html">← Zur Produktseite</a></div>
+  </div>
+</div>
+
+<div id="hub">
+  <div class="hub-wrap">
+    <h1 class="hub-h1">Willkommen im Komplett-Bundle</h1>
+    <p class="hub-sub">Ein Zugangscode für alle 3 Pakete — 14 digitale Tools, 3 Druckvorlagen und 3
+      PDF-Regiebücher. Klicke auf ein Paket, um direkt einzusteigen.</p>
+
+    <div class="paket">
+      <div class="paket-kopf"><span class="paket-emoji">💼</span><span class="paket-titel">Paket Berufswelt &amp; Superkräfte</span></div>
+      <div class="paket-desc">5 Tools für den Übergang Schule–Beruf: Werte-Poker, Skill-Matrix,
+        Bewerbungsgespräch-Training, Toolbox für den Berufseinstieg, Bewerbungs-Generator — plus
+        Druckvorlage und PDF-Regiebuch.</div>
+      <a class="paket-link" href="../paket-berufswelt/">Paket öffnen →</a>
+      <div class="regie">Regiebuch: <a href="../paket-berufswelt/WB_Regiebuch.pdf" target="_blank">WB_Regiebuch.pdf</a></div>
+    </div>
+
+    <div class="paket">
+      <div class="paket-kopf"><span class="paket-emoji">🎈</span><span class="paket-titel">Paket Alltags-Anker &amp; Regulation</span></div>
+      <div class="paket-desc">7 Tools für Selbstwahrnehmung und Regulation im Alltag: Stimmungsbarometer,
+        Tagesjournal, Reizfilter-Regler, Körper-Kompass, Fokus-Trainer, Ruhe-Ballon — plus Druckvorlage
+        und PDF-Regiebuch.</div>
+      <a class="paket-link" href="../paket-alltag/">Paket öffnen →</a>
+      <div class="regie">Regiebuch: <a href="../paket-alltag/Alltag_Regiebuch.pdf" target="_blank">Alltag_Regiebuch.pdf</a></div>
+    </div>
+
+    <div class="paket">
+      <div class="paket-kopf"><span class="paket-emoji">🗣️</span><span class="paket-titel">Paket Sprache &amp; Integration</span></div>
+      <div class="paket-desc">3 Tools für Verständigung und Integration: Schulalltag-Wörterbuch,
+        Brainy-Wort-Würfel, Perspektiv-Wechsler — plus Bastelvorlage und PDF-Regiebuch.</div>
+      <a class="paket-link" href="../paket-sprache/">Paket öffnen →</a>
+      <div class="regie">Regiebuch: <a href="../paket-sprache/Sprache_Regiebuch.pdf" target="_blank">Sprache_Regiebuch.pdf</a></div>
+    </div>
+
+    <div class="hinweis">
+      Dein Zugangscode schaltet automatisch alle 3 Pakete frei — beim Öffnen eines Pakets ist keine
+      erneute Eingabe nötig. Alle Eingaben in den Tools bleiben lokal auf diesem Gerät gespeichert.
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 KLARTEXT-Mentoring · <a href="https://klartext-mentoring.de">klartext-mentoring.de</a></footer>
+
+<script>
+async function sha256Hex(text) {
+  const enc = new TextEncoder().encode(text);
+  const buf = await crypto.subtle.digest('SHA-256', enc);
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+var DECK_ID = 'paket-komplett';
+var ERWARTET = 'f4567465e955c6f388b4e94f3e7271f85a1ad6f00654b62b19b4eff8139d4d9e';
+var UNLOCK_KEY = 'klartext_paket_komplett_unlocked';
+
+function zeigeHub(){
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('hub').style.display = 'block';
+  try {
+    localStorage.setItem('klartext_paket_berufswelt_unlocked', '1');
+    localStorage.setItem('klartext_paket_alltag_unlocked', '1');
+    localStorage.setItem('klartext_paket_sprache_unlocked', '1');
+  } catch(e) {}
+}
+
+async function pruefeCode(){
+  var input = document.getElementById('code-input');
+  var err = document.getElementById('gate-err');
+  var code = input.value.trim().toLowerCase();
+  if (!code) { return; }
+  var hash = await sha256Hex(DECK_ID + ':' + code);
+  if (hash === ERWARTET) {
+    try { localStorage.setItem(UNLOCK_KEY, '1'); } catch(e) {}
+    err.classList.remove('show');
+    zeigeHub();
+  } else {
+    err.classList.add('show');
+  }
+}
+
+(function(){
+  try {
+    if (localStorage.getItem(UNLOCK_KEY) === '1') { zeigeHub(); }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
