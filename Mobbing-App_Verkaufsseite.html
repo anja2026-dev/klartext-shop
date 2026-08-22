@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>App-Zugang · Mobbing-Intervention | KLARTEXT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"DM Sans",sans-serif;background:#fff;color:#1A1A2E;}
+.nav{background:#1B3A4B;padding:.75rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;}
+.nav-logo span{color:#D9A441;}
+.nav-cta{background:#D9A441;color:#1B3A4B;border:none;padding:.45rem 1.1rem;border-radius:20px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-back{color:rgba(255,255,255,.75);font-size:.8rem;text-decoration:none;font-weight:500;}
+.nav-back:hover{color:#fff;text-decoration:underline;}
+.hero{background:linear-gradient(135deg,#1B3A4B 0%,#2A4A5B 60%,#1B3A4B 100%);padding:5rem clamp(1rem,5vw,4rem) 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(217,164,65,.1) 0%,transparent 60%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(217,164,65,.15);border:1px solid rgba(217,164,65,.4);border-radius:20px;padding:.3rem .85rem;font-size:.72rem;font-weight:700;color:#D9A441;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem;}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.3rem);font-weight:900;color:#fff;line-height:1.18;margin-bottom:1rem;max-width:800px;margin-left:auto;margin-right:auto;}
+.hero h1 span{color:#D9A441;}
+.hero-sub{font-size:clamp(.95rem,2vw,1.15rem);color:rgba(255,255,255,.7);line-height:1.8;max-width:640px;margin:0 auto 2rem;}
+.hero-cta-wrap{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;}
+.btn-primary{background:#D9A441;color:#1B3A4B;padding:.75rem 2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-primary:hover{background:#C4922E;transform:translateY(-1px);}
+.sek{padding:4rem clamp(1rem,5vw,4rem);}
+.sek-titel{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1B3A4B;text-align:center;margin-bottom:.5rem;}
+.sek-sub{font-size:.95rem;color:#6A6878;text-align:center;margin-bottom:2.5rem;line-height:1.75;max-width:680px;margin-left:auto;margin-right:auto;}
+.sek.grau{background:#F5F0E8;}
+.pakete-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;max-width:1000px;margin:0 auto;}
+.paket-karte{background:#fff;border-radius:14px;padding:1.5rem 1.6rem;border:1.5px solid #DDD8CE;}
+.paket-kopf{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;}
+.paket-emoji{font-size:1.5rem;}
+.paket-titel{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:#1B3A4B;}
+.paket-liste{list-style:none;font-size:.82rem;color:#3A3A4A;line-height:1.9;}
+.paket-liste li{padding-left:1.2rem;position:relative;}
+.paket-liste li::before{content:"✓";position:absolute;left:0;color:#D9A441;font-weight:700;}
+.fuer-wen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:900px;margin:0 auto;}
+.fw-karte{background:#fff;border-radius:12px;border:1.5px solid #DDD8CE;padding:1.25rem 1.5rem;}
+.fw-emoji{font-size:2rem;margin-bottom:.65rem;display:block;}
+.fw-titel{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.fw-desc{font-size:.83rem;color:#3A3A4A;line-height:1.75;}
+.preis-wrap{max-width:440px;margin:0 auto;}
+.preis-karte{background:#fff;border-radius:14px;padding:2rem 1.75rem;border:2px solid #D9A441;text-align:center;position:relative;}
+.preis-ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#D9A441;color:#1B3A4B;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;}
+.preis-name{font-family:"Playfair Display",serif;font-size:1.15rem;font-weight:700;color:#1B3A4B;margin-bottom:.5rem;margin-top:.5rem;}
+.preis-betrag{font-family:"Playfair Display",serif;font-size:2.6rem;font-weight:900;color:#1B3A4B;display:block;margin:.15rem 0 .5rem;}
+.preis-betrag span{font-size:1rem;font-weight:400;color:#6A6878;}
+.preis-liste{list-style:none;text-align:left;font-size:.85rem;color:#3A3A4A;margin:1.25rem 0;}
+.preis-liste li{padding:.3rem 0;padding-left:1.3rem;position:relative;line-height:1.6;}
+.preis-liste li::before{content:"✓";position:absolute;left:0;color:#D9A441;font-weight:700;}
+.preis-btn{display:block;background:#D9A441;color:#1B3A4B;padding:.8rem 1.5rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:.9rem;font-weight:700;text-decoration:none;transition:background .2s;}
+.preis-btn:hover{background:#C4922E;}
+.hinweisbox{max-width:680px;margin:1.5rem auto 0;background:#EAF0F0;border-radius:10px;padding:1rem 1.25rem;font-size:.82rem;color:#20323A;line-height:1.7;text-align:center;}
+footer{background:#0F2535;padding:2rem clamp(1rem,4vw,3rem);text-align:center;font-size:.75rem;color:rgba(255,255,255,.35);}
+footer a{color:rgba(255,255,255,.4);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">KLAR<span>TEXT</span></a>
+  <div class="nav-right">
+    <a class="nav-back" href="KLARTEXT_Shop_Uebersicht.html">← Alle Kartendecks</a>
+    <a class="nav-cta" href="#preise">Jetzt kaufen</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🛡️ App-Zugang · Mobbing-Intervention</div>
+  <h1>Mobbing stoppen, <span>statt nur zu reagieren</span></h1>
+  <p class="hero-sub">Mobbing ist kein Konflikt zwischen zwei Kindern, sondern ein Gruppenprozess.
+    Wer nur mit den Beteiligten spricht, greift zu kurz — wer die Gruppendynamik versteht, kann
+    wirklich etwas verändern. Genau dafür ist dieser App-Zugang gemacht.</p>
+  <div class="hero-cta-wrap">
+    <a class="btn-primary" href="#preise">Jetzt kaufen</a>
+  </div>
+</section>
+
+<section class="sek">
+  <h2 class="sek-titel">Was du bekommst</h2>
+  <p class="sek-sub">Alles zusammen in deinem App-Zugang — kein Einzelkauf einzelner Decks oder
+    Module nötig.</p>
+  <div class="pakete-grid">
+    <div class="paket-karte">
+      <div class="paket-kopf"><span class="paket-emoji">🎴</span><span class="paket-titel">4 Kartendecks</span></div>
+      <ul class="paket-liste">
+        <li>MB — Mobbing-Intervention: von der Akutsituation bis zur Nachsorge</li>
+        <li>SMI — Systemische Mobbing-Intervention: Reflexion der Gruppendynamik</li>
+        <li>Krisendeck: für den Moment, in dem es schnell gehen muss</li>
+        <li>Geschichtenkarten: Zugang übers Erzählen, auch für jüngere Kinder</li>
+      </ul>
+    </div>
+    <div class="paket-karte">
+      <div class="paket-kopf"><span class="paket-emoji">📘</span><span class="paket-titel">2 Workbook-Module</span></div>
+      <ul class="paket-liste">
+        <li>Modul 0 — Grundlagen der Systemelemente</li>
+        <li>Modul 6 — Krise &amp; Mobbing: Mobbing sicher erkennen, Cybermobbing, Täter-Opfer-Umkehr</li>
+      </ul>
+    </div>
+    <div class="paket-karte">
+      <div class="paket-kopf"><span class="paket-emoji">🖨️</span><span class="paket-titel">7 Downloads</span></div>
+      <ul class="paket-liste">
+        <li>Stoppschild-Karte</li>
+        <li>Meine Verbündeten</li>
+        <li>So melde ich Mobbing</li>
+        <li>Mini-Krisenkarte</li>
+        <li>Mini-Checkliste Erkennen</li>
+        <li>Digitale Spuren sichern</li>
+        <li>Klassenvertrag</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sek grau">
+  <h2 class="sek-titel">Für wen</h2>
+  <div class="fuer-wen-grid">
+    <div class="fw-karte">
+      <span class="fw-emoji">🎓</span>
+      <div class="fw-titel">Lehrkräfte</div>
+      <div class="fw-desc">Direkt einsetzbare Werkzeuge für den Klassenraum-Alltag — von der
+        Früherkennung bis zum Klassenvertrag.</div>
+    </div>
+    <div class="fw-karte">
+      <span class="fw-emoji">🤝</span>
+      <div class="fw-titel">Schulsozialarbeiter:innen</div>
+      <div class="fw-desc">Systemisches Handwerkszeug für Akutfälle und die Arbeit mit der ganzen
+        Gruppe, nicht nur den Beteiligten.</div>
+    </div>
+    <div class="fw-karte">
+      <span class="fw-emoji">✅</span>
+      <div class="fw-titel">Kein Vorwissen nötig</div>
+      <div class="fw-desc">Kein diagnostisches Vorwissen nötig — alles ist so aufbereitet, dass du
+        es sofort anwenden kannst.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sek" id="preise">
+  <h2 class="sek-titel">Preis</h2>
+  <p class="sek-sub">Einmalzahlung, kein Abo, keine versteckten Folgekosten.</p>
+  <div class="preis-wrap">
+    <div class="preis-karte">
+      <div class="preis-ribbon">Komplettes System statt Einzelmaterial</div>
+      <div class="preis-name">🛡️ App-Zugang · Mobbing-Intervention</div>
+      <span class="preis-betrag">20,00 €<span> einmalig</span></span>
+      <ul class="preis-liste">
+        <li>4 Kartendecks, 2 Workbook-Module, 7 Downloads — alles enthalten</li>
+        <li>Ein fester Lizenzschlüssel, sofort einsatzbereit</li>
+        <li>Läuft direkt im Browser, offline-first, keine Installation</li>
+      </ul>
+      <!-- TODO Anja: Checkout-Link durch den echten Digistore24-Link ersetzen, sobald das
+           Produkt angelegt ist (Format: https://www.checkout-ds24.com/product/<PRODUKT-ID>) -->
+      <a href="#" target="_blank" rel="noopener" class="preis-btn kaufen-btn">🛒 Jetzt kaufen</a>
+    </div>
+  </div>
+  <div class="hinweisbox">
+    Nach dem Kauf erhältst du deinen persönlichen Lizenzschlüssel auf der Dankeseite. Damit landest
+    du direkt in deinem Dashboard — kein Konto, keine Installation, funktioniert offline-first.
+  </div>
+</section>
+
+<footer>© 2026 KLARTEXT-Mentoring · <a href="SHOP_KLARTEXT_Impressum.html">Impressum</a> · <a href="SHOP_KLARTEXT_Datenschutz.html">Datenschutz</a> · <a href="SHOP_KLARTEXT_AGB.html">AGB</a> · <a href="SHOP_KLARTEXT_Widerrufsbelehrung.html">Widerruf</a></footer>
+
+</body>
+</html>
