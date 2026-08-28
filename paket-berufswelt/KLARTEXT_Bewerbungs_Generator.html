@@ -6,7 +6,7 @@
 <title>KLARTEXT · Bewerbungs-Generator</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-<script>(function(){try{if(localStorage.getItem('klartext_paket_berufswelt_unlocked')!=='1')window.location.href='index.html';}catch(e){window.location.href='index.html';}})();</script>
+<script>(function(){try{if(sessionStorage.getItem('klartext_login')!=='true')window.location.href='KLARTEXT_Login.html';}catch(e){}})();</script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{--jd:#1B3A4B;--acc:#6EC6A0;--paper:#F5F0E8;--surface:#fff;--border:#DDD8CE;--ink:#2D2D2D;--muted:#7A7060;}
@@ -118,17 +118,17 @@ textarea.f{resize:vertical;border:1px dotted #C7BFAE;border-radius:3px;padding:.
 <body>
 
 <header class="header">
-  <a class="logo" href="index.html">
+  <a class="logo" href="KLARTEXT_Downloads.html">
     <div class="logo-mark"><span>K</span></div>
     <div class="logo-text">KLARTEXT · Interaktive Tools</div>
   </a>
-  <a class="back-btn" href="index.html">← Zurück</a>
+  <a class="back-btn" href="KLARTEXT_Downloads.html">← Zurück</a>
 </header>
 
 <div class="hero">
   <div class="hero-icon">📝</div>
   <h1 class="hero-titel">Bewerbungs-Generator</h1>
-  <p class="hero-sub">Anschreiben und Lebenslauf selbst schreiben — mit Hilfe aus deiner Skill-Matrix und einer Druckvorlage nach DIN 5008.</p>
+  <p class="hero-sub">Anschreiben und Lebenslauf selbst schreiben — mit Hilfe aus deinem Interessen-Check und einer Druckvorlage nach DIN 5008.</p>
 </div>
 
 <div class="controls no-print">
@@ -229,7 +229,7 @@ textarea.f{resize:vertical;border:1px dotted #C7BFAE;border-radius:3px;padding:.
       <div class="cv-sektion">
         <div class="cv-sektion-titel">
           <span>Persönliche Stärken</span>
-          <button class="cv-add-btn no-print" onclick="staerkenAusProfilUebernehmen()">↺ Aus Skill-Matrix übernehmen</button>
+          <button class="cv-add-btn no-print" onclick="staerkenAusProfilUebernehmen()">↺ Aus Interessen-Check übernehmen</button>
         </div>
         <div class="staerken-row" id="staerken-row"></div>
         <div class="staerken-row no-print" style="margin-top:.5rem;">
@@ -394,7 +394,7 @@ function zauberstabEinfuegen(){
   var saetze = zauberstabSaetzeSammeln();
   var hinweis = document.getElementById('zauberstab-hinweis');
   if (!saetze.length) {
-    hinweis.innerHTML = 'Noch kein Profil. Öffne die <a href="KLARTEXT_Spiel_SkillMatrix.html" target="_blank">Skill-Matrix</a>, wähl deine Hobbys — dann hat der Zauberstab echte Sätze für dich.';
+    hinweis.innerHTML = 'Noch kein Profil. Öffne die <a href="KLARTEXT_Spiel_InteressenCheck.html">Interessen-Check</a>, wähl deine Interessen — dann hat der Zauberstab echte Sätze für dich.';
     return;
   }
   var satz = saetze[zauberstabIndex % saetze.length];
@@ -483,7 +483,7 @@ var CLUSTER_STAERKE_LABEL = {
 function staerkenAusProfilUebernehmen(){
   var profil = ladeJSON(SKILLMATRIX_PROFIL_KEY);
   if (!profil || !profil.cluster || !profil.cluster.length) {
-    staerkenRow_Hinweis('Noch kein Profil. Öffne die <a href="KLARTEXT_Spiel_SkillMatrix.html" target="_blank">Skill-Matrix</a>, wähl deine Hobbys — dann erscheinen hier deine Stärken.');
+    staerkenRow_Hinweis('Noch kein Profil. Öffne die <a href="KLARTEXT_Spiel_InteressenCheck.html">Interessen-Check</a>, wähl deine Interessen — dann erscheinen hier deine Stärken.');
     return;
   }
   profil.cluster.forEach(function(c){
@@ -515,7 +515,7 @@ function staerkenRow_Hinweis(html){
 function staerkenRendern(){
   var wrap = document.getElementById('staerken-row');
   if (!daten.lebenslauf.staerken.length) {
-    staerkenRow_Hinweis('Noch keine Stärken eingetragen — über „Aus Skill-Matrix übernehmen" oder eigene eintippen.');
+    staerkenRow_Hinweis('Noch keine Stärken eingetragen — über „Aus Interessen-Check übernehmen" oder eigene eintippen.');
     return;
   }
   wrap.innerHTML = daten.lebenslauf.staerken.map(function(s){
