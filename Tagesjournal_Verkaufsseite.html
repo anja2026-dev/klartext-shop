@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mein 5-Sekunden-Tagesjournal (Klassenzimmer-Edition) | KLARTEXT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:"DM Sans",sans-serif;background:#fff;color:#1A1A2E;}
+.nav{background:#1B3A4B;padding:.75rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:"Playfair Display",serif;font-size:1.3rem;font-weight:700;color:#fff;text-decoration:none;}
+.nav-logo span{color:#6EC6A0;}
+.nav-cta{background:#6EC6A0;color:#1B3A4B;border:none;padding:.45rem 1.1rem;border-radius:20px;font-family:"DM Sans",sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;text-decoration:none;}
+.nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-back{color:rgba(255,255,255,.75);font-size:.8rem;text-decoration:none;font-weight:500;}
+.nav-back:hover{color:#fff;text-decoration:underline;}
+.hero{background:linear-gradient(135deg,#1B3A4B 0%,#2A4A5B 60%,#1B3A4B 100%);padding:5rem clamp(1rem,5vw,4rem) 4rem;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,rgba(110,198,160,.1) 0%,transparent 60%);pointer-events:none;}
+.hero-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(110,198,160,.15);border:1px solid rgba(110,198,160,.4);border-radius:20px;padding:.3rem .85rem;font-size:.72rem;font-weight:700;color:#6EC6A0;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.25rem;}
+.hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.1rem);font-weight:900;color:#fff;line-height:1.18;margin-bottom:1rem;max-width:780px;margin-left:auto;margin-right:auto;}
+.hero h1 span{color:#6EC6A0;}
+.hero-sub{font-size:clamp(.95rem,2vw,1.15rem);color:rgba(255,255,255,.7);line-height:1.8;max-width:640px;margin:0 auto 2rem;}
+.hero-cta-wrap{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem;}
+.btn-primary{background:#6EC6A0;color:#1B3A4B;padding:.75rem 2rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:1rem;font-weight:700;text-decoration:none;display:inline-block;transition:all .2s;}
+.btn-primary:hover{background:#5AB490;transform:translateY(-1px);}
+.hero-note{margin-top:1rem;font-size:.78rem;color:rgba(255,255,255,.5);}
+.sek{padding:4rem clamp(1rem,5vw,4rem);}
+.sek-titel{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:#1B3A4B;text-align:center;margin-bottom:.5rem;}
+.sek-sub{font-size:.95rem;color:#6A6878;text-align:center;margin-bottom:2.5rem;line-height:1.75;max-width:680px;margin-left:auto;margin-right:auto;}
+.sek.grau{background:#F5F0E8;}
+.pakete-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;max-width:1000px;margin:0 auto;}
+.paket-karte{background:#fff;border-radius:14px;padding:1.5rem 1.6rem;border:1.5px solid #DDD8CE;}
+.paket-kopf{display:flex;align-items:center;gap:.6rem;margin-bottom:.6rem;}
+.paket-emoji{font-size:1.5rem;}
+.paket-titel{font-family:"Playfair Display",serif;font-size:1.05rem;font-weight:700;color:#1B3A4B;}
+.paket-liste{list-style:none;font-size:.82rem;color:#3A3A4A;line-height:1.9;}
+.paket-liste li{padding-left:1.2rem;position:relative;}
+.paket-liste li::before{content:"✓";position:absolute;left:0;color:#6EC6A0;font-weight:700;}
+.fuer-wen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;max-width:900px;margin:0 auto;}
+.fw-karte{background:#fff;border-radius:12px;border:1.5px solid #DDD8CE;padding:1.25rem 1.5rem;}
+.fw-emoji{font-size:2rem;margin-bottom:.65rem;display:block;}
+.fw-titel{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:#1B3A4B;margin-bottom:.4rem;}
+.fw-desc{font-size:.83rem;color:#3A3A4A;line-height:1.75;}
+.quelle-liste{list-style:none;font-size:.82rem;color:#3A3A4A;line-height:2;max-width:700px;margin:0 auto;}
+.quelle-liste li{padding-left:1.3rem;position:relative;margin-bottom:.5rem;}
+.quelle-liste li::before{content:"§";position:absolute;left:0;color:#6EC6A0;font-weight:700;}
+.quelle-hinweis{max-width:700px;margin:1.5rem auto 0;font-size:.78rem;color:#6A6878;line-height:1.7;text-align:center;font-style:italic;}
+.preis-wrap{max-width:400px;margin:0 auto;}
+.preis-karte{background:#fff;border-radius:14px;padding:2rem 1.75rem;border:2px solid #6EC6A0;text-align:center;position:relative;}
+.preis-ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:#6EC6A0;color:#1B3A4B;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;}
+.preis-name{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:700;color:#1B3A4B;margin-bottom:.5rem;margin-top:.5rem;}
+.preis-betrag{font-family:"Playfair Display",serif;font-size:2.6rem;font-weight:900;color:#1B3A4B;display:block;margin:.15rem 0 .5rem;}
+.preis-betrag span{font-size:1rem;font-weight:400;color:#6A6878;}
+.preis-liste{list-style:none;text-align:left;font-size:.85rem;color:#3A3A4A;margin:1.25rem 0;}
+.preis-liste li{padding:.3rem 0;padding-left:1.3rem;position:relative;line-height:1.6;}
+.preis-liste li::before{content:"✓";position:absolute;left:0;color:#6EC6A0;font-weight:700;}
+.preis-btn{display:block;background:#6EC6A0;color:#1B3A4B;padding:.8rem 1.5rem;border-radius:8px;font-family:"DM Sans",sans-serif;font-size:.9rem;font-weight:700;text-decoration:none;transition:background .2s;}
+.preis-btn:hover{background:#5AB490;}
+.hinweisbox{max-width:680px;margin:1.5rem auto 0;background:#EAF0F0;border-radius:10px;padding:1rem 1.25rem;font-size:.82rem;color:#20323A;line-height:1.7;text-align:center;}
+.cta-final{text-align:center;padding:4rem clamp(1rem,5vw,4rem);background:linear-gradient(135deg,#1B3A4B,#2A4A5B);}
+.cta-final h2{font-family:"Playfair Display",serif;font-size:clamp(1.5rem,3vw,2.2rem);color:#fff;margin-bottom:.75rem;}
+.cta-final p{color:rgba(255,255,255,.6);margin-bottom:2rem;font-size:.95rem;max-width:560px;margin-left:auto;margin-right:auto;}
+footer{background:#0F2535;padding:2rem clamp(1rem,4vw,3rem);text-align:center;font-size:.75rem;color:rgba(255,255,255,.35);}
+footer a{color:rgba(255,255,255,.4);text-decoration:none;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/">KLAR<span>TEXT</span></a>
+  <div class="nav-right">
+    <a class="nav-back" href="KLARTEXT_Shop_Uebersicht.html">← Alle Kartendecks</a>
+    <a class="nav-cta" href="#preise">Jetzt kaufen</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🗓️ Klassenzimmer-Edition</div>
+  <h1>5 Sekunden am Morgen — <span>ein Kreuz statt vieler Worte</span></h1>
+  <p class="hero-sub">Manche Kinder können morgens nicht in Worte fassen, wie es ihnen geht — aber ein
+    Kreuz auf einer Farbe schaffen sie. Das 5-Sekunden-Tagesjournal macht genau das zum festen Ritual:
+    eine Seite, fünf Farben, kein Schreibzwang.</p>
+  <div class="hero-cta-wrap">
+    <a class="btn-primary" href="#preise">Jetzt kaufen</a>
+  </div>
+  <p class="hero-note">Sofortiger PDF-Zugriff + kostenloser Zugang zur digitalen Version, kein Abo</p>
+</section>
+
+<section class="sek">
+  <h2 class="sek-titel">Was drin ist</h2>
+  <p class="sek-sub">Eine Seite, DIN A4, Hoch- oder Querformat druckbar — bewusst reizarm gehalten:
+    viel Weißraum, klare Rahmen, ruhige Farbflächen statt Hochglanz-Illustration.</p>
+  <div class="pakete-grid">
+    <div class="paket-karte">
+      <div class="paket-kopf"><span class="paket-emoji">🌅</span><span class="paket-titel">Morgens: das Barometer</span></div>
+      <ul class="paket-liste">
+        <li>5 farbige Felder, exakt im Farbsystem der KLARTEXT-App</li>
+        <li>🟢 Grün · 🟡 Gelb · 🟠 Orange · 🔴 Rot · ⚪ Grau</li>
+        <li>„Grau" als eigenständige Stufe für Erschöpfung/Rückzug — kein Rückschritt zu „Rot"</li>
+      </ul>
+    </div>
+    <div class="paket-karte">
+      <div class="paket-kopf"><span class="paket-emoji">🌙</span><span class="paket-titel">Feierabend: Reflexion</span></div>
+      <ul class="paket-liste">
+        <li>6 ankreuzbare Karten: Bewegung/Pause, Gespräch, Rückzug, Lachen/Lautsein, Musik, Freitext</li>
+        <li>Kein Fließtext-Zwang — spielerisch statt therapeutisch</li>
+        <li>Eine freiwillige Zeile für den Vorsatz für morgen</li>
+      </ul>
+    </div>
+    <div class="paket-karte">
+      <div class="paket-kopf"><span class="paket-emoji">📱</span><span class="paket-titel">QR-Bonus</span></div>
+      <ul class="paket-liste">
+        <li>Scannbarer Code direkt zur digitalen Tagesjournal-App</li>
+        <li>Das Papier ist der Einstieg, die App macht den Wochenverlauf sichtbar</li>
+        <li>Kein Login, keine Speicherung — läuft im Gast-Modus</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sek grau">
+  <h2 class="sek-titel">Für wen</h2>
+  <div class="fuer-wen-grid">
+    <div class="fw-karte">
+      <span class="fw-emoji">🎓</span>
+      <div class="fw-titel">Grundschule &amp; Förderschule</div>
+      <div class="fw-desc">Als Tages-Ritual im Klassenzimmer oder in der OGS — schnell erklärt, sofort
+        einsetzbar, kein Vorwissen nötig.</div>
+    </div>
+    <div class="fw-karte">
+      <span class="fw-emoji">🗣️</span>
+      <div class="fw-titel">DaZ</div>
+      <div class="fw-desc">Farben statt Sprache als erster Zugang zur Selbsteinschätzung — auch bei
+        noch wenig Deutschkenntnissen nutzbar.</div>
+    </div>
+    <div class="fw-karte">
+      <span class="fw-emoji">✅</span>
+      <div class="fw-titel">ADHS &amp; Autismus-Spektrum</div>
+      <div class="fw-desc">Reizarmes, klar strukturiertes Layout — bewusst ohne dekorative Ablenkung
+        gestaltet.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sek">
+  <h2 class="sek-titel">Wissenschaftlich fundiert gestaltet</h2>
+  <p class="sek-sub">Die Gestaltungsprinzipien stützen sich auf konkrete Quellen — keine Wirksamkeitsstudie
+    zum Tagesjournal selbst, sondern die Grundlage für Farbcodierung, die eigene „Grau"-Stufe und das
+    reizarme Layout.</p>
+  <ul class="quelle-liste">
+    <li>Die farbcodierte Selbsteinschätzung folgt dem im Schulkontext etablierten Zones-of-Regulation-Prinzip:
+      Kuypers, L. (2011). <em>The Zones of Regulation: A Curriculum Designed to Foster Self-Regulation and
+      Emotional Control.</em> Think Social Publishing.</li>
+    <li>Die eigenständige Stufe „Grau" unterscheidet — nach der Polyvagal-Theorie — bewusst zwischen unruhiger
+      Überaktivierung (Kampf/Flucht) und stiller Erschöpfung/Shutdown: Porges, S. W. (2011). <em>The Polyvagal
+      Theory: Neurophysiological Foundations of Emotions, Attachment, Communication, and Self-Regulation.</em>
+      W. W. Norton &amp; Company.</li>
+    <li>Aktives Benennen eines Gefühlszustands wirkt regulierend, unabhängig davon, ob anschließend darüber
+      gesprochen wird: Lieberman, M. D., Eisenberger, N. I., Crockett, M. J., Tom, S. M., Pfeifer, J. H., &amp;
+      Way, B. M. (2007). Putting Feelings Into Words: Affect Labeling Disrupts Amygdala Activity in Response
+      to Affective Stimuli. <em>Psychological Science, 18</em>(5), 421–428.</li>
+    <li>Das reizarme, kontrastreiche Layout orientiert sich an: CAST (2018). <em>Universal Design for Learning
+      Guidelines, Version 2.2.</em> Wakefield, MA: CAST.</li>
+  </ul>
+  <p class="quelle-hinweis">Weitere Quellen zu KLARTEXT: <a href="KLARTEXT_Quellenverzeichnis.html" style="color:#1B3A4B;">Quellenverzeichnis ansehen</a></p>
+</section>
+
+<section class="sek grau" id="preise">
+  <h2 class="sek-titel">Preis</h2>
+  <p class="sek-sub">Einmalzahlung, kein Abo, keine versteckten Folgekosten.</p>
+  <div class="preis-wrap">
+    <div class="preis-karte">
+      <div class="preis-ribbon">Günstiger Einstieg</div>
+      <div class="preis-name">🗓️ Tagesjournal · Klassenzimmer-Edition</div>
+      <span class="preis-betrag">2,90 €<span> einmalig</span></span>
+      <ul class="preis-liste">
+        <li>PDF-Vorlage, 1 Seite DIN A4, sofort druckbar</li>
+        <li>QR-Zugang zur kostenlosen digitalen Version</li>
+        <li>Kein Login, keine Installation, DSGVO-konform</li>
+      </ul>
+      <a href="https://www.checkout-ds24.com/product/727179" target="_blank" rel="noopener" class="preis-btn kaufen-btn">🛒 Jetzt kaufen</a>
+    </div>
+  </div>
+  <div class="hinweisbox">
+    Nach dem Kauf wirst du direkt zur digitalen Gast-Version weitergeleitet — dort kannst du die PDF-Vorlage
+    herunterladen und das Tool sofort ausprobieren, ganz ohne Login.
+  </div>
+</section>
+
+<section class="cta-final">
+  <h2>Mehr als nur das Tagesjournal?</h2>
+  <p>Im „Paket Alltags-Anker &amp; Regulation" ist das Tagesjournal Teil von 7 Tools — inklusive
+    Stimmungsbarometer, Reizfilter-Regler, Körper-Kompass, Fokus-Trainer und Ruhe-Ballon.</p>
+  <a href="Alltag_Verkaufsseite.html" class="btn-primary">Zum Alltags-Paket</a>
+</section>
+
+<footer>© 2026 KLARTEXT-Mentoring · <a href="SHOP_KLARTEXT_Impressum.html">Impressum</a> · <a href="SHOP_KLARTEXT_Datenschutz.html">Datenschutz</a> · <a href="SHOP_KLARTEXT_AGB.html">AGB</a> · <a href="SHOP_KLARTEXT_Widerrufsbelehrung.html">Widerruf</a></footer>
+
+</body>
+</html>
