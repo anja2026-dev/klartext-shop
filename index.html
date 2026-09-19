@@ -42,8 +42,34 @@ body{font-family:"DM Sans",sans-serif;background:var(--paper);color:var(--ink);o
 .header-cta{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1.1rem;background:var(--accent);color:var(--m);border-radius:6px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .2s;}
 .header-cta:hover{background:#fff;transform:translateY(-1px);}
 
+/* ── INFO-BAR (Refinanzierung) ── */
+:root{--barh:38px;}
+.info-bar{position:fixed;top:0;left:0;right:0;z-index:110;height:var(--barh);display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,var(--gold),#d4af37);color:var(--m);text-align:center;font-size:.76rem;font-weight:700;padding:0 1rem;}
+.info-bar a{color:inherit;text-decoration:none;}
+.info-bar a:hover{text-decoration:underline;}
+.header{top:var(--barh);}
+
+/* ── HEADER: App-Login ── */
+.header-login{margin-left:.5rem;display:inline-flex;align-items:center;padding:.4rem 1rem;border:1.5px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85);border-radius:6px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .2s;}
+.header-login:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08);}
+
+/* ── HERO: Rollen-Waehler & Refi-Beweis ── */
+.hero-rollen{display:grid;grid-template-columns:repeat(3,minmax(200px,1fr));gap:1rem;max-width:960px;width:100%;margin:0 auto 1.75rem;animation:fadeUp .8s .55s both;}
+.rollen-kachel{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.4rem;padding:1.25rem 1rem;border-radius:12px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);text-decoration:none;transition:all .25s;}
+.rollen-kachel:hover{transform:translateY(-3px);background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.4);}
+.rollen-kachel-icon{font-size:1.6rem;}
+.rollen-kachel-titel{font-size:.92rem;font-weight:700;color:#fff;}
+.rollen-kachel-sub{font-size:.72rem;color:rgba(255,255,255,.6);line-height:1.4;}
+.rollen-a{border-top:3px solid var(--accent);}
+.rollen-b{border-top:3px solid var(--gold);}
+.rollen-c{border-top:3px solid #7BA7C9;}
+.hero-refi{max-width:620px;font-size:.85rem;color:rgba(255,255,255,.75);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.75rem 1.1rem;margin:0 auto 1.75rem;line-height:1.6;}
+.hero-cta-sekundaer{display:block;margin-top:.9rem;font-size:.8rem;color:rgba(255,255,255,.55);text-decoration:underline;}
+.hero-cta-sekundaer:hover{color:#fff;}
+@media (max-width:800px){.hero-rollen{grid-template-columns:1fr;}}
+
 /* ── HERO ── */
-.hero{min-height:100vh;background:linear-gradient(160deg,var(--m) 0%,#0F2230 40%,#1A3A4A 70%,#2A5570 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5rem clamp(1.5rem,5vw,3rem) 4rem;position:relative;overflow:hidden;text-align:center;}
+.hero{min-height:100vh;background:linear-gradient(160deg,var(--m) 0%,#0F2230 40%,#1A3A4A 70%,#2A5570 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(5rem + var(--barh)) clamp(1.5rem,5vw,3rem) 4rem;position:relative;overflow:hidden;text-align:center;}
 
 /* Hintergrund-Muster */
 .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(110,198,160,.08) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(184,146,42,.06) 0%,transparent 50%);pointer-events:none;}
@@ -195,6 +221,11 @@ footer{background:#0A1A24;padding:2rem clamp(1.5rem,5vw,3rem);display:flex;align
 </head>
 <body>
 
+<!-- INFO-BAR: REFINANZIERUNG -->
+<div class="info-bar">
+  <a href="/schulungen">💡 Bis zu 100&nbsp;% refinanzierbar über das Startchancen-Programm (Säule&nbsp;II) &amp; BASS 20256 – Mehr erfahren →</a>
+</div>
+
 <!-- HEADER -->
 <header class="header" id="header">
   <a class="logo" href="#">
@@ -205,30 +236,54 @@ footer{background:#0A1A24;padding:2rem clamp(1.5rem,5vw,3rem);display:flex;align
     </div>
   </a>
   <div class="header-nav">
-    <a class="header-link" href="KLARTEXT_Shop_Uebersicht.html">Kartendecks</a>
-    <a class="header-link" href="KLARTEXT_Verkaufsseite.html">App-System</a>
-    <a class="header-link" href="BRAINY_WELT.html">Brainy-Welt</a>
-    <a class="header-cta" href="#kontakt">Kontakt aufnehmen</a>
+    <a class="header-link" href="/system">Das KLARTEXT-System</a>
+    <a class="header-link" href="/schulungen">Schulungen & Refinanzierung</a>
+    <a class="header-link" href="/jahreslizenz">All-Access Pass</a>
+    <a class="header-link" href="/brainy-welt">Brainys Welt</a>
+    <a class="header-link" href="/shop">Shop</a>
+    <a class="header-login" href="/app-login">App-Login</a>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-grid"></div>
-  <div class="hero-label">Für alle, die Kinder & Jugendliche begleiten</div>
+  <div class="hero-label">Ein System für alle Phasen</div>
   <h1 class="hero-titel">
-    Klar.<br>
-    <em>Warm.</em><br>
-    Menschlich.
+    Ein System.<br>
+    <em>Alle Phasen.</em><br>
+    Vollständig refinanzierbar.
   </h1>
   <p class="hero-untertitel">
-    KLARTEXT ist ein umfassendes Mentoring- und Lernsystem für Schulbegleitpersonen — entwickelt aus der Praxis, für die Praxis.
+    KLARTEXT-Mentoring begleitet Kinder und Jugendliche von der Grundschule bis in die Berufsvorbereitung – mit 440+ Seiten, 25+ Live-Tools und Fördermitteln, die Ihr Budget nicht belasten.
   </p>
-  <div class="hero-cta-gruppe">
-    <a class="hero-btn-primary" href="KLARTEXT_Shop_Uebersicht.html">📦 Kartendecks entdecken →</a>
-    <a class="hero-btn-outline" href="KLARTEXT_Verkaufsseite.html">🎓 Komplettes App-System</a>
-    <a class="hero-btn-outline" href="#kontakt">Anfrage stellen</a>
+
+  <div class="hero-rollen" id="rollen">
+    <a class="rollen-kachel rollen-a" href="/brainy-welt">
+      <span class="rollen-kachel-icon">🧒</span>
+      <span class="rollen-kachel-titel">Grundschule & OGS</span>
+      <span class="rollen-kachel-sub">6–10 Jahre · Brainys Welt: Co-Regulation, Kinder-Barometer, Signalkarten</span>
+    </a>
+    <a class="rollen-kachel rollen-b" href="/system#sek">
+      <span class="rollen-kachel-icon">🎒</span>
+      <span class="rollen-kachel-titel">Weiterführende Schulen Sek&nbsp;I &amp; Sek&nbsp;II</span>
+      <span class="rollen-kachel-sub">11–18 Jahre · Zonen-Set, Token-Karten, Cyber- &amp; Career-Brainy, 15-Punkte-System Oberstufe</span>
+    </a>
+    <a class="rollen-kachel rollen-c" href="/system#jobcoach">
+      <span class="rollen-kachel-icon">🛠️</span>
+      <span class="rollen-kachel-titel">Berufsvorbereitung, WfbM &amp; Jobcoach</span>
+      <span class="rollen-kachel-sub">Arbeitsplatz-Regulation, BVB-Praxiskarten, Ausbildungsreife</span>
+    </a>
   </div>
+
+  <div class="hero-refi">
+    100&nbsp;% refinanzierbar über das Startchancen-Chancenbudget (Säule&nbsp;II) oder die NRW-Förderrichtlinie Familiengrundschulzentren (BASS 20256) – abhängig von Schulform und Trägerstruktur.
+  </div>
+
+  <div class="hero-cta-gruppe">
+    <a class="hero-btn-primary" href="#rollen">Meinen Bereich entdecken →</a>
+  </div>
+  <a class="hero-cta-sekundaer" href="/system">Oder: Kompletten System-Rundgang starten</a>
   <div class="hero-stats">
     <div class="stat">
       <span class="stat-zahl">235+</span>
