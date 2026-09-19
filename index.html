@@ -66,6 +66,8 @@ body{font-family:"DM Sans",sans-serif;background:var(--paper);color:var(--ink);o
 .hero-refi{max-width:620px;font-size:.85rem;color:rgba(255,255,255,.75);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.75rem 1.1rem;margin:0 auto 1.75rem;line-height:1.6;}
 .hero-cta-sekundaer{display:block;margin-top:.9rem;font-size:.8rem;color:rgba(255,255,255,.55);text-decoration:underline;}
 .hero-cta-sekundaer:hover{color:#fff;}
+.neuro-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1.1rem;border-radius:20px;background:rgba(74,20,140,.3);border:1px solid rgba(206,147,216,.45);color:#fff;font-size:.76rem;font-weight:700;text-decoration:none;margin-bottom:1.5rem;transition:all .2s;}
+.neuro-badge:hover{background:rgba(74,20,140,.45);border-color:rgba(206,147,216,.75);}
 @media (max-width:800px){.hero-rollen{grid-template-columns:1fr;}}
 
 /* ── HERO ── */
@@ -258,7 +260,7 @@ button.header-login{font-family:inherit;cursor:pointer;background:none;}
     <a class="header-link" href="/schulungen">Schulungen & Refinanzierung</a>
     <a class="header-link" href="/jahreslizenz">All-Access Pass</a>
     <a class="header-link" href="/brainy-welt">Brainys Welt</a>
-    <a class="header-link" href="/shop">Shop</a>
+    <a class="header-link" href="KLARTEXT_Shop_Uebersicht.html">Shop</a>
     <button class="header-login" type="button" onclick="openLoginModal()">App-Login</button>
   </div>
 </header>
@@ -278,7 +280,7 @@ button.header-login{font-family:inherit;cursor:pointer;background:none;}
       <div class="login-modal-bereich-titel">Einblick in die Praxis (ohne Anmeldung)</div>
       <div class="login-modal-vorschau-liste">
         <a class="login-modal-vorschau-btn" href="/system#tab-lehrkraft">🏫 Vorschau: Lehrkraft-System</a>
-        <a class="login-modal-vorschau-btn" href="/system#tab-jobcoach">💼 Vorschau: Jobcoach &amp; Berufsvorbereitung</a>
+        <a class="login-modal-vorschau-btn" href="/system#tab-jobcoach">💼 Vorschau: Berufsvorbereitung &amp; WfbM</a>
         <a class="login-modal-vorschau-btn" href="/brainy-welt">🧒 Vorschau: Grundschule &amp; Brainys Welt</a>
       </div>
     </div>
@@ -315,14 +317,14 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLo
       <span class="rollen-kachel-titel">Grundschule & OGS</span>
       <span class="rollen-kachel-sub">6–10 Jahre · Brainys Welt: Co-Regulation, Kinder-Barometer, Signalkarten</span>
     </a>
-    <a class="rollen-kachel rollen-b" href="/system#sek">
+    <a class="rollen-kachel rollen-b" href="/system">
       <span class="rollen-kachel-icon">🎒</span>
       <span class="rollen-kachel-titel">Weiterführende Schulen Sek&nbsp;I &amp; Sek&nbsp;II</span>
       <span class="rollen-kachel-sub">11–18 Jahre · Zonen-Set, Token-Karten, Cyber- &amp; Career-Brainy, 15-Punkte-System Oberstufe</span>
     </a>
     <a class="rollen-kachel rollen-c" href="/system#jobcoach">
       <span class="rollen-kachel-icon">🛠️</span>
-      <span class="rollen-kachel-titel">Berufsvorbereitung, WfbM &amp; Jobcoach</span>
+      <span class="rollen-kachel-titel">Berufsvorbereitung &amp; WfbM</span>
       <span class="rollen-kachel-sub">Arbeitsplatz-Regulation, BVB-Praxiskarten, Ausbildungsreife</span>
     </a>
   </div>
@@ -330,6 +332,8 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLo
   <div class="hero-refi">
     100&nbsp;% refinanzierbar über das Startchancen-Chancenbudget (Säule&nbsp;II) oder die NRW-Förderrichtlinie Familiengrundschulzentren (BASS 20256) – abhängig von Schulform und Trägerstruktur.
   </div>
+
+  <a class="neuro-badge" href="/system#neurodivergenz">🧠 Schwerpunkt: Neurodivergenz (ADHS · Autismus · FASD)</a>
 
   <div class="hero-cta-gruppe">
     <a class="hero-btn-primary" href="#rollen">Meinen Bereich entdecken →</a>
@@ -451,7 +455,7 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLo
         </div>
         <div class="was-punkt">
           <div class="wp-icon">🔄</div>
-          <div><div class="wp-titel">Für alle Beteiligten</div><div class="wp-text">Eigene Materialien für INGRA, Jobcoach, Lehrkräfte und Eltern.</div></div>
+          <div><div class="wp-titel">Für alle Beteiligten</div><div class="wp-text">Eigene Materialien für INGRA, Berufsvorbereitung, Lehrkräfte und Eltern.</div></div>
         </div>
       </div>
     </div>
@@ -498,8 +502,8 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLo
       </div>
       <div class="zg-karte" style="background:rgba(184,146,42,.25);border-color:rgba(232,213,166,.15);">
         <span class="zg-emoji">💼</span>
-        <div class="zg-titel">Jobcoach · Berufsvorbereitung</div>
-        <div class="zg-text">Eigener Spezialmodus für Berufsschulen, WfbM-Werkstätten und BVB/BVJ-Träger: Arbeitsplatz-Regulation, Ausbildungsreife und BVB-Praxiskarten.</div>
+        <div class="zg-titel">Berufsvorbereitung &amp; WfbM</div>
+        <div class="zg-text">Eigener Spezialmodus für Berufsschulen, WfbM-Werkstätten, BVB/BVJ-Träger und Jobcoaches: Arbeitsplatz-Regulation, Ausbildungsreife und BVB-Praxiskarten.</div>
         <div class="zg-pills">
           <span class="zg-pill">BVB-Jahreskarten</span>
           <span class="zg-pill">Praxis-Schlüssel</span>
@@ -661,7 +665,7 @@ document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLo
     <a href="/schulungen">Schulungen & Refinanzierung</a>
     <a href="/jahreslizenz">All-Access Pass</a>
     <a href="/brainy-welt">Brainys Welt</a>
-    <a href="/shop">Shop</a>
+    <a href="KLARTEXT_Shop_Uebersicht.html">Shop</a>
     <a href="SHOP_KLARTEXT_Impressum.html">Impressum</a>
     <a href="SHOP_KLARTEXT_Datenschutz.html">Datenschutz</a>
   </div>
