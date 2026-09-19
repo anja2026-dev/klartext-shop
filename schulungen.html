@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schulungen & Refinanzierung · KLARTEXT-Mentoring</title>
+<meta name="description" content="Inhouse-Teamtage und 100% refinanzierbare Schulungen über das Startchancen-Chancenbudget (Säule II) und die NRW-Förderrichtlinie BASS 20256.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Schulungen & Refinanzierung · KLARTEXT-Mentoring">
+<meta property="og:description" content="Inhouse-Teamtage und 100% refinanzierbare Schulungen über das Startchancen-Chancenbudget (Säule II) und die NRW-Förderrichtlinie BASS 20256.">
+<meta property="og:url" content="https://klartext-mentoring.de/schulungen">
+<meta property="og:locale" content="de_DE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ── */
+:root {
+  --m:#1B3A4B; --m2:#2A5570; --accent:#6EC6A0; --gold:#B8922A;
+  --paper:#F5F0E8; --ink:#1A1A2E; --muted:#6A6878;
+  --surface:#fff; --border:#E8E2D8;
+  --el:#AD1457; --lk:#1565C0; --tk:#4A148C; --trainer:#B8922A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:80px;}
+body{font-family:"DM Sans",sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden;}
+
+/* ── HEADER ── */
+.header{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,5vw,3rem);height:72px;display:flex;align-items:center;justify-content:space-between;transition:all .3s;}
+.header.scrolled{background:rgba(27,58,75,.96);backdrop-filter:blur(12px);box-shadow:0 2px 24px rgba(0,0,0,.2);}
+.logo{display:flex;align-items:center;gap:.7rem;text-decoration:none;}
+.logo-mark{width:38px;height:38px;border:2px solid var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;background:rgba(27,58,75,.6);}
+.logo-mark span{font-family:"Playfair Display",serif;font-size:15px;font-weight:700;color:#fff;}
+.logo-name{font-family:"Playfair Display",serif;font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:.04em;}
+.logo-sub{font-size:.58rem;color:var(--accent);letter-spacing:.18em;display:block;text-transform:uppercase;}
+.header-nav{display:flex;align-items:center;gap:1.5rem;}
+.header-link{font-size:.82rem;font-weight:600;color:rgba(255,255,255,.75);text-decoration:none;transition:color .2s;}
+.header-link:hover{color:#fff;}
+.header-cta{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1.1rem;background:var(--accent);color:var(--m);border-radius:6px;font-size:.8rem;font-weight:700;text-decoration:none;transition:all .2s;}
+.header-cta:hover{background:#fff;transform:translateY(-1px);}
+
+/* ── INFO-BAR (Refinanzierung) ── */
+:root{--barh:38px;}
+.info-bar{position:fixed;top:0;left:0;right:0;z-index:110;height:var(--barh);display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,var(--gold),#d4af37);color:var(--m);text-align:center;font-size:.76rem;font-weight:700;padding:0 1rem;}
+.info-bar a{color:inherit;text-decoration:none;}
+.info-bar a:hover{text-decoration:underline;}
+.header{top:var(--barh);}
+
+/* ── HEADER: App-Login ── */
+.header-login{margin-left:.5rem;display:inline-flex;align-items:center;padding:.4rem 1rem;border:1.5px solid rgba(255,255,255,.35);color:rgba(255,255,255,.85);border-radius:6px;font-size:.78rem;font-weight:600;text-decoration:none;transition:all .2s;}
+.header-login:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.08);}
+
+/* ── HERO: Rollen-Waehler & Refi-Beweis ── */
+.hero-rollen{display:grid;grid-template-columns:repeat(3,minmax(200px,1fr));gap:1rem;max-width:960px;width:100%;margin:0 auto 1.75rem;animation:fadeUp .8s .55s both;}
+.rollen-kachel{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.4rem;padding:1.25rem 1rem;border-radius:12px;border:1.5px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);text-decoration:none;transition:all .25s;}
+.rollen-kachel:hover{transform:translateY(-3px);background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.4);}
+.rollen-kachel-icon{font-size:1.6rem;}
+.rollen-kachel-titel{font-size:.92rem;font-weight:700;color:#fff;}
+.rollen-kachel-sub{font-size:.72rem;color:rgba(255,255,255,.6);line-height:1.4;}
+.rollen-a{border-top:3px solid var(--accent);}
+.rollen-b{border-top:3px solid var(--gold);}
+.rollen-c{border-top:3px solid #7BA7C9;}
+.hero-refi{max-width:620px;font-size:.85rem;color:rgba(255,255,255,.75);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:.75rem 1.1rem;margin:0 auto 1.75rem;line-height:1.6;}
+.hero-cta-sekundaer{display:block;margin-top:.9rem;font-size:.8rem;color:rgba(255,255,255,.55);text-decoration:underline;}
+.hero-cta-sekundaer:hover{color:#fff;}
+@media (max-width:800px){.hero-rollen{grid-template-columns:1fr;}}
+
+/* ── HERO ── */
+.hero{min-height:100vh;background:linear-gradient(160deg,var(--m) 0%,#0F2230 40%,#1A3A4A 70%,#2A5570 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(5rem + var(--barh)) clamp(1.5rem,5vw,3rem) 4rem;position:relative;overflow:hidden;text-align:center;}
+
+/* Hintergrund-Muster */
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 20% 20%,rgba(110,198,160,.08) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(184,146,42,.06) 0%,transparent 50%);pointer-events:none;}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+
+.hero-label{font-size:.65rem;font-weight:700;color:var(--accent);letter-spacing:.3em;text-transform:uppercase;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem;justify-content:center;animation:fadeUp .8s .2s both;}
+.hero-label::before,.hero-label::after{content:"";width:40px;height:1px;background:var(--accent);opacity:.5;}
+.hero-titel{font-family:"Playfair Display",serif;font-size:clamp(2.8rem,8vw,6rem);font-weight:700;color:#fff;line-height:1.05;margin-bottom:1rem;letter-spacing:-.02em;animation:fadeUp .8s .35s both;}
+.hero-titel em{font-style:italic;color:var(--accent);}
+.hero-untertitel{font-size:clamp(.95rem,2vw,1.2rem);color:rgba(255,255,255,.6);max-width:580px;line-height:1.75;margin-bottom:2.5rem;animation:fadeUp .8s .5s both;}
+.hero-cta-gruppe{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s .65s both;}
+.hero-btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;background:var(--accent);color:var(--m);border-radius:8px;font-size:.9rem;font-weight:700;text-decoration:none;transition:all .2s;box-shadow:0 4px 24px rgba(110,198,160,.3);}
+.hero-btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(110,198,160,.4);}
+.hero-btn-outline{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);border-radius:8px;font-size:.9rem;font-weight:600;text-decoration:none;transition:all .2s;}
+.hero-btn-outline:hover{border-color:rgba(255,255,255,.6);color:#fff;background:rgba(255,255,255,.05);}
+
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;margin-top:3.5rem;flex-wrap:wrap;animation:fadeUp .8s .8s both;}
+.stat{text-align:center;}
+.stat-zahl{font-family:"Playfair Display",serif;font-size:2.2rem;font-weight:700;color:var(--accent);display:block;line-height:1;}
+.stat-label{font-size:.68rem;color:rgba(255,255,255,.45);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;display:block;}
+.stat-divider{width:1px;background:rgba(255,255,255,.1);align-self:stretch;}
+
+/* Scroll-Indikator */
+.scroll-ind{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;color:rgba(255,255,255,.3);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;animation:bounce 2s infinite;}
+.scroll-ind svg{width:20px;height:20px;opacity:.4;}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
+
+/* ── ABSCHNITTE ── */
+.section{padding:clamp(4rem,8vw,6rem) clamp(1.5rem,5vw,3rem);}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-label{font-size:.63rem;font-weight:700;color:var(--accent);letter-spacing:.22em;text-transform:uppercase;margin-bottom:.6rem;}
+.section-titel{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:var(--m);line-height:1.15;margin-bottom:1rem;}
+.section-sub{font-size:.95rem;color:var(--muted);max-width:560px;line-height:1.8;}
+
+/* ── KARTENDECKS (Shop-Teaser) ── */
+.shop-section{background:linear-gradient(135deg,#F8F5F0 0%,var(--paper) 100%);}
+.shop-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:center;margin-top:2.5rem;}
+.shop-karte{background:var(--surface);border-radius:18px;padding:2rem;border:1.5px solid var(--border);box-shadow:0 12px 40px rgba(27,58,75,.1);}
+.shop-liste{list-style:none;margin:1.25rem 0 1.75rem;}
+.shop-liste li{padding:.4rem 0 .4rem 1.5rem;position:relative;font-size:.88rem;color:var(--ink);line-height:1.6;}
+.shop-liste li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700;}
+.shop-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.9rem;background:var(--m);color:#fff;border-radius:8px;font-size:.9rem;font-weight:700;text-decoration:none;transition:all .2s;}
+.shop-btn:hover{background:var(--m2);transform:translateY(-2px);}
+.shop-badges{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;}
+.shop-badge{background:var(--surface);border-radius:14px;padding:1.25rem 1.5rem;text-align:center;border:1.5px solid var(--border);min-width:120px;}
+.shop-badge .n{display:block;font-family:"Playfair Display",serif;font-size:1.8rem;font-weight:700;color:var(--m);}
+.shop-badge .l{display:block;font-size:.68rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-top:.25rem;}
+
+/* ── WAS IST KLARTEXT ── */
+.was-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:3rem;}
+.was-visual{position:relative;}
+.was-karte-stack{position:relative;height:320px;}
+.was-karte{position:absolute;background:var(--surface);border-radius:16px;padding:1.4rem 1.6rem;box-shadow:0 8px 40px rgba(27,58,75,.12);border:1.5px solid var(--border);}
+.was-karte-1{width:75%;top:0;left:0;transform:rotate(-3deg);z-index:1;}
+.was-karte-2{width:75%;top:30px;left:15%;transform:rotate(1deg);z-index:2;}
+.was-karte-3{width:75%;top:60px;left:8%;z-index:3;box-shadow:0 16px 48px rgba(27,58,75,.18);}
+.wk-modul{font-size:.58rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:.15rem .5rem;border-radius:4px;display:inline-block;margin-bottom:.5rem;}
+.wk-titel{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:var(--m);margin-bottom:.3rem;}
+.wk-sub{font-size:.78rem;color:var(--muted);}
+.wk-dots{display:flex;gap:.3rem;margin-top:.75rem;}
+.wk-dot{width:8px;height:8px;border-radius:50%;}
+
+.was-punkte{display:flex;flex-direction:column;gap:1.25rem;}
+.was-punkt{display:flex;gap:1rem;align-items:flex-start;}
+.wp-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;background:var(--paper);}
+.wp-titel{font-size:.9rem;font-weight:600;color:var(--m);margin-bottom:.2rem;}
+.wp-text{font-size:.85rem;color:var(--muted);line-height:1.7;}
+
+/* ── ZIELGRUPPEN ── */
+.zg-section{background:var(--m);}
+.zg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-top:2.5rem;}
+.zg-karte{border-radius:14px;padding:1.5rem;border:1.5px solid rgba(255,255,255,.08);transition:all .2s;cursor:default;}
+.zg-karte:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.2);}
+.zg-emoji{font-size:1.8rem;margin-bottom:.75rem;display:block;}
+.zg-titel{font-family:"Playfair Display",serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:.4rem;}
+.zg-text{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.7;}
+.zg-pills{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.85rem;}
+.zg-pill{font-size:.62rem;padding:.15rem .5rem;border-radius:20px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);}
+
+/* ── MODULE ── */
+.module-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:.75rem;margin-top:2.5rem;}
+.modul-chip{border-radius:10px;padding:.9rem 1rem;border:1.5px solid var(--border);background:var(--surface);transition:all .2s;}
+.modul-chip:hover{transform:translateY(-2px);box-shadow:0 4px 20px rgba(27,58,75,.1);}
+.mc-id{font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem;}
+.mc-name{font-size:.83rem;font-weight:600;color:var(--m);}
+.mc-le{font-size:.68rem;color:var(--muted);margin-top:.2rem;}
+
+/* ── WIE ES FUNKTIONIERT ── */
+.wie-section{background:linear-gradient(135deg,#F8F5F0 0%,var(--paper) 100%);}
+.wie-steps{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:2rem;margin-top:2.5rem;position:relative;}
+.wie-step{text-align:center;}
+.ws-nr{width:52px;height:52px;border-radius:50%;background:var(--m);color:#fff;font-family:"Playfair Display",serif;font-size:1.2rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.ws-titel{font-size:.9rem;font-weight:600;color:var(--m);margin-bottom:.4rem;}
+.ws-text{font-size:.82rem;color:var(--muted);line-height:1.7;}
+
+/* ── ÜBER ANJA ── */
+.anja-grid{display:grid;grid-template-columns:280px 1fr;gap:3.5rem;align-items:start;margin-top:2.5rem;}
+.anja-foto{width:100%;aspect-ratio:3/4;border-radius:20px;object-fit:cover;object-position:center top;box-shadow:0 16px 48px rgba(27,58,75,.15);border:3px solid var(--accent);}
+.anja-foto-placeholder{width:100%;aspect-ratio:3/4;border-radius:20px;background:linear-gradient(135deg,var(--m) 0%,#2A5570 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 16px 48px rgba(27,58,75,.15);border:3px solid var(--accent);}
+.anja-name{font-family:"Playfair Display",serif;font-size:2rem;font-weight:700;color:var(--m);margin-bottom:.3rem;}
+.anja-rolle{font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.6;}
+.anja-text{font-size:.9rem;color:var(--ink);line-height:1.85;margin-bottom:1rem;}
+.anja-zertifikate{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem;}
+.az{font-size:.68rem;padding:.2rem .6rem;border-radius:4px;background:var(--paper);color:var(--muted);border:1px solid var(--border);}
+
+/* ── KONTAKT ── */
+.kontakt-section{background:linear-gradient(135deg,var(--m) 0%,#0F2230 100%);}
+.kontakt-inner{max-width:700px;margin:0 auto;text-align:center;}
+.kontakt-titel{font-family:"Playfair Display",serif;font-size:clamp(1.8rem,4vw,2.5rem);font-weight:700;color:#fff;margin-bottom:.75rem;}
+.kontakt-sub{font-size:.95rem;color:rgba(255,255,255,.55);margin-bottom:2rem;line-height:1.75;}
+.kontakt-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.kl-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.75rem 1.5rem;border-radius:8px;font-size:.88rem;font-weight:700;text-decoration:none;transition:all .2s;}
+.kl-primary{background:var(--accent);color:var(--m);}
+.kl-primary:hover{background:#fff;}
+.kl-outline{border:1.5px solid rgba(255,255,255,.25);color:rgba(255,255,255,.8);}
+.kl-outline:hover{border-color:rgba(255,255,255,.6);color:#fff;}
+
+/* ── FOOTER ── */
+footer{background:#0A1A24;padding:2rem clamp(1.5rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-family:"Playfair Display",serif;font-size:.95rem;font-weight:700;color:rgba(255,255,255,.4);}
+.footer-links{display:flex;gap:1.25rem;flex-wrap:wrap;}
+.footer-links a{font-size:.72rem;color:rgba(255,255,255,.25);text-decoration:none;}
+.footer-links a:hover{color:rgba(255,255,255,.5);}
+
+/* ── ANIMATIONEN ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  .was-grid,.anja-grid,.shop-grid{grid-template-columns:1fr;}
+  .was-karte-stack{height:220px;}
+  .hero-stats{gap:1.5rem;}
+  .stat-divider{display:none;}
+  .header-nav{gap:.75rem;}
+  .header-link{display:none;}
+}
+
+/* SUBPAGE INTRO */
+.sub-hero{background:linear-gradient(160deg,var(--m) 0%,#0F2230 60%,#1A3A4A 100%);padding:calc(6rem + var(--barh)) clamp(1.5rem,5vw,3rem) 3.5rem;text-align:center;}
+.sub-hero .section-label{color:var(--accent);}
+.sub-hero h1{font-family:"Playfair Display",serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;font-weight:700;margin-bottom:.9rem;}
+.sub-hero p{color:rgba(255,255,255,.65);max-width:640px;margin:0 auto;font-size:1rem;line-height:1.7;}
+
+/* TABS (system.html) */
+.tab-nav{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center;margin-bottom:2.5rem;}
+.tab-btn{padding:.7rem 1.4rem;border-radius:30px;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);font-family:inherit;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;}
+.tab-btn.active{background:var(--m);border-color:var(--m);color:#fff;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeUp .5s both;}
+.tab-card{background:var(--surface);border:1.5px solid var(--border);border-radius:18px;padding:2rem clamp(1.25rem,4vw,2.5rem);box-shadow:0 12px 40px rgba(27,58,75,.08);}
+.tab-card-head{display:flex;align-items:baseline;gap:.75rem;margin-bottom:.75rem;flex-wrap:wrap;}
+.tab-card-head h3{font-family:"Playfair Display",serif;font-size:1.5rem;color:var(--m);}
+.tab-card-head span{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);}
+.tab-card p.lead{color:var(--muted);margin-bottom:1.25rem;line-height:1.7;}
+.tab-feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem;}
+.tab-feature{background:var(--paper);border-radius:10px;padding:1rem 1.1rem;font-size:.85rem;color:var(--ink);line-height:1.5;border-left:3px solid var(--accent);}
+
+/* ZWEI-SPALTEN FACHTIEFE */
+.fach-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;}
+.fach-karte{border-radius:16px;padding:1.75rem;color:#fff;}
+.fach-karte.nd{background:linear-gradient(160deg,#4A148C,#7B3FA0);}
+.fach-karte.sys{background:linear-gradient(160deg,var(--m),var(--m2));}
+.fach-karte h3{font-family:"Playfair Display",serif;font-size:1.35rem;margin-bottom:.85rem;}
+.fach-karte ul{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+.fach-karte li{font-size:.85rem;line-height:1.6;padding-left:1.1rem;position:relative;color:rgba(255,255,255,.85);}
+.fach-karte li::before{content:"—";position:absolute;left:0;opacity:.6;}
+
+/* LIVE-TOOLS KACHEL */
+.tools-kachel{background:var(--surface);border:1.5px solid var(--border);border-radius:18px;padding:2rem;text-align:center;}
+.tools-zahl{font-family:"Playfair Display",serif;font-size:3rem;color:var(--m);font-weight:700;}
+.tools-label{font-size:.85rem;color:var(--muted);margin-bottom:1.25rem;}
+.tools-beispiele{display:none;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin-top:1.25rem;text-align:left;}
+.tools-beispiele.open{display:grid;}
+.tools-beispiel{background:var(--paper);border-radius:10px;padding:.85rem 1rem;font-size:.82rem;font-weight:600;color:var(--m);}
+.tools-toggle{background:none;border:none;color:var(--m2);font-weight:700;font-size:.82rem;cursor:pointer;text-decoration:underline;font-family:inherit;}
+
+/* VERTRAUENS-BLOCK */
+.vertrauen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;}
+.vertrauen-kachel{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:1.5rem 1.25rem;text-align:center;}
+.vertrauen-icon{font-size:1.6rem;margin-bottom:.6rem;display:block;}
+.vertrauen-titel{font-size:.85rem;font-weight:700;color:var(--m);margin-bottom:.4rem;}
+.vertrauen-text{font-size:.76rem;color:var(--muted);line-height:1.5;}
+
+/* REFI-LEITFADEN (schulungen.html) */
+.refi-box{background:linear-gradient(160deg,var(--m),var(--m2));border-radius:18px;padding:2.25rem clamp(1.25rem,4vw,2.75rem);color:#fff;}
+.refi-box h3{font-family:"Playfair Display",serif;font-size:1.5rem;margin-bottom:.75rem;}
+.refi-box p{color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:1.5rem;max-width:700px;}
+.refi-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.refi-step{background:rgba(255,255,255,.08);border-radius:12px;padding:1.25rem;}
+.refi-step-nr{font-family:"Playfair Display",serif;font-size:1.6rem;color:var(--accent);font-weight:700;}
+.refi-step-titel{font-size:.9rem;font-weight:700;margin:.4rem 0 .35rem;}
+.refi-step-text{font-size:.78rem;color:rgba(255,255,255,.7);line-height:1.5;}
+.workshop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem;}
+.workshop-karte{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:1.5rem;}
+.workshop-karte h4{font-family:"Playfair Display",serif;color:var(--m);font-size:1.05rem;margin-bottom:.5rem;}
+.workshop-karte p{font-size:.82rem;color:var(--muted);line-height:1.55;}
+
+/* PREISTABELLE (jahreslizenz.html) */
+.freiheit-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1rem;}
+.freiheit-karte{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:1.5rem;text-align:center;}
+.freiheit-karte .fi{font-size:1.8rem;display:block;margin-bottom:.5rem;}
+.freiheit-verbinder{text-align:center;font-size:.82rem;color:var(--muted);margin:1rem 0 2.5rem;font-style:italic;}
+.preis-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:stretch;}
+.preis-karte{background:var(--surface);border:1.5px solid var(--border);border-radius:18px;padding:2rem;position:relative;display:flex;flex-direction:column;}
+.preis-karte.empfohlen{border:2px solid var(--gold);box-shadow:0 16px 48px rgba(184,146,42,.18);}
+.preis-badge{position:absolute;top:-.75rem;left:50%;transform:translateX(-50%);background:var(--gold);color:#fff;font-size:.68rem;font-weight:700;padding:.3rem .9rem;border-radius:20px;letter-spacing:.05em;}
+.preis-name{font-family:"Playfair Display",serif;font-size:1.3rem;color:var(--m);margin-bottom:.3rem;}
+.preis-zielgruppe{font-size:.8rem;color:var(--muted);margin-bottom:1.1rem;}
+.preis-zahl{font-size:2rem;font-weight:700;color:var(--m);margin-bottom:.2rem;}
+.preis-zahl span{font-size:.8rem;color:var(--muted);font-weight:500;}
+.preis-liste{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin:1.25rem 0 1.5rem;flex:1;}
+.preis-liste li{font-size:.83rem;color:var(--ink);padding-left:1.2rem;position:relative;}
+.preis-liste li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700;}
+
+/* BRAINY-WELT */
+.brainy-vorstell{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;background:linear-gradient(160deg,#FFF7E8,#F5F0E8);border-radius:20px;padding:2.25rem;border:1.5px solid var(--border);}
+.brainy-emoji{font-size:4.5rem;flex-shrink:0;}
+.brainy-vorstell h2{font-family:"Playfair Display",serif;color:var(--m);font-size:1.6rem;margin-bottom:.6rem;}
+.brainy-vorstell p{color:var(--muted);line-height:1.7;max-width:560px;}
+.brainy-claim{display:inline-block;margin-top:.75rem;font-weight:700;color:var(--gold);font-size:.9rem;}
+.material-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;}
+.material-karte{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:1.5rem;}
+.material-karte .mk-label{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;display:block;}
+.material-karte h4{font-family:"Playfair Display",serif;color:var(--m);font-size:1.1rem;margin-bottom:.6rem;}
+.material-karte ul{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+.material-karte li{font-size:.82rem;color:var(--ink);padding-left:1rem;position:relative;}
+.material-karte li::before{content:"•";position:absolute;left:0;color:var(--gold);}
+.system-banner{display:flex;align-items:center;gap:1rem;background:var(--m);color:rgba(255,255,255,.85);border-radius:12px;padding:1.1rem 1.5rem;font-size:.85rem;line-height:1.6;flex-wrap:wrap;}
+.system-banner a{color:var(--accent);font-weight:700;text-decoration:none;}
+.system-banner a:hover{text-decoration:underline;}
+
+@media(max-width:800px){
+  .fach-grid,.freiheit-grid,.preis-grid,.refi-steps{grid-template-columns:1fr;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- INFO-BAR: REFINANZIERUNG -->
+<div class="info-bar">
+  <a href="/schulungen">💡 Bis zu 100&nbsp;% refinanzierbar über das Startchancen-Programm (Säule&nbsp;II) &amp; BASS 20256 – Mehr erfahren →</a>
+</div>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <a class="logo" href="#">
+    <div class="logo-mark"><span>K</span></div>
+    <div>
+      <div class="logo-name">KLARTEXT</div>
+      <span class="logo-sub">Mentoring-System</span>
+    </div>
+  </a>
+  <div class="header-nav">
+    <a class="header-link" href="/system">Das KLARTEXT-System</a>
+    <a class="header-link" href="/schulungen">Schulungen & Refinanzierung</a>
+    <a class="header-link" href="/jahreslizenz">All-Access Pass</a>
+    <a class="header-link" href="/brainy-welt">Brainys Welt</a>
+    <a class="header-link" href="/shop">Shop</a>
+    <a class="header-login" href="/app-login">App-Login</a>
+  </div>
+</header>
+
+<section class="sub-hero">
+  <div class="section-label">Inhouse &amp; Refinanzierung</div>
+  <h1>Schulungen &amp; Refinanzierung</h1>
+  <p>Inhouse-Teamtage für Ihr Kollegium — und ein System, das zu 100&nbsp;% über öffentliche Fördermittel finanzierbar ist.</p>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Fortbildung vor Ort</div>
+      <h2 class="section-titel">Inhouse-Teamtage</h2>
+    </div>
+    <div class="workshop-grid reveal">
+      <div class="workshop-karte">
+        <h4>Pädagogischer Tag (3–4 Std.)</h4>
+        <p>Kompakte Einführung ins KLARTEXT-System für Ihr gesamtes Kollegium — praxisnah, direkt umsetzbar, ohne Vorwissen.</p>
+      </div>
+      <div class="workshop-karte">
+        <h4>Für Träger &amp; Schulleitungen</h4>
+        <p>Individuell zugeschnitten auf FGZ, OGS-Träger, Berufsschulen oder WfbM-Werkstätten — inklusive Einführung in die App.</p>
+      </div>
+      <div class="workshop-karte">
+        <h4>Nachhaltige Einarbeitung</h4>
+        <p>Anschlussfähig an den Einarbeitungsstandard für Quereinsteiger:innen — Schulung und System greifen ineinander.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper);">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Der wichtigste Hebel</div>
+      <h2 class="section-titel">100&nbsp;% refinanzierbar</h2>
+    </div>
+    <div class="refi-box reveal">
+      <h3>Zwei Förderwege, ein Ziel: kein Eigenanteil</h3>
+      <p>Schulungen, Lizenzen und das komplette KLARTEXT-System sind über zwei Förderquellen refinanzierbar — abhängig von Schulform und Trägerstruktur:</p>
+      <p><strong>Startchancen-Programm (Säule&nbsp;II – Chancenbudget):</strong> für teilnehmende Schulen bundesweit nutzbar.<br>
+      <strong>NRW-Förderrichtlinie Familiengrundschulzentren (BASS 20256):</strong> für FGZ und OGS-Träger in NRW.</p>
+      <div class="refi-steps">
+        <div class="refi-step">
+          <div class="refi-step-nr">1</div>
+          <div class="refi-step-titel">Fördervoraussetzung prüfen</div>
+          <div class="refi-step-text">Wir klären gemeinsam, welche Förderquelle für Ihre Einrichtung greift.</div>
+        </div>
+        <div class="refi-step">
+          <div class="refi-step-nr">2</div>
+          <div class="refi-step-titel">Schulung / Lizenz buchen</div>
+          <div class="refi-step-text">Sie buchen Inhouse-Termin oder Jahreslizenz — wir stellen alle nötigen Unterlagen.</div>
+        </div>
+        <div class="refi-step">
+          <div class="refi-step-nr">3</div>
+          <div class="refi-step-titel">Abrechnung über Fördertopf</div>
+          <div class="refi-step-text">Die Kosten werden über das Chancenbudget bzw. die BASS-Förderung abgerechnet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Interesse?</div>
+      <h2 class="section-titel">Unverbindlich anfragen</h2>
+    </div>
+    <a class="kl-btn" style="background:var(--m);color:#fff;" href="/index.html#kontakt">Anfrage stellen →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">KLARTEXT Mentoring-System</div>
+  <div class="footer-links">
+    <a href="KLARTEXT_Shop_Uebersicht.html">Kartendecks</a>
+    <a href="KLARTEXT_Verkaufsseite.html">App-System</a>
+    <a href="BRAINY_WELT.html">Brainy-Welt</a>
+    <a href="SHOP_KLARTEXT_Ueber_Anja_Jolk.html">Über Anja Jolk</a>
+    <a href="SHOP_KLARTEXT_Impressum.html">Impressum</a>
+    <a href="SHOP_KLARTEXT_Datenschutz.html">Datenschutz</a>
+    <a href="SHOP_KLARTEXT_AGB.html">AGB</a>
+    <a href="SHOP_KLARTEXT_Widerrufsbelehrung.html">Widerrufsbelehrung</a>
+    <a href="SHOP_KLARTEXT_Quellenverzeichnis.html">Quellenverzeichnis</a>
+  </div>
+</footer>
+
+<script>
+// Header Scroll-Effekt
+const header = document.getElementById('header');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Reveal-Animationen
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      observer.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
