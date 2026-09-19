@@ -20,6 +20,7 @@
   --paper:#F5F0E8; --ink:#1A1A2E; --muted:#6A6878;
   --surface:#fff; --border:#E8E2D8;
   --el:#AD1457; --lk:#1565C0; --tk:#4A148C; --trainer:#B8922A;
+  --kd:#4FC3C7; --kd-dark:#2A8F93; --kd-light:#E0F7F8;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;scroll-padding-top:80px;}
@@ -283,18 +284,19 @@ footer{background:#0A1A24;padding:2rem clamp(1.5rem,5vw,3rem);display:flex;align
 .preis-liste li::before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700;}
 
 /* BRAINY-WELT */
-.brainy-vorstell{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;background:linear-gradient(160deg,#FFF7E8,#F5F0E8);border-radius:20px;padding:2.25rem;border:1.5px solid var(--border);}
-.brainy-emoji{font-size:4.5rem;flex-shrink:0;}
+.brainy-vorstell{display:flex;gap:2rem;align-items:center;flex-wrap:wrap;background:linear-gradient(160deg,var(--kd-light),var(--paper));border-radius:20px;padding:2.25rem;border:1.5px solid var(--border);}
+.brainy-emoji-img{width:130px;height:130px;object-fit:contain;flex-shrink:0;}
+.hero-brainy-img{width:100px;height:100px;object-fit:contain;display:block;margin:0 auto .75rem;filter:drop-shadow(0 8px 20px rgba(0,0,0,.3));}
 .brainy-vorstell h2{font-family:"Playfair Display",serif;color:var(--m);font-size:1.6rem;margin-bottom:.6rem;}
 .brainy-vorstell p{color:var(--muted);line-height:1.7;max-width:560px;}
-.brainy-claim{display:inline-block;margin-top:.75rem;font-weight:700;color:var(--gold);font-size:.9rem;}
+.brainy-claim{display:inline-block;margin-top:.75rem;font-weight:700;color:var(--kd-dark);font-size:.9rem;}
 .material-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;}
 .material-karte{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:1.5rem;}
-.material-karte .mk-label{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem;display:block;}
+.material-karte .mk-label{font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--kd-dark);margin-bottom:.5rem;display:block;}
 .material-karte h4{font-family:"Playfair Display",serif;color:var(--m);font-size:1.1rem;margin-bottom:.6rem;}
 .material-karte ul{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
 .material-karte li{font-size:.82rem;color:var(--ink);padding-left:1rem;position:relative;}
-.material-karte li::before{content:"•";position:absolute;left:0;color:var(--gold);}
+.material-karte li::before{content:"•";position:absolute;left:0;color:var(--kd);}
 .system-banner{display:flex;align-items:center;gap:1rem;background:var(--m);color:rgba(255,255,255,.85);border-radius:12px;padding:1.1rem 1.5rem;font-size:.85rem;line-height:1.6;flex-wrap:wrap;}
 .system-banner a{color:var(--accent);font-weight:700;text-decoration:none;}
 .system-banner a:hover{text-decoration:underline;}
@@ -331,7 +333,8 @@ footer{background:#0A1A24;padding:2rem clamp(1.5rem,5vw,3rem);display:flex;align
   </div>
 </header>
 
-<section class="sub-hero" style="background:linear-gradient(160deg,#B8922A 0%,#8a6c1f 100%);">
+<section class="sub-hero" style="background:linear-gradient(160deg,var(--kd) 0%,var(--kd-dark) 100%);">
+  <img class="hero-brainy-img" src="vorschau/brainy/brainy.png" alt="Brainy, das Maskottchen von KLARTEXT-Mentoring">
   <div class="section-label" style="color:#fff;">Für Grundschule, OGS &amp; Förderschule</div>
   <h1>Brainys Welt</h1>
   <p>Materialien für Kinder von 6–10 Jahren — mit Brainy als ruhigem Begleiter durch schwierige Momente.</p>
@@ -340,7 +343,7 @@ footer{background:#0A1A24;padding:2rem clamp(1.5rem,5vw,3rem);display:flex;align
 <section class="section">
   <div class="section-inner">
     <div class="brainy-vorstell reveal">
-      <div class="brainy-emoji">🧠</div>
+      <img class="brainy-emoji-img" src="vorschau/brainy/brainy.png" alt="Brainy, das Maskottchen von KLARTEXT-Mentoring">
       <div>
         <h2>Brainy begleitet, statt zu belehren</h2>
         <p>Brainy begleitet Kinder in Momenten der Überforderung — als ruhiger Anker, nicht als Belehrer. Kein Ermahnen, sondern gemeinsames Herunterregulieren.</p>
