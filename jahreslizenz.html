@@ -303,6 +303,24 @@ footer{background:#0A1A24;padding:2rem clamp(1.5rem,5vw,3rem);display:flex;align
   .fach-grid,.freiheit-grid,.preis-grid,.refi-steps{grid-template-columns:1fr;}
 }
 
+
+/* LOGIN-MODAL */
+.login-modal-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(10,20,26,.72);backdrop-filter:blur(4px);align-items:center;justify-content:center;padding:1.5rem;}
+.login-modal-overlay.open{display:flex;}
+.login-modal{background:var(--surface);border-radius:20px;max-width:480px;width:100%;padding:2.25rem clamp(1.5rem,4vw,2.5rem);position:relative;max-height:88vh;overflow-y:auto;box-shadow:0 24px 80px rgba(0,0,0,.35);}
+.login-modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.1rem;color:var(--muted);cursor:pointer;line-height:1;padding:.3rem;}
+.login-modal-close:hover{color:var(--ink);}
+.login-modal-titel{font-family:"Playfair Display",serif;font-size:1.5rem;color:var(--m);margin-bottom:1.5rem;text-align:center;}
+.login-modal-bereich{margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.login-modal-bereich:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.login-modal-bereich-titel{font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:.85rem;}
+.login-modal-vorschau-liste{display:flex;flex-direction:column;gap:.6rem;}
+.login-modal-vorschau-btn{display:block;padding:.7rem 1rem;border-radius:8px;border:1.5px solid var(--border);color:var(--ink);text-decoration:none;font-size:.85rem;font-weight:600;transition:all .2s;}
+.login-modal-vorschau-btn:hover{border-color:var(--m2);background:var(--paper);}
+.login-modal .kl-btn{width:100%;justify-content:center;text-align:center;display:flex;}
+.login-modal .kl-outline-dark{border:1.5px solid var(--m);color:var(--m);background:none;}
+.login-modal .kl-outline-dark:hover{background:var(--m);color:#fff;}
+button.header-login{font-family:inherit;cursor:pointer;background:none;}
 </style>
 </head>
 <body>
@@ -327,9 +345,42 @@ footer{background:#0A1A24;padding:2rem clamp(1.5rem,5vw,3rem);display:flex;align
     <a class="header-link" href="/jahreslizenz">All-Access Pass</a>
     <a class="header-link" href="/brainy-welt">Brainys Welt</a>
     <a class="header-link" href="/shop">Shop</a>
-    <a class="header-login" href="/app-login">App-Login</a>
+    <button class="header-login" type="button" onclick="openLoginModal()">App-Login</button>
   </div>
 </header>
+
+<!-- LOGIN-MODAL -->
+<div class="login-modal-overlay" id="loginModalOverlay">
+  <div class="login-modal">
+    <button class="login-modal-close" onclick="closeLoginModal()" aria-label="Schließen">✕</button>
+    <h2 class="login-modal-titel">Willkommen beim KLARTEXT-System</h2>
+
+    <div class="login-modal-bereich">
+      <div class="login-modal-bereich-titel">Login für Admins &amp; registrierte Partner</div>
+      <a class="kl-btn" style="background:var(--m);color:#fff;" href="https://klartext-app-8kl.pages.dev/KLARTEXT_Login.html">Zum Login →</a>
+    </div>
+
+    <div class="login-modal-bereich">
+      <div class="login-modal-bereich-titel">Einblick in die Praxis (ohne Anmeldung)</div>
+      <div class="login-modal-vorschau-liste">
+        <a class="login-modal-vorschau-btn" href="/system#tab-lehrkraft">🏫 Vorschau: Lehrkraft-System</a>
+        <a class="login-modal-vorschau-btn" href="/system#tab-jobcoach">💼 Vorschau: Jobcoach &amp; Berufsvorbereitung</a>
+        <a class="login-modal-vorschau-btn" href="/brainy-welt">🧒 Vorschau: Grundschule &amp; Brainys Welt</a>
+      </div>
+    </div>
+
+    <div class="login-modal-bereich">
+      <div class="login-modal-bereich-titel">Schullizenz / Testzugang für Träger &amp; Schulen</div>
+      <a class="kl-btn kl-outline-dark" href="mailto:info@klartext-mentoring.de?subject=Anfrage%20Schullizenz%20Testzugang">✉️ 14-Tage-Campus-Lizenz per E-Mail anfordern</a>
+    </div>
+  </div>
+</div>
+<script>
+function openLoginModal(){document.getElementById('loginModalOverlay').classList.add('open');}
+function closeLoginModal(){document.getElementById('loginModalOverlay').classList.remove('open');}
+document.getElementById('loginModalOverlay').addEventListener('click', function(e){ if(e.target === this) closeLoginModal(); });
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeLoginModal(); });
+</script>
 
 <section class="sub-hero">
   <div class="section-label">Das Abo-Modell</div>
